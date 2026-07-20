@@ -1,0 +1,1 @@
+- [PC Builder HTML data bugs](pc-builder-data-bugs.md) — original HTML had 3 classes of JS syntax bugs that silently broke init(); fixed approach: serve from public/ to bypass Vite plugins.
