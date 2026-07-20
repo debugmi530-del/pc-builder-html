@@ -2,326 +2,341 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>PC Builder Pro v5.0</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>PC Builder Pro v6.0</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0f1117;--bg2:#1a1d27;--bg3:#252836;
+  --bg:#0f1117;--bg2:#1a1d27;--bg3:#252836;--bg4:#1e2132;
   --accent:#6c63ff;--accent2:#ff6584;--green:#00e676;
   --yellow:#ffd740;--red:#ff5252;--text:#e0e0e0;
-  --text2:#9e9e9e;--border:#2d3147;--card-sel:rgba(108,99,255,0.10);
-  --diff-bg:rgba(255,215,64,0.14);--diff-col:#ffd740;
+  --text2:#9e9e9e;--border:#2d3147;--sel:rgba(108,99,255,.10);
+  --diff-bg:rgba(255,215,64,.14);--diff-col:#ffd740;
 }
 body.light{
-  --bg:#f0f2f8;--bg2:#ffffff;--bg3:#e8eaf2;
+  --bg:#f0f2f8;--bg2:#fff;--bg3:#e8eaf2;--bg4:#f5f6fa;
   --accent:#5b52e0;--accent2:#e0506a;--green:#00a854;
-  --yellow:#d4a000;--red:#d32f2f;--text:#1a1a2e;
-  --text2:#555577;--border:#d0d4e8;--card-sel:rgba(91,82,224,0.08);
-  --diff-bg:rgba(255,215,64,0.25);--diff-col:#a07700;
+  --yellow:#c49000;--red:#d32f2f;--text:#1a1a2e;
+  --text2:#555577;--border:#d0d4e8;--sel:rgba(91,82,224,.08);
+  --diff-bg:rgba(255,215,64,.28);--diff-col:#a07700;
 }
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;padding-bottom:80px;transition:background .25s,color .25s}
-/* ─── Header ─── */
-#header{background:var(--bg2);padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-#header h1{font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-#header .hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px}
-#header .version{font-size:11px;color:var(--text2)}
-.theme-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 10px;cursor:pointer;font-size:14px;color:var(--text)}
-/* ─── Search + Sort ─── */
-#search-bar{padding:10px 16px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center}
-#search-bar input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:9px 14px;color:var(--text);font-size:14px;outline:none}
-#search-bar input:focus{border-color:var(--accent)}
-#sort-select{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:9px 10px;color:var(--text);font-size:12px;outline:none;cursor:pointer;min-width:110px}
-/* ─── Filters ─── */
-#filters{padding:8px 16px;display:flex;gap:6px;overflow-x:auto;background:var(--bg2);border-bottom:1px solid var(--border);scrollbar-width:none;align-items:center}
-#filters::-webkit-scrollbar{display:none}
-.filter-btn{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:12px;color:var(--text2);cursor:pointer;white-space:nowrap;transition:all .2s}
-.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
-/* ─── Content ─── */
-#content{padding:12px 16px}
-.section-title{font-size:12px;color:var(--text2);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;display:flex;justify-content:space-between;align-items:center}
-/* ─── Cards ─── */
-.component-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:13px;margin-bottom:9px;cursor:pointer;transition:all .2s;position:relative}
-.component-card:active{transform:scale(0.98)}
-.component-card.selected{border-color:var(--accent);background:var(--card-sel)}
-.card-name{font-size:14px;font-weight:600;margin-bottom:3px;line-height:1.3;padding-right:90px}
-.card-brand{font-size:11px;color:var(--accent);font-weight:600;margin-bottom:5px;text-transform:uppercase}
-.card-specs{font-size:12px;color:var(--text2);line-height:1.6}
-.card-price{position:absolute;top:13px;right:13px;font-size:13px;font-weight:700;color:var(--green);background:var(--bg2);padding-left:4px;text-align:right;max-width:88px}
-.card-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;margin-top:5px}
-.badge-new{background:rgba(0,230,118,.15);color:var(--green)}
-.badge-hot{background:rgba(255,101,132,.15);color:var(--accent2)}
-.badge-budget{background:rgba(255,215,64,.15);color:var(--yellow)}
-.add-btn{display:inline-flex;align-items:center;gap:5px;margin-top:9px;background:var(--accent);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer}
+/* header */
+#header{background:var(--bg2);padding:11px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+#header h1{font-size:16px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hdr-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:13px;color:var(--text);transition:.2s}
+.hdr-btn:hover{border-color:var(--accent)}
+/* search row */
+#search-row{padding:9px 14px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center}
+#searchInput{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 13px;color:var(--text);font-size:13px;outline:none}
+#searchInput:focus{border-color:var(--accent)}
+.filter-toggle-btn{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 13px;cursor:pointer;font-size:13px;color:var(--text2);white-space:nowrap;display:flex;align-items:center;gap:5px;transition:.2s}
+.filter-toggle-btn.has-active{border-color:var(--accent);color:var(--accent)}
+/* quick filter bar */
+#qfilters{padding:7px 14px;display:flex;gap:6px;overflow-x:auto;background:var(--bg2);border-bottom:1px solid var(--border);scrollbar-width:none}
+#qfilters::-webkit-scrollbar{display:none}
+.qf-btn{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:5px 12px;font-size:11px;color:var(--text2);cursor:pointer;white-space:nowrap;transition:.2s;flex-shrink:0}
+.qf-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+/* content */
+#content{padding:11px 14px}
+.section-title{font-size:11px;color:var(--text2);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;display:flex;justify-content:space-between;align-items:center}
+/* cards */
+.component-card{background:var(--bg2);border:1px solid var(--border);border-radius:13px;padding:12px;margin-bottom:8px;cursor:pointer;transition:.2s;position:relative}
+.component-card:active{transform:scale(.985)}
+.component-card.selected{border-color:var(--accent);background:var(--sel)}
+.card-name{font-size:13px;font-weight:600;margin-bottom:3px;line-height:1.3;padding-right:88px}
+.card-brand{font-size:10px;color:var(--accent);font-weight:600;margin-bottom:4px;text-transform:uppercase}
+.card-specs{font-size:11px;color:var(--text2);line-height:1.6}
+.card-price{position:absolute;top:12px;right:12px;font-size:12px;font-weight:700;color:var(--green);text-align:right;max-width:86px;line-height:1.3}
+.card-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:9px;margin-top:4px}
+.badge-new{background:rgba(0,230,118,.14);color:var(--green)}
+.badge-hot{background:rgba(255,101,132,.14);color:var(--accent2)}
+.badge-budget{background:rgba(255,215,64,.14);color:var(--yellow)}
+.add-btn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;background:var(--accent);color:#fff;border:none;border-radius:18px;padding:5px 13px;font-size:11px;font-weight:600;cursor:pointer}
 .selected .add-btn{background:var(--red)}
-/* ─── Bottom nav ─── */
+/* perf bar */
+.perf-row{display:flex;align-items:center;gap:6px;margin-top:7px}
+.perf-track{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.perf-fill{height:100%;border-radius:2px;transition:width .3s}
+/* nav */
 #nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);display:flex;z-index:100}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:7px 2px;cursor:pointer;transition:all .2s;border:none;background:none;color:var(--text2);font-size:9.5px;gap:3px;position:relative}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:6px 2px;cursor:pointer;transition:.2s;border:none;background:none;color:var(--text2);font-size:9px;gap:3px;position:relative}
 .nav-btn.active{color:var(--accent)}
-.nav-btn svg{width:21px;height:21px}
-.build-count{background:var(--accent);color:#fff;border-radius:50%;width:15px;height:15px;font-size:9px;display:flex;align-items:center;justify-content:center;position:absolute;top:4px;right:6px}
-/* ─── More menu ─── */
-#more-menu{display:none;position:fixed;bottom:72px;right:0;left:0;background:var(--bg2);border-top:1px solid var(--border);z-index:200;padding:12px 16px;flex-wrap:wrap;gap:8px}
+.nav-btn svg{width:20px;height:20px}
+.build-count{background:var(--accent);color:#fff;border-radius:50%;width:14px;height:14px;font-size:9px;display:flex;align-items:center;justify-content:center;position:absolute;top:3px;right:5px}
+/* more menu */
+#more-menu{display:none;position:fixed;bottom:70px;right:0;left:0;background:var(--bg2);border-top:1px solid var(--border);z-index:200;padding:10px 14px;flex-wrap:wrap;gap:7px}
 #more-menu.open{display:flex}
-/* ─── Build panel ─── */
-.build-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border)}
-.build-item .item-cat{font-size:11px;color:var(--text2);width:75px;flex-shrink:0}
-.build-item .item-name{font-size:13px;flex:1;line-height:1.3}
-.build-item .item-price{font-size:12px;color:var(--green);font-weight:600;white-space:nowrap}
-.build-item .item-remove{color:var(--red);font-size:17px;cursor:pointer;padding:0 5px}
-.total-bar{background:var(--bg3);border-radius:14px;padding:14px;margin-top:14px}
-.total-label{font-size:12px;color:var(--text2)}
-.total-price{font-size:26px;font-weight:700;color:var(--green)}
-.compat-check{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.6}
-.compat-ok{background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2)}
-.compat-warn{background:rgba(255,215,64,.1);color:var(--yellow);border:1px solid rgba(255,215,64,.2)}
-.compat-err{background:rgba(255,82,82,.1);color:var(--red);border:1px solid rgba(255,82,82,.2)}
-.bottleneck-bar{margin-top:8px;padding:10px 12px;background:rgba(255,215,64,.08);border:1px solid rgba(255,215,64,.25);border-radius:10px;font-size:12px;color:var(--yellow);line-height:1.6}
-.empty-state{text-align:center;padding:50px 20px;color:var(--text2)}
-.empty-state .icon{font-size:44px;margin-bottom:14px}
-.no-results{text-align:center;padding:36px;color:var(--text2)}
-/* ─── Build actions ─── */
-.build-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.act-btn{flex:1;min-width:130px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:10px;font-size:12px;color:var(--text);cursor:pointer;text-align:center;font-weight:600;transition:all .2s}
+/* build panel */
+.build-item{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid var(--border)}
+.bi-cat{font-size:10px;color:var(--text2);width:72px;flex-shrink:0}
+.bi-name{font-size:12px;flex:1;line-height:1.3}
+.bi-price{font-size:11px;color:var(--green);font-weight:600;white-space:nowrap}
+.bi-rm{color:var(--red);font-size:16px;cursor:pointer;padding:0 4px}
+.total-bar{background:var(--bg3);border-radius:13px;padding:13px;margin-top:13px}
+.total-label{font-size:11px;color:var(--text2)}
+.total-price{font-size:24px;font-weight:700;color:var(--green)}
+.compat{margin-top:8px;padding:9px 11px;border-radius:9px;font-size:11px;line-height:1.6}
+.compat-ok{background:rgba(0,230,118,.09);color:var(--green);border:1px solid rgba(0,230,118,.2)}
+.compat-warn{background:rgba(255,215,64,.09);color:var(--yellow);border:1px solid rgba(255,215,64,.2)}
+.compat-err{background:rgba(255,82,82,.09);color:var(--red);border:1px solid rgba(255,82,82,.2)}
+.bn-bar{margin-top:7px;padding:9px 11px;background:rgba(255,215,64,.07);border:1px solid rgba(255,215,64,.22);border-radius:9px;font-size:11px;color:var(--yellow);line-height:1.6}
+.build-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.act-btn{flex:1;min-width:120px;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:9px;font-size:11px;color:var(--text);cursor:pointer;text-align:center;font-weight:600;transition:.2s}
 .act-btn:hover{border-color:var(--accent);color:var(--accent)}
 .act-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-/* ─── Saved builds ─── */
-.saved-build-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;transition:all .2s}
-.saved-build-card:hover{border-color:var(--accent)}
-.saved-build-card .sbc-title{font-weight:600;font-size:14px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
-.saved-build-card .sbc-info{font-size:11px;color:var(--text2)}
-.saved-build-card .sbc-price{color:var(--green);font-weight:700;font-size:13px}
-/* ─── Modal overlay ─── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;align-items:flex-end;justify-content:center}
+.empty-state{text-align:center;padding:48px 16px;color:var(--text2)}
+.empty-state .icon{font-size:42px;margin-bottom:12px}
+.no-results{text-align:center;padding:32px;color:var(--text2)}
+/* saved build cards */
+.sbc{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:11px;margin-bottom:7px;cursor:pointer;transition:.2s}
+.sbc:hover{border-color:var(--accent)}
+.sbc-title{font-weight:600;font-size:13px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.sbc-info{font-size:11px;color:var(--text2)}
+/* modals */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:300;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal-box{background:var(--bg2);border-radius:20px 20px 0 0;width:100%;max-height:92vh;overflow-y:auto;padding:20px 16px 40px;position:relative}
-.modal-box h2{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.modal-close{position:absolute;top:16px;right:16px;background:var(--bg3);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;color:var(--text);display:flex;align-items:center;justify-content:center}
-/* ─── Compare table ─── */
-.compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.compare-table{width:100%;border-collapse:collapse;font-size:12px;min-width:500px}
-.compare-table th{background:var(--bg3);padding:10px 8px;text-align:center;font-weight:600;font-size:11px;border:1px solid var(--border)}
-.compare-table th:first-child{text-align:left;width:100px}
-.compare-table td{padding:8px;border:1px solid var(--border);text-align:center;vertical-align:middle}
-.compare-table td:first-child{text-align:left;font-size:11px;color:var(--text2);font-weight:600;background:var(--bg3)}
-.compare-table td.diff{background:var(--diff-bg);color:var(--diff-col);font-weight:700}
-.compare-table .cat-row td{background:var(--bg3);font-weight:700;color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
-.score-bar-wrap{display:flex;align-items:center;gap:6px;justify-content:center}
-.score-bar{height:6px;border-radius:3px;background:var(--accent);min-width:4px;transition:width .4s}
-/* ─── Budget panel ─── */
-.budget-input-row{display:flex;gap:8px;margin-bottom:14px}
-.budget-input-row input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:15px;font-weight:600;outline:none}
-.budget-input-row input:focus{border-color:var(--accent)}
-.preset-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.preset-btn{flex:1;min-width:80px;padding:10px 6px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all .2s;color:var(--text)}
-.preset-btn.active{border-color:var(--accent);background:rgba(108,99,255,.12);color:var(--accent)}
-.budget-result{background:var(--bg3);border-radius:14px;padding:14px}
-.budget-result .br-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
-.budget-result .br-item:last-child{border:none}
-.budget-result .br-cat{font-size:11px;color:var(--text2);min-width:80px}
-.budget-result .br-price{color:var(--green);font-weight:600;font-size:12px;white-space:nowrap}
-.budget-total-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-weight:700}
-.budget-total-row .bt-label{font-size:13px;color:var(--text2)}
-.budget-total-row .bt-price{font-size:20px;color:var(--green)}
-/* ─── Settings ─── */
-.setting-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
-.setting-row:last-child{border:none}
-.setting-label{font-size:14px;font-weight:500}
-.setting-desc{font-size:11px;color:var(--text2);margin-top:2px}
-.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.modal-box{background:var(--bg2);border-radius:18px 18px 0 0;width:100%;max-height:94vh;overflow-y:auto;padding:18px 14px 40px;position:relative}
+.modal-box h2{font-size:15px;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:7px}
+.modal-close{position:absolute;top:14px;right:14px;background:var(--bg3);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;color:var(--text);display:flex;align-items:center;justify-content:center}
+
+/* ══════════ DNS FILTER PANEL ══════════ */
+#filter-panel{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.6);align-items:flex-end}
+#filter-panel.open{display:flex}
+#fp-box{background:var(--bg2);border-radius:18px 18px 0 0;width:100%;max-height:92vh;overflow-y:auto;display:flex;flex-direction:column}
+#fp-head{position:sticky;top:0;background:var(--bg2);z-index:10;padding:14px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+#fp-head h3{font-size:15px;font-weight:700;flex:1}
+.fp-reset{background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;padding:4px 8px}
+.fp-close-btn{background:var(--bg3);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:15px;color:var(--text);display:flex;align-items:center;justify-content:center}
+#fp-body{padding:12px 14px;flex:1;overflow-y:auto}
+#fp-foot{position:sticky;bottom:0;background:var(--bg2);padding:12px 14px;border-top:1px solid var(--border)}
+.fp-section{margin-bottom:18px}
+.fp-section-title{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:9px;font-weight:700}
+/* sort radios */
+.fp-sort-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.fp-radio-btn{display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-size:12px;transition:.2s}
+.fp-radio-btn.active{border-color:var(--accent);background:rgba(108,99,255,.1);color:var(--accent)}
+/* price range */
+.fp-price-row{display:flex;gap:8px;align-items:center}
+.fp-price-inp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:9px 10px;color:var(--text);font-size:13px;text-align:center;outline:none}
+.fp-price-inp:focus{border-color:var(--accent)}
+.fp-price-sep{color:var(--text2);font-size:12px}
+/* brand checkboxes */
+.fp-brands-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.fp-check-btn{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;transition:.2s;user-select:none}
+.fp-check-btn.active{border-color:var(--accent);background:rgba(108,99,255,.1);color:var(--accent)}
+.fp-check-btn .fp-cb{width:14px;height:14px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:.2s}
+.fp-check-btn.active .fp-cb{background:var(--accent);border-color:var(--accent);color:#fff}
+/* spec options */
+.fp-opts-grid{display:flex;flex-wrap:wrap;gap:5px}
+.fp-opt{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;cursor:pointer;font-size:11px;transition:.2s}
+.fp-opt.active{background:var(--accent);border-color:var(--accent);color:#fff}
+/* range slider */
+.fp-range-row{display:flex;gap:8px;align-items:center;margin-top:4px}
+.fp-range-inp{flex:1;accent-color:var(--accent)}
+.fp-range-val{font-size:11px;color:var(--text2);min-width:36px;text-align:center}
+/* apply btn */
+.fp-apply-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer}
+.fp-apply-btn:active{opacity:.9}
+/* active filter count badge */
+.fp-badge{background:var(--accent2);color:#fff;border-radius:10px;padding:1px 7px;font-size:10px;font-weight:700}
+
+/* compare table */
+.cmp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cmp-tbl{width:100%;border-collapse:collapse;font-size:11px;min-width:480px}
+.cmp-tbl th{background:var(--bg3);padding:9px 7px;text-align:center;font-weight:600;font-size:10px;border:1px solid var(--border)}
+.cmp-tbl th:first-child{text-align:left;width:90px}
+.cmp-tbl td{padding:7px;border:1px solid var(--border);text-align:center;vertical-align:middle;font-size:11px}
+.cmp-tbl td:first-child{text-align:left;font-size:10px;color:var(--text2);font-weight:600;background:var(--bg3)}
+.cmp-tbl td.diff{background:var(--diff-bg);color:var(--diff-col);font-weight:700}
+.cmp-tbl .cat-row td{background:var(--bg3);font-weight:700;color:var(--accent);font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+/* budget */
+.br-item{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border);gap:8px}
+.br-cat{font-size:10px;color:var(--text2);min-width:72px;flex-shrink:0}
+.br-name{font-size:12px;flex:1}
+.br-price{color:var(--green);font-weight:600;font-size:11px;white-space:nowrap}
+/* settings */
+.set-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--border)}
+.set-row:last-child{border:none}
+.set-label{font-size:13px;font-weight:500}
+.set-desc{font-size:11px;color:var(--text2);margin-top:2px}
+.toggle{position:relative;width:42px;height:22px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:12px;cursor:pointer;transition:.3s}
-.toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
-.toggle input:checked+.toggle-slider{background:var(--accent)}
-.toggle input:checked+.toggle-slider:before{transform:translateX(20px)}
-/* ─── Export ─── */
-.copy-success{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
-.copy-success.show{opacity:1}
-/* ─── Responsive ─── */
-@media(max-width:360px){.card-name{font-size:13px}.card-price{font-size:12px}}
-@media print{
-  #nav,#header,#search-bar,#filters,#more-menu,.modal-overlay,.build-actions{display:none!important}
-  body{padding:0;background:#fff;color:#000}
-  .total-price{color:#007700}
-  .build-item .item-price{color:#007700}
-  #content{padding:0}
-}
+.tog-sl{position:absolute;inset:0;background:var(--border);border-radius:11px;cursor:pointer;transition:.3s}
+.tog-sl:before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.tog-sl{background:var(--accent)}
+.toggle input:checked+.tog-sl:before{transform:translateX(20px)}
+/* toast */
+.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:7px 18px;border-radius:18px;font-size:12px;font-weight:700;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+/* preset btns */
+.preset-grid{display:flex;gap:7px;margin-bottom:12px}
+.preset-btn{flex:1;padding:9px 4px;background:var(--bg3);border:1px solid var(--border);border-radius:11px;font-size:12px;font-weight:600;cursor:pointer;text-align:center;transition:.2s;color:var(--text)}
+.preset-btn.active{border-color:var(--accent);background:rgba(108,99,255,.12);color:var(--accent)}
+.budget-res{background:var(--bg3);border-radius:13px;padding:12px}
+@media print{#nav,#header,#search-row,#qfilters,#more-menu,.modal-overlay,#filter-panel,.build-actions{display:none!important}body{padding:0;background:#fff;color:#000}.total-price,.bi-price{color:#007700}}
 </style>
 </head>
 <body>
 <div id="header">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2">
-    <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#ff6584"/></linearGradient></defs>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#g0)" stroke-width="2">
+    <defs><linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#ff6584"/></linearGradient></defs>
     <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 4v16M16 4v16M2 10h20M2 14h20"/>
   </svg>
   <h1>PC Builder Pro</h1>
   <div class="hdr-right">
-    <span class="version" id="totalCount">v5.0</span>
-    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    <span style="font-size:10px;color:var(--text2)" id="totalCount">v6.0</span>
+    <button class="hdr-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
   </div>
 </div>
-<div id="search-bar">
-  <input type="text" id="searchInput" placeholder="🔍 Поиск компонента..." oninput="filterComponents()">
-  <select id="sort-select" onchange="filterComponents()">
-    <option value="default">По умолчанию</option>
-    <option value="price-asc">Цена ↑</option>
-    <option value="price-desc">Цена ↓</option>
-    <option value="year-desc">Новинки</option>
-    <option value="year-asc">Старые</option>
-    <option value="score-desc">Топ рейтинг</option>
-    <option value="name-asc">А → Я</option>
-  </select>
+
+<div id="search-row">
+  <input type="text" id="searchInput" placeholder="🔍 Поиск..." oninput="renderComponents()">
+  <button class="filter-toggle-btn" onclick="openFilterPanel()" id="filterToggleBtn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+    Фильтры <span id="fp-active-count" style="display:none" class="fp-badge">0</span>
+  </button>
 </div>
-<div id="filters">
-  <button class="filter-btn active" onclick="setFilter('all',this)">Все</button>
-  <button class="filter-btn" onclick="setFilter('budget',this)">💰 Бюджет</button>
-  <button class="filter-btn" onclick="setFilter('mid',this)">⚡ Средний</button>
-  <button class="filter-btn" onclick="setFilter('high',this)">🔥 Топ</button>
-  <button class="filter-btn" onclick="setFilter('new',this)">🆕 2024–25</button>
-  <button class="filter-btn" onclick="setFilter('intel',this)">Intel</button>
-  <button class="filter-btn" onclick="setFilter('amd',this)">AMD</button>
-  <button class="filter-btn" onclick="setFilter('nvidia',this)">NVIDIA</button>
-  <button class="filter-btn" onclick="setFilter('asus',this)">ASUS</button>
-  <button class="filter-btn" onclick="setFilter('msi',this)">MSI</button>
-  <button class="filter-btn" onclick="setFilter('corsair',this)">Corsair</button>
-  <button class="filter-btn" onclick="setFilter('samsung',this)">Samsung</button>
+
+<div id="qfilters">
+  <button class="qf-btn active" onclick="setQF('all',this)">Все</button>
+  <button class="qf-btn" onclick="setQF('new',this)">🆕 Новинки</button>
+  <button class="qf-btn" onclick="setQF('hot',this)">🔥 Хиты</button>
+  <button class="qf-btn" onclick="setQF('budget',this)">💰 Бюджет</button>
+  <button class="qf-btn" onclick="setQF('mid',this)">⚡ Средний</button>
+  <button class="qf-btn" onclick="setQF('top',this)">🏆 Топ</button>
 </div>
+
 <div id="content">
   <div id="components-panel"></div>
   <div id="build-panel" style="display:none">
-    <div class="section-title">Моя сборка <span id="buildScore" style="font-size:11px;color:var(--accent)"></span></div>
+    <div class="section-title">Моя сборка <span id="bld-score" style="font-size:10px;color:var(--accent)"></span></div>
     <div id="build-list"></div>
     <div class="total-bar">
       <div class="total-label">Итоговая стоимость</div>
       <div class="total-price" id="totalPrice">0 ₽</div>
       <div id="compatStatus"></div>
-      <div id="bottleneckStatus"></div>
+      <div id="bnStatus"></div>
     </div>
     <div class="build-actions">
-      <button class="act-btn primary" onclick="openSaveBuild()">💾 Сохранить</button>
+      <button class="act-btn primary" onclick="openModal('modal-save')">💾 Сохранить</button>
       <button class="act-btn" onclick="copyBuild()">📋 Копировать</button>
-      <button class="act-btn" onclick="printBuild()">🖨️ PDF</button>
+      <button class="act-btn" onclick="window.print()">🖨️ PDF</button>
       <button class="act-btn" onclick="clearBuild()">🗑️ Очистить</button>
     </div>
-    <div id="buildEmpty" class="empty-state"><div class="icon">🖥️</div><p>Выберите компоненты<br>для сборки</p></div>
+    <div id="buildEmpty" class="empty-state"><div class="icon">🖥️</div><p>Выберите компоненты</p></div>
   </div>
   <div id="history-panel" style="display:none">
-    <div class="section-title">История сборок</div>
+    <div class="section-title">Сохранённые сборки</div>
     <div id="history-list"></div>
-    <div id="historyEmpty" class="empty-state"><div class="icon">📂</div><p>Нет сохранённых сборок</p></div>
+    <div id="histEmpty" class="empty-state" style="display:none"><div class="icon">📂</div><p>Нет сохранённых сборок</p></div>
   </div>
 </div>
 
 <!-- More menu -->
 <div id="more-menu">
-  <button class="filter-btn" onclick="showTab('storage');closeMore()">💾 Накопители</button>
-  <button class="filter-btn" onclick="showTab('psu');closeMore()">⚡ Блоки питания</button>
-  <button class="filter-btn" onclick="showTab('case');closeMore()">🗄️ Корпуса</button>
-  <button class="filter-btn" onclick="showTab('cooling');closeMore()">❄️ Охлаждение</button>
-  <button class="filter-btn" onclick="showTab('monitor');closeMore()">🖥️ Мониторы</button>
-  <button class="filter-btn" onclick="openCompare();closeMore()">📊 Сравнить сборки</button>
-  <button class="filter-btn" onclick="openBudget();closeMore()">💰 Собрать за бюджет</button>
-  <button class="filter-btn" onclick="openSettings();closeMore()">⚙️ Настройки</button>
+  <button class="qf-btn" onclick="showTab('storage');closeMore()">💾 Накопители</button>
+  <button class="qf-btn" onclick="showTab('psu');closeMore()">⚡ Блоки питания</button>
+  <button class="qf-btn" onclick="showTab('case');closeMore()">🗄️ Корпуса</button>
+  <button class="qf-btn" onclick="showTab('cooling');closeMore()">❄️ Охлаждение</button>
+  <button class="qf-btn" onclick="showTab('monitor');closeMore()">🖥️ Мониторы</button>
+  <button class="qf-btn" onclick="showTab('history');closeMore()">📂 История сборок</button>
+  <button class="qf-btn" onclick="openCompare();closeMore()">📊 Сравнить сборки</button>
+  <button class="qf-btn" onclick="openBudget();closeMore()">💰 Собрать за бюджет</button>
+  <button class="qf-btn" onclick="openModal('modal-settings');closeMore()">⚙️ Настройки</button>
 </div>
 
 <!-- Bottom nav -->
 <nav id="nav">
   <button class="nav-btn active" onclick="showTab('cpu')" id="nav-cpu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>
-    CPU
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>CPU
   </button>
   <button class="nav-btn" onclick="showTab('gpu')" id="nav-gpu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7V5M10 7V5M14 7V5M18 7V5M6 17v2M10 17v2M14 17v2M18 17v2"/></svg>
-    GPU
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7V5M10 7V5M14 7V5M18 7V5M6 17v2M10 17v2M14 17v2M18 17v2"/></svg>GPU
   </button>
   <button class="nav-btn" onclick="showTab('mb')" id="nav-mb">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 2v20M2 8h6M2 16h6"/></svg>
-    Мат.плата
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 2v20M2 8h6M2 16h6"/></svg>Мат.плата
   </button>
   <button class="nav-btn" onclick="showTab('ram')" id="nav-ram">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8V6M10 8V6M14 8V6M18 8V6"/></svg>
-    RAM
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8V6M10 8V6M14 8V6M18 8V6"/></svg>RAM
   </button>
   <button class="nav-btn" onclick="toggleMore()" id="nav-more">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-    Ещё
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>Ещё
   </button>
   <button class="nav-btn" onclick="showTab('build')" id="nav-build">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-    Сборка
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Сборка
     <div class="build-count" id="buildCount" style="display:none">0</div>
   </button>
 </nav>
 
+<!-- ═══ DNS FILTER PANEL ═══ -->
+<div id="filter-panel" onclick="if(event.target===this)closeFilterPanel()">
+  <div id="fp-box">
+    <div id="fp-head">
+      <h3>🔽 Фильтры и сортировка</h3>
+      <button class="fp-reset" onclick="resetFilters()">Сбросить всё</button>
+      <button class="fp-close-btn" onclick="closeFilterPanel()">✕</button>
+    </div>
+    <div id="fp-body"><!-- динамически --></div>
+    <div id="fp-foot">
+      <button class="fp-apply-btn" onclick="applyFilters()">Показать результаты</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ Modals ═══ -->
-<!-- Save Build Modal -->
 <div class="modal-overlay" id="modal-save">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-save')">✕</button>
     <h2>💾 Сохранить сборку</h2>
-    <input type="text" id="saveBuildName" placeholder="Название (напр. «Игровой ПК»)" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:14px;outline:none;margin-bottom:14px">
-    <button class="act-btn primary" style="width:100%;padding:13px" onclick="saveBuild()">Сохранить</button>
+    <input id="saveName" placeholder="Название сборки" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--text);font-size:13px;outline:none;margin-bottom:12px">
+    <button class="act-btn primary" style="width:100%;padding:12px" onclick="saveBuild()">Сохранить</button>
   </div>
 </div>
-
-<!-- Compare Modal -->
 <div class="modal-overlay" id="modal-compare">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-compare')">✕</button>
     <h2>📊 Сравнение сборок</h2>
-    <div id="compare-content"></div>
+    <div id="cmp-content"></div>
   </div>
 </div>
-
-<!-- Budget Modal -->
 <div class="modal-overlay" id="modal-budget">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-budget')">✕</button>
     <h2>💰 Подобрать за бюджет</h2>
-    <div class="budget-input-row">
-      <input type="number" id="budgetInput" placeholder="Бюджет в ₽" min="20000" step="5000">
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input type="number" id="budgetInput" placeholder="Бюджет ₽" min="20000" step="5000"
+        style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--text);font-size:14px;font-weight:600;outline:none">
     </div>
-    <div class="preset-btns">
-      <button class="preset-btn active" id="pbtn-gaming" onclick="setBuildType('gaming',this)">🎮 Игровой</button>
-      <button class="preset-btn" id="pbtn-work" onclick="setBuildType('work',this)">💼 Рабочий</button>
-      <button class="preset-btn" id="pbtn-office" onclick="setBuildType('office',this)">🏢 Офисный</button>
+    <div class="preset-grid">
+      <button class="preset-btn active" id="pb-gaming" onclick="setBT('gaming',this)">🎮 Игровой</button>
+      <button class="preset-btn" id="pb-work" onclick="setBT('work',this)">💼 Рабочий</button>
+      <button class="preset-btn" id="pb-office" onclick="setBT('office',this)">🏢 Офисный</button>
     </div>
-    <button class="act-btn primary" style="width:100%;padding:12px;margin-bottom:14px" onclick="runBudgetBuilder()">✨ Подобрать</button>
-    <div id="budget-result"></div>
+    <button class="act-btn primary" style="width:100%;padding:11px;margin-bottom:12px" onclick="runBudget()">✨ Подобрать</button>
+    <div id="budget-res"></div>
   </div>
 </div>
-
-<!-- Settings Modal -->
 <div class="modal-overlay" id="modal-settings">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-settings')">✕</button>
     <h2>⚙️ Настройки</h2>
-    <div class="setting-row">
-      <div>
-        <div class="setting-label">Тёмная тема</div>
-        <div class="setting-desc">Переключить оформление</div>
-      </div>
-      <label class="toggle"><input type="checkbox" id="themeToggle" onchange="toggleTheme()"><span class="toggle-slider"></span></label>
+    <div class="set-row">
+      <div><div class="set-label">Тёмная тема</div><div class="set-desc">Переключить оформление</div></div>
+      <label class="toggle"><input type="checkbox" id="themeChk" onchange="onThemeChk()"><span class="tog-sl"></span></label>
     </div>
-    <div class="setting-row">
-      <div>
-        <div class="setting-label">Предупреждения о бутылочном горлышке</div>
-        <div class="setting-desc">Показывать дисбаланс CPU/GPU</div>
-      </div>
-      <label class="toggle"><input type="checkbox" id="bottleneckToggle" checked onchange="saveSettings()"><span class="toggle-slider"></span></label>
+    <div class="set-row">
+      <div><div class="set-label">Предупреждение о бутылочном горлышке</div><div class="set-desc">Дисбаланс CPU / GPU в сборке</div></div>
+      <label class="toggle"><input type="checkbox" id="bnChk" checked onchange="saveSt()"><span class="tog-sl"></span></label>
     </div>
-    <div class="setting-row">
-      <div>
-        <div class="setting-label">Курс USD → ₽</div>
-        <div class="setting-desc">Используется для расчёта цен</div>
-      </div>
-      <input type="number" id="rateInput" value="90" min="1" style="width:80px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 10px;color:var(--text);font-size:13px;text-align:center;outline:none" onchange="saveSettings();renderComponents()">
+    <div class="set-row">
+      <div><div class="set-label">Курс USD → ₽</div><div class="set-desc">Для расчёта цен</div></div>
+      <input type="number" id="rateInp" value="90" min="1" style="width:76px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 9px;color:var(--text);font-size:12px;text-align:center;outline:none" onchange="saveSt();renderComponents()">
     </div>
   </div>
 </div>
-
-<!-- Toast -->
-<div class="copy-success" id="toast">✓ Скопировано!</div>
+<div class="toast" id="toast">✓</div>
 
 <script>
 const DB = {
@@ -474,7 +489,6 @@ cpu: [
   {id:'c213',name:'Core i9-10900KF',brand:'Intel',price:129,socket:'LGA1200',tdp:125,cores:10,boost:5.3,year:2020,specs:'10 ядер / без встр. графики'},
   {id:'c214',name:'Core i7-10700K',brand:'Intel',price:119,socket:'LGA1200',tdp:125,cores:8,boost:5.1,year:2020,badge:'budget',specs:'8 ядер / Boost 5.1ГГц / 16MB L3'},
   {id:'c215',name:'Core i5-10600K',brand:'Intel',price:99,socket:'LGA1200',tdp:125,cores:6,boost:4.8,year:2020,badge:'budget',specs:'6 ядер / Boost 4.8ГГц / 12MB L3'},
-  {id:'c216',name:'Core i3-10100F',brand:'Intel',price:59,socket:'LGA1200',tdp:65,cores:4,boost:4.3,year:2020,badge:'budget',specs:'4 ядра / TDP 65W / очень бюджет'},
   // ── AMD Ryzen 9000 дополнительные ──
   {id:'c217',name:'Ryzen 5 9600X3D',brand:'AMD',price:279,socket:'AM5',tdp:65,cores:6,boost:5.4,year:2025,badge:'new',specs:'6 ядер Zen 5 / 32MB + 64MB 3D V-Cache / AM5'},
   {id:'c218',name:'Ryzen 3 9300',brand:'AMD',price:149,socket:'AM5',tdp:65,cores:4,boost:4.8,year:2025,badge:'new',specs:'4 ядра Zen 5 / TDP 65W / бюджет AM5'},
@@ -487,7 +501,6 @@ cpu: [
   {id:'c224',name:'Ryzen 7 5800X3D V2',brand:'AMD',price:299,socket:'AM4',tdp:105,cores:8,boost:4.6,year:2024,badge:'hot',specs:'8 ядер / 96MB 3D V-Cache / обновлённый AM4'},
   // ── AMD Ryzen 4000 (Zen 3 APU) ──
   {id:'c225',name:'Ryzen 7 4700G',brand:'AMD',price:129,socket:'AM4',tdp:65,cores:8,boost:4.4,year:2021,badge:'budget',specs:'8 ядер Zen 2 / встр. Vega 8 / без GPU'},
-  {id:'c226',name:'Ryzen 5 4600G',brand:'AMD',price:99,socket:'AM4',tdp:65,cores:6,boost:4.2,year:2021,badge:'budget',specs:'6 ядер Zen 2 / встр. Vega 7 / офис без GPU'},
   {id:'c227',name:'Ryzen 3 4300G',brand:'AMD',price:69,socket:'AM4',tdp:65,cores:4,boost:4.0,year:2021,badge:'budget',specs:'4 ядра Zen 2 / встр. Vega 6 / мини ПК'},
   // ── AMD EPYC (серверные) ──
   {id:'c228',name:'EPYC 9654',brand:'AMD',price:11999,socket:'SP5',tdp:360,cores:96,boost:3.7,year:2023,specs:'96 ядер Zen 4 / 384MB L3 / сервер 2P'},
@@ -498,15 +511,10 @@ cpu: [
   {id:'c232',name:'Xeon E-2478',brand:'Intel',price:499,socket:'LGA1700',tdp:80,cores:8,boost:5.1,year:2024,specs:'8 ядер / ECC DDR5 / рабочая станция'},
   // ── AMD Ryzen 7000X3D остальные ──
   {id:'c233',name:'Ryzen 7 7700X3D',brand:'AMD',price:349,socket:'AM5',tdp:120,cores:8,boost:5.0,year:2024,badge:'new',specs:'8 ядер / 96MB 3D V-Cache / AM5 игровой'},
-  {id:'c234',name:'Ryzen 5 7600X3D',brand:'AMD',price:249,socket:'AM5',tdp:105,cores:6,boost:5.1,year:2024,badge:'new',specs:'6 ядер / 96MB 3D V-Cache / лучший бюджет AM5'},
 
 
   // ── Intel Core Ultra 300 (Panther Lake) 2025 ──
-  {id:'c250',name:'Core Ultra 9 385K',brand:'Intel',price:699,socket:'LGA1954',tdp:125,cores:28,boost:6.0,year:2025,badge:'new',specs:'28 ядер / Boost 6.0ГГц / Panther Lake / DDR5'},
-  {id:'c251',name:'Core Ultra 7 365K',brand:'Intel',price:449,socket:'LGA1954',tdp:125,cores:22,boost:5.7,year:2025,badge:'new',specs:'22 ядра / Boost 5.7ГГц / Panther Lake'},
-  {id:'c252',name:'Core Ultra 5 345K',brand:'Intel',price:329,socket:'LGA1954',tdp:125,cores:16,boost:5.4,year:2025,badge:'new',specs:'16 ядер / Boost 5.4ГГц / Panther Lake'},
   // ── AMD Ryzen 9000 добавочные ──
-  {id:'c253',name:'Ryzen 9 9950X Pro',brand:'AMD',price:699,socket:'AM5',tdp:170,cores:16,boost:5.8,year:2025,badge:'new',specs:'16 ядер Zen 5 / корпоративная версия / ECC'},
   {id:'c254',name:'Ryzen 7 9700G',brand:'AMD',price:349,socket:'AM5',tdp:65,cores:8,boost:5.1,year:2025,badge:'new',specs:'8 ядер Zen 5 / Radeon 890M встр. / улучш. APU'},
   {id:'c255',name:'Ryzen 5 9600G',brand:'AMD',price:249,socket:'AM5',tdp:65,cores:6,boost:5.0,year:2025,badge:'new',specs:'6 ядер Zen 5 / Radeon 880M встр. / без GPU'},
   {id:'c256',name:'Ryzen 3 9400',brand:'AMD',price:119,socket:'AM5',tdp:65,cores:4,boost:4.6,year:2025,badge:'budget',specs:'4 ядра Zen 5 / TDP 65W / бюджет AM5 Ryzen 9000'},
@@ -514,25 +522,13 @@ cpu: [
   {id:'c257',name:'Ryzen 5 5500X',brand:'AMD',price:99,socket:'AM4',tdp:65,cores:6,boost:4.4,year:2023,badge:'budget',specs:'6 ядер / 4.4ГГц / AM4 / 35MB кеш'},
   {id:'c258',name:'Ryzen 5 5500X3D',brand:'AMD',price:129,socket:'AM4',tdp:65,cores:6,boost:4.4,year:2024,badge:'budget',specs:'6 ядер / 64MB 3D V-Cache / AM4 игры бюджет'},
   // ── Intel NUC / Embedded ──
-  {id:'c259',name:'Core i9-13900H',brand:'Intel',price:549,socket:'BGA',tdp:45,cores:14,boost:5.4,year:2023,specs:'14 ядер мобильный / 45W / для NUC/mini PC'},
-  {id:'c260',name:'Core i7-1370P',brand:'Intel',price:399,socket:'BGA',tdp:28,cores:12,boost:5.2,year:2023,badge:'budget',specs:'12 ядер / 28W / ультрабюджет TDP / NUC / ноутбук'},
   // ── AMD EPYC Bergamo ──
   {id:'c261',name:'EPYC 9754',brand:'AMD',price:8999,socket:'SP5',tdp:360,cores:128,boost:3.1,year:2024,badge:'new',specs:'128 ядер Zen 4c / Bergamo / облачный сервер'},
   {id:'c262',name:'EPYC 9654P',brand:'AMD',price:6999,socket:'SP5',tdp:360,cores:96,boost:3.7,year:2024,specs:'96 ядер / 1P серверный / Genoa'},
 
 
   // ── Intel Core Ultra 200U (мобильные/NUC) ──
-  {id:'c270',name:'Core Ultra 7 155U',brand:'Intel',price:349,socket:'BGA',tdp:15,cores:12,boost:4.8,year:2024,badge:'new',specs:'12 ядер / 15W / мобильный / NUC / Arc Xe'},
-  {id:'c271',name:'Core Ultra 5 125U',brand:'Intel',price:249,socket:'BGA',tdp:15,cores:12,boost:4.4,year:2024,badge:'budget',specs:'12 ядер / 15W / тихий NUC'},
-  {id:'c272',name:'Core Ultra 9 185H',brand:'Intel',price:499,socket:'BGA',tdp:45,cores:16,boost:5.1,year:2024,badge:'new',specs:'16 ядер мобильный / 45W / Arc 8 встр.'},
   // ── AMD Ryzen AI (мобильные) ──
-  {id:'c273',name:'Ryzen AI 9 HX 370',brand:'AMD',price:449,socket:'BGA',tdp:54,cores:12,boost:5.1,year:2024,badge:'new',specs:'12 ядер Zen 5 / AI 50 TOPS / Radeon 890M встр.'},
-  {id:'c274',name:'Ryzen AI 7 365',brand:'AMD',price:329,socket:'BGA',tdp:28,cores:10,boost:5.0,year:2024,badge:'new',specs:'10 ядер Zen 5 / 28W / Radeon 880M встр.'},
-
-  {id:'c280',name:'Core i9-14900KS Special Edition',brand:'Intel',price:449,socket:'LGA1700',tdp:150,cores:24,boost:6.2,year:2024,badge:'new',specs:'24 ядра / Boost 6.2ГГц / самый быстрый Raptor Lake'},
-  {id:'c281',name:'Ryzen 9 7845HX',brand:'AMD',price:599,socket:'BGA',tdp:55,cores:12,boost:5.4,year:2023,specs:'12 ядер Zen 4 / Dragon Range / мобильный топ'},
-  {id:'c282',name:'Ryzen 5 7640U',brand:'AMD',price:249,socket:'BGA',tdp:15,cores:6,boost:4.9,year:2023,badge:'budget',specs:'6 ядер Zen 4 / Phoenix / Radeon 760M встр. / NUC'},
-  {id:'c283',name:'Ryzen 7 8845HS',brand:'AMD',price:449,socket:'BGA',tdp:35,cores:8,boost:5.1,year:2024,badge:'new',specs:'8 ядер Zen 4 / NPU / Radeon 780M / Hawk Point'},
   {id:'c284',name:'Ryzen 5 4500',brand:'AMD',price:89,socket:'AM4',tdp:65,cores:6,boost:4.1,year:2021,badge:'budget',specs:'6 ядер Zen 2 / без 3D / AM4 / ультрабюджет'},
 
   {id:'c117',name:'Ryzen 5 8500G',brand:'AMD',price:149,socket:'AM5',tdp:65,cores:6,boost:5.0,year:2024,badge:'budget',specs:'6 ядер Zen 4/4c / Radeon 740M / бюджет'},
@@ -715,15 +711,9 @@ gpu: [
   {id:'g201',name:'RTX 5080 16GB',brand:'NVIDIA',price:999,vram:16,tdp:360,year:2025,badge:'new',specs:'16GB GDDR7 / 360W / Blackwell / очень быстрый'},
   {id:'g202',name:'RTX 5070 Ti 16GB',brand:'NVIDIA',price:749,vram:16,tdp:300,year:2025,badge:'new',specs:'16GB GDDR7 / 300W / Blackwell'},
   {id:'g203',name:'RTX 5070 12GB',brand:'NVIDIA',price:549,vram:12,tdp:250,year:2025,badge:'new',specs:'12GB GDDR7 / 250W / Blackwell / хорошая цена'},
-  {id:'g204',name:'RTX 5060 Ti 16GB',brand:'NVIDIA',price:429,vram:16,tdp:180,year:2025,badge:'new',specs:'16GB GDDR7 / 180W / Blackwell / бюджет'},
-  {id:'g205',name:'RTX 5060 Ti 8GB',brand:'NVIDIA',price:379,vram:8,tdp:160,year:2025,badge:'new',specs:'8GB GDDR7 / 160W / Blackwell'},
   {id:'g206',name:'RTX 5060 8GB',brand:'NVIDIA',price:299,vram:8,tdp:150,year:2025,badge:'new',specs:'8GB GDDR7 / 150W / Blackwell / массовый'},
   // ── NVIDIA RTX 40 дополнительные ──
   {id:'g207',name:'RTX 4090 D 24GB',brand:'NVIDIA',price:1599,vram:24,tdp:425,year:2024,badge:'hot',specs:'24GB GDDR6X / 425W / для Китая / производительность топ'},
-  {id:'g208',name:'RTX 4080 Ti 20GB',brand:'NVIDIA',price:1399,vram:20,tdp:350,year:2024,badge:'new',specs:'20GB GDDR6X / 350W / неофициальная версия'},
-  {id:'g209',name:'RTX 4060 Ti SUPER 16GB',brand:'NVIDIA',price:449,vram:16,tdp:165,year:2024,specs:'16GB GDDR6 / 165W / SUPER обновление'},
-  {id:'g210',name:'RTX 4060 SUPER 8GB',brand:'NVIDIA',price:319,vram:8,tdp:120,year:2024,badge:'budget',specs:'8GB GDDR6 / 120W / SUPER бюджет'},
-  {id:'g211',name:'RTX 4050 8GB',brand:'NVIDIA',price:249,vram:8,tdp:100,year:2024,badge:'budget',specs:'8GB GDDR6 / 100W / мобильный уровень / ноутбуки'},
   // ── AMD RX 9000 Series (RDNA 4) 2025 ──
   {id:'g212',name:'Radeon RX 9070 XT 16GB',brand:'AMD',price:599,vram:16,tdp:304,year:2025,badge:'new',specs:'16GB GDDR6 / 304W / RDNA 4 / конкурент RTX 5070'},
   {id:'g213',name:'Radeon RX 9070 16GB',brand:'AMD',price:549,vram:16,tdp:220,year:2025,badge:'new',specs:'16GB GDDR6 / 220W / RDNA 4 / отличная цена'},
@@ -740,9 +730,6 @@ gpu: [
   {id:'g222',name:'Arc B770 16GB',brand:'Intel',price:399,vram:16,tdp:225,year:2025,badge:'new',specs:'16GB GDDR6 / топ Battlemage / XeSS 2.0'},
   {id:'g223',name:'Arc B570 16GB',brand:'Intel',price:249,vram:16,tdp:150,year:2025,badge:'new',specs:'16GB GDDR6 / 150W / бюджет Battlemage'},
   // ── Бюджетные ──
-  {id:'g224',name:'GTX 1660 SUPER 6GB',brand:'NVIDIA',price:99,vram:6,tdp:125,year:2019,badge:'budget',specs:'6GB GDDR6 / 125W / устаревший'},
-  {id:'g225',name:'GTX 1660 Ti 6GB',brand:'NVIDIA',price:109,vram:6,tdp:120,year:2019,badge:'budget',specs:'6GB GDDR6 / 120W / устаревший'},
-  {id:'g226',name:'GTX 1660 6GB',brand:'NVIDIA',price:79,vram:6,tdp:120,year:2019,badge:'budget',specs:'6GB GDDR5 / 120W / устаревший'},
   {id:'g227',name:'RX 6600 8GB',brand:'AMD',price:149,vram:8,tdp:132,year:2021,badge:'budget',specs:'8GB GDDR6 / 132W / RDNA 2 / доступный'},
   {id:'g228',name:'RX 6650 XT 8GB',brand:'AMD',price:169,vram:8,tdp:180,year:2022,badge:'budget',specs:'8GB GDDR6 / 180W / RDNA 2 refresh'},
   // ── Workstation NVIDIA дополнительные ──
@@ -754,15 +741,6 @@ gpu: [
 
 
   // ── NVIDIA RTX 30 бюджет (доступные) ──
-  {id:'g250',name:'RTX 3050 6GB',brand:'NVIDIA',price:149,vram:6,tdp:70,year:2024,badge:'budget',specs:'6GB GDDR6 / 70W / урезанная / без доп. питания'},
-  {id:'g251',name:'RTX 3060 12GB',brand:'NVIDIA',price:199,vram:12,tdp:170,year:2021,badge:'budget',specs:'12GB GDDR6 / 170W / много памяти / устаревший'},
-  {id:'g252',name:'RTX 3060 Ti',brand:'NVIDIA',price:229,vram:8,tdp:200,year:2021,badge:'budget',specs:'8GB GDDR6 / 200W / хорошая производительность'},
-  {id:'g253',name:'RTX 3070',brand:'NVIDIA',price:269,vram:8,tdp:220,year:2020,specs:'8GB GDDR6 / 220W / Ampere / устаревший'},
-  {id:'g254',name:'RTX 3070 Ti',brand:'NVIDIA',price:289,vram:8,tdp:290,year:2021,specs:'8GB GDDR6X / 290W / Ampere'},
-  {id:'g255',name:'RTX 3080 10GB',brand:'NVIDIA',price:349,vram:10,tdp:320,year:2020,specs:'10GB GDDR6X / 320W / Ampere / устаревший'},
-  {id:'g256',name:'RTX 3080 Ti',brand:'NVIDIA',price:399,vram:12,tdp:350,year:2021,specs:'12GB GDDR6X / 350W / Ampere'},
-  {id:'g257',name:'RTX 3090',brand:'NVIDIA',price:599,vram:24,tdp:350,year:2020,specs:'24GB GDDR6X / 350W / Ampere / много VRAM'},
-  {id:'g258',name:'RTX 3090 Ti',brand:'NVIDIA',price:649,vram:24,tdp:450,year:2022,specs:'24GB GDDR6X / 450W / Ampere флагман'},
   // ── AMD RX 6000 дополнительные ──
   {id:'g259',name:'Radeon RX 6950 XT 16GB',brand:'AMD',price:449,vram:16,tdp:335,year:2022,specs:'16GB GDDR6 / 335W / RDNA 2 флагман'},
   {id:'g260',name:'Radeon RX 6900 XT 16GB',brand:'AMD',price:399,vram:16,tdp:300,year:2020,specs:'16GB GDDR6 / 300W / RDNA 2'},
@@ -774,11 +752,6 @@ gpu: [
 
 
   // ── NVIDIA RTX 40 Laptop ──
-  {id:'g270',name:'RTX 4090 Laptop 16GB',brand:'NVIDIA',price:0,vram:16,tdp:150,year:2023,specs:'16GB GDDR6 / до 150W / мобильная / ноутбук'},
-  {id:'g271',name:'RTX 4080 Laptop 12GB',brand:'NVIDIA',price:0,vram:12,tdp:120,year:2023,specs:'12GB GDDR6 / до 120W / мобильная'},
-  {id:'g272',name:'RTX 4070 Laptop 8GB',brand:'NVIDIA',price:0,vram:8,tdp:100,year:2023,badge:'hot',specs:'8GB GDDR6 / до 100W / мобильная'},
-  {id:'g273',name:'RTX 5090 Ti 32GB',brand:'NVIDIA',price:2499,vram:32,tdp:600,year:2025,badge:'new',specs:'32GB GDDR7 / 600W / Blackwell Ultra / абсолютный рекорд'},
-  {id:'g274',name:'RTX 5070 SUPER 12GB',brand:'NVIDIA',price:649,vram:12,tdp:250,year:2025,badge:'new',specs:'12GB GDDR7 / Blackwell SUPER / 2025'},
 
   {id:'g280',name:'Quadro RTX A5000 24GB',brand:'NVIDIA',price:3499,vram:24,tdp:230,year:2021,specs:'24GB GDDR6 ECC / Ampere / рабочая станция / CUDA'},
   {id:'g281',name:'Radeon Pro W7900 48GB',brand:'AMD',price:3999,vram:48,tdp:295,year:2023,badge:'new',specs:'48GB GDDR6 / RDNA 3 / профессиональная / 48GB'},
@@ -1104,7 +1077,6 @@ ram: [
   {id:'r073',name:'Patriot Signature DDR4-2666 16GB',brand:'Patriot',price:29,type:'DDR4',speed:2666,capacity:16,year:2020,badge:'budget',specs:'2x8GB / CL19 / базовый / офис'},
   {id:'r074',name:'Kingston ValueRAM DDR4-2666 16GB',brand:'Kingston',price:27,type:'DDR4',speed:2666,capacity:16,year:2020,badge:'budget',specs:'2x8GB / без XMP / офисный'},
   // ── DDR4 высокая ёмкость ──
-  {id:'r075',name:'Trident Z RGB DDR4-3600 128GB',brand:'G.Skill',price:229,type:'DDR4',speed:3600,capacity:128,year:2022,specs:'4x32GB / 128GB / CL18 / максимум DDR4 для X570'},
   {id:'r076',name:'Vengeance RGB Pro DDR4-3200 64GB',brand:'Corsair',price:119,type:'DDR4',speed:3200,capacity:64,year:2021,specs:'2x32GB / 64GB / RGB'},
   // ── Специализированные ──
   {id:'r077',name:'T-Force Xtreem ARGB DDR4-4000 32GB',brand:'TeamGroup',price:129,type:'DDR4',speed:4000,capacity:32,year:2021,specs:'2x16GB / CL18 / зеркальный дизайн / OC'},
@@ -1123,9 +1095,6 @@ ram: [
   {id:'r208',name:'Fury Renegade DDR5-6000 64GB',brand:'Kingston',price:199,type:'DDR5',speed:6000,capacity:64,year:2025,badge:'budget',specs:'2x32GB / 64GB / CL36 / без RGB / выгодно'},
   {id:'r209',name:'Vengeance DDR5-6400 64GB White',brand:'Corsair',price:189,type:'DDR5',speed:6400,capacity:64,year:2025,specs:'2x32GB / белый / CL32 / без RGB'},
   // ── DDR5 SO-DIMM (ноутбуки/мини ПК) ──
-  {id:'r210',name:'SO-DIMM DDR5-6400 32GB',brand:'G.Skill',price:89,type:'DDR5',speed:6400,capacity:32,year:2025,badge:'new',specs:'2x16GB / SO-DIMM / ноутбук / Mini-ITX NUC'},
-  {id:'r211',name:'Vengeance SO-DIMM DDR5-5600 64GB',brand:'Corsair',price:149,type:'DDR5',speed:5600,capacity:64,year:2024,specs:'2x32GB / SO-DIMM / ноутбук/NUC'},
-  {id:'r212',name:'Fury Impact DDR5-4800 32GB',brand:'Kingston',price:59,type:'DDR5',speed:4800,capacity:32,year:2023,badge:'budget',specs:'2x16GB / SO-DIMM / базовый ноутбук'},
   // ── DDR4 дополнительные наборы ──
   {id:'r213',name:'Trident Z Neo DDR4-3600 16GB',brand:'G.Skill',price:39,type:'DDR4',speed:3600,capacity:16,year:2021,badge:'budget',specs:'2x8GB / CL16 / для Ryzen / RGB'},
   {id:'r214',name:'Ripjaws V DDR4-2400 16GB',brand:'G.Skill',price:25,type:'DDR4',speed:2400,capacity:16,year:2019,badge:'budget',specs:'2x8GB / CL15 / базовый офис'},
@@ -1159,7 +1128,6 @@ ram: [
 
 
   // ── Специальные ──
-  {id:'r260',name:'DDR5 CAMM2 64GB',brand:'Samsung',price:399,type:'DDR5',speed:6400,capacity:64,year:2025,badge:'new',specs:'CAMM2 модуль / тонкий ноутбук / новый стандарт 2025'},
   {id:'r261',name:'SO-DIMM DDR5-7200 64GB',brand:'G.Skill',price:219,type:'DDR5',speed:7200,capacity:64,year:2025,badge:'new',specs:'2x32GB / SO-DIMM / NUC Pro / AM5 ноутбук'},
 
   {id:'r270',name:'Trident Z5 DDR5-9600 32GB',brand:'G.Skill',price:649,type:'DDR5',speed:9600,capacity:32,year:2025,badge:'new',specs:'2x16GB / CL46 / рекордная частота / XMP3'},
@@ -1178,7 +1146,6 @@ storage: [
   {id:'s005',name:'T705 1TB PCIe 5.0',brand:'Crucial',price:159,type:'NVMe PCIe 5.0',capacity:1000,read:13600,write:10200,year:2024,badge:'new',specs:'13600/10200 МБ/с / PCIe 5.0'},
   {id:'s006',name:'T705 4TB PCIe 5.0',brand:'Crucial',price:499,type:'NVMe PCIe 5.0',capacity:4000,read:14500,write:12700,year:2024,badge:'new',specs:'14500/12700 МБ/с / 4TB'},
   {id:'s007',name:'FireCuda 530 2TB PCIe 5.0',brand:'Seagate',price:279,type:'NVMe PCIe 5.0',capacity:2000,read:14000,write:12000,year:2024,badge:'new',specs:'14000/12000 МБ/с / PCIe 5.0'},
-  {id:'s008',name:'WD Black SN850X 4TB PCIe 5.0',brand:'WD',price:599,type:'NVMe PCIe 5.0',capacity:4000,read:14900,write:14000,year:2024,badge:'new',specs:'14900/14000 МБ/с / PCIe 5.0'},
   {id:'s009',name:'MP700 Pro 2TB PCIe 5.0',brand:'Corsair',price:249,type:'NVMe PCIe 5.0',capacity:2000,read:12400,write:11800,year:2024,badge:'new',specs:'12400/11800 МБ/с / PCIe 5.0'},
   {id:'s010',name:'MP700 Pro 4TB PCIe 5.0',brand:'Corsair',price:449,type:'NVMe PCIe 5.0',capacity:4000,read:12400,write:11800,year:2024,badge:'new',specs:'12400/11800 МБ/с / 4TB'},
   {id:'s011',name:'Predator GM7 2TB PCIe 5.0',brand:'ADATA',price:199,type:'NVMe PCIe 5.0',capacity:2000,read:12400,write:11800,year:2024,badge:'new',specs:'12400/11800 МБ/с / PCIe 5.0 / бюджет'},
@@ -1300,7 +1267,6 @@ storage: [
   {id:'s253',name:'Crucial P3 1TB',brand:'Crucial',price:35,type:'NVMe PCIe 3.0',capacity:1000,read:3500,write:3000,year:2023,badge:'budget',specs:'3500/3000 МБ/с / PCIe 3.0 / дешевле всего'},
   // ── SATA SSD дополнительные ──
   {id:'s254',name:'ADATA SU800 1TB SATA',brand:'ADATA',price:45,type:'SSD SATA',capacity:1000,read:560,write:520,year:2021,badge:'budget',specs:'560/520 МБ/с / SATA III / 3D NAND'},
-  {id:'s255',name:'WD Blue 1TB SATA SSD',brand:'WD',price:44,type:'SSD SATA',capacity:1000,read:560,write:530,year:2023,badge:'budget',specs:'560/530 МБ/с / SATA III / надёжный'},
   {id:'s256',name:'Seagate BarraCuda Q1 1TB',brand:'Seagate',price:39,type:'SSD SATA',capacity:1000,read:550,write:500,year:2020,badge:'budget',specs:'550/500 МБ/с / QLC / SATA / бюджет'},
   // ── NAS/Enterprise HDD ──
   {id:'s257',name:'WD Gold 4TB Enterprise',brand:'WD',price:89,type:'HDD',capacity:4000,read:205,write:205,year:2022,badge:'budget',specs:'7200 RPM / 256MB кеш / CMR / корпоративный'},
@@ -1316,8 +1282,6 @@ storage: [
   {id:'s270',name:'Micron 2550 1TB NVMe PCIe 4.0',brand:'Micron',price:49,type:'NVMe PCIe 4.0',capacity:1000,read:5500,write:4500,year:2024,badge:'budget',specs:'5500/4500 МБ/с / PCIe 4.0 / 176L NAND / OEM'},
   {id:'s271',name:'PM9A1 512GB OEM',brand:'Samsung',price:39,type:'NVMe PCIe 4.0',capacity:512,read:6900,write:5000,year:2023,badge:'budget',specs:'6900/5000 МБ/с / OEM PCIe 4.0 / для апгрейда ноутбука'},
   {id:'s272',name:'SK Hynix Platinum P41 1TB',brand:'SK Hynix',price:69,type:'NVMe PCIe 4.0',capacity:1000,read:7000,write:6500,year:2022,badge:'budget',specs:'7000/6500 МБ/с / 128L NAND TLC / лучший 1TB'},
-
-  {id:'s080',name:'BarraCuda 8TB',brand:'Seagate',price:129,type:'HDD',capacity:8000,year:2023,specs:'7200 RPM / 256MB кеш / настольный'},
 ],
 
 psu: [
@@ -1389,16 +1353,9 @@ psu: [
   {id:'p058',name:'SFX 500W Gold',brand:'Corsair',price:89,wattage:500,efficiency:'80+ Gold',modular:'Fully',year:2022,badge:'budget',specs:'SFX / 500W / Gold / Mini-ITX'},
   // ── Дополнительные ATX/ATX 3.0 ──
   {id:'p059',name:'SuperNOVA 850 G7',brand:'EVGA',price:149,wattage:850,efficiency:'80+ Gold',modular:'Fully',year:2023,specs:'850W / Gold / 100% Japanese caps / ATX 3.0 / ECO Mode'},
-  {id:'p060',name:'SuperNOVA 1000 G6',brand:'EVGA',price:179,wattage:1000,efficiency:'80+ Gold',modular:'Fully',year:2022,specs:'1000W / Gold / 10Y warranty / ATX'},
-  {id:'p061',name:'FOCUS GX-850',brand:'Seasonic',price:139,wattage:850,efficiency:'80+ Gold',modular:'Fully',year:2023,specs:'850W / Gold / 12V-2×6 / Seasonic Hybrid Fan'},
-  {id:'p062',name:'FOCUS GX-1000',brand:'Seasonic',price:169,wattage:1000,efficiency:'80+ Gold',modular:'Fully',year:2023,specs:'1000W / Gold / 12V-2×6 / 10Y warranty'},
   {id:'p063',name:'PRIME PX-850',brand:'Seasonic',price:179,wattage:850,efficiency:'80+ Platinum',modular:'Fully',year:2023,specs:'850W / Platinum / 12Y warranty / флагман Seasonic'},
   {id:'p064',name:'RM850x SHIFT',brand:'Corsair',price:169,wattage:850,efficiency:'80+ Gold',modular:'Fully',year:2023,badge:'new',specs:'850W / Gold / разъёмы сбоку / ATX 3.1 / 12V-2×6'},
-  {id:'p065',name:'Toughpower GF3 1350W',brand:'Thermaltake',price:199,wattage:1350,efficiency:'80+ Gold',modular:'Fully',year:2023,badge:'new',specs:'1350W / Gold / ATX 3.0 / 12VHPWR / для RTX 40'},
-  {id:'p066',name:'MPG A1000G PCIE5',brand:'MSI',price:159,wattage:1000,efficiency:'80+ Gold',modular:'Fully',year:2023,specs:'1000W / Gold / ATX 3.0 / PCIe 5.0 / 12V-2×6'},
   {id:'p067',name:'ROG LOKI SFX-L 1000W',brand:'ASUS',price:249,wattage:1000,efficiency:'80+ Platinum',modular:'Fully',year:2023,badge:'new',specs:'1000W Platinum / SFX-L / OLED экран / для ITX'},
-  {id:'p068',name:'MAG A850GL PCIE5',brand:'MSI',price:129,wattage:850,efficiency:'80+ Gold',modular:'Fully',year:2023,badge:'budget',specs:'850W / Gold / ATX 3.0 / 12V-2×6 / 10Y warranty'},
-  {id:'p069',name:'Straight Power 12 1000W',brand:'be quiet!',price:199,wattage:1000,efficiency:'80+ Platinum',modular:'Fully',year:2023,specs:'1000W / Platinum / Silent Wings fan / 10Y'},
   {id:'p070',name:'Pure Power 12 M 850W',brand:'be quiet!',price:109,wattage:850,efficiency:'80+ Gold',modular:'Fully',year:2024,badge:'budget',specs:'850W / Gold / ATX 3.0 / 5Y warranty / бюджет'},
   {id:'p071',name:'Bronze 400W',brand:'Chieftec',price:29,wattage:400,efficiency:'80+ Bronze',modular:'Non',year:2021,badge:'budget',specs:'400W / Bronze / базовый для офисного ПК'},
 
@@ -1413,10 +1370,7 @@ psu: [
   {id:'p206',name:'Focus PX-1200',brand:'Seasonic',price:289,wattage:1200,efficiency:'80+ Platinum',modular:'Fully',year:2024,specs:'1200W / Platinum / 12 лет гарантия'},
   {id:'p207',name:'Toughpower GF3 1200W',brand:'Thermaltake',price:199,wattage:1200,efficiency:'80+ Gold',modular:'Fully',year:2024,specs:'1200W / Gold / ATX 3.0 / для RTX 5090'},
   // ── 1500-1800W ──
-  {id:'p208',name:'HX1500i',brand:'Corsair',price:399,wattage:1500,efficiency:'80+ Platinum',modular:'Fully',year:2024,badge:'new',specs:'1500W / Platinum / ATX 3.0 / двойной RTX 4090'},
-  {id:'p209',name:'Prime TX-1600',brand:'Seasonic',price:499,wattage:1600,efficiency:'80+ Titanium',modular:'Fully',year:2023,specs:'1600W / Titanium / флагман Seasonic'},
   {id:'p210',name:'AX1600i',brand:'Corsair',price:449,wattage:1600,efficiency:'80+ Titanium',modular:'Fully',year:2023,badge:'hot',specs:'1600W / Titanium / цифровое / TopTier'},
-  {id:'p211',name:'Darkpower 13 1000W',brand:'be quiet!',price:259,wattage:1000,efficiency:'80+ Titanium',modular:'Fully',year:2024,specs:'1000W / Titanium / Silent Wings Pro / 10Y'},
   // ── SFX/SFX-L дополнительные ──
   {id:'p212',name:'SFX-L 1000W Platinum',brand:'Seasonic',price:219,wattage:1000,efficiency:'80+ Platinum',modular:'Fully',year:2024,badge:'new',specs:'SFX-L / 1000W / Platinum / Mini-ITX флагман'},
   {id:'p213',name:'SX1000-LTI SFX-L 1000W',brand:'Silverstone',price:199,wattage:1000,efficiency:'80+ Titanium',modular:'Fully',year:2023,specs:'SFX-L / 1000W / Titanium / компактный'},
@@ -1518,7 +1472,6 @@ case: [
   {id:'ca062',name:'Pure Base 500FX',brand:'be quiet!',price:129,formfactor:'Mid Tower',year:2023,specs:'ATX / 3x140мм / Light Wings / тихий'},
   {id:'ca063',name:'Enthoo Pro 2',brand:'Phanteks',price:179,formfactor:'Full Tower',year:2022,specs:'E-ATX / 6x120мм / 560мм рад. / full tower'},
   // ── Mini-ITX/Mini-Tower ──
-  {id:'ca064',name:'NR200P MAX',brand:'Cooler Master',price:249,formfactor:'Mini-ITX',year:2022,badge:'hot',specs:'Mini-ITX / 280мм AIO / вертикальный GPU / всё включено'},
   {id:'ca065',name:'A4-H2O X4',brand:'Lian Li',price:149,formfactor:'Mini-ITX',year:2023,badge:'new',specs:'Mini-ITX / 240мм AIO / 16.5L / алюминий'},
   {id:'ca066',name:'Ghost S1',brand:'Louqe',price:229,formfactor:'Mini-ITX',year:2022,specs:'Mini-ITX / 7.25L / алюминий / 2 яруса / премиум'},
   {id:'ca067',name:'Velka 3',brand:'Sliger',price:149,formfactor:'Mini-ITX',year:2023,specs:'Mini-ITX / SFX-L / 3.7L / вертикальный / ультракомпакт'},
@@ -1571,8 +1524,6 @@ case: [
   {id:'ca241',name:'Thermaltake The Tower 500',brand:'Thermaltake',price:149,formfactor:'Mid Tower',year:2024,badge:'new',specs:'Mid Tower / башня-перевёртыш / ATX / двойное стекло'},
   {id:'ca242',name:'Hyte Y40',brand:'HYTE',price:129,formfactor:'Mid Tower',year:2023,badge:'budget',specs:'Mid Tower / панорамное стекло / ATX / Type-C'},
   {id:'ca243',name:'InWin A5',brand:'InWin',price:189,formfactor:'Mid Tower',year:2023,specs:'Mid Tower / алюминий / ATX / авторский дизайн'},
-
-  {id:'ca250',name:'Fractal Design Pop Air',brand:'Fractal Design',price:79,formfactor:'Mid Tower',year:2022,badge:'budget',specs:'Mid Tower / ATX / воздушное охлаждение / 3x120мм'},
   {id:'ca251',name:'BitFenix Enso Mesh',brand:'BitFenix',price:59,formfactor:'Mid Tower',year:2023,badge:'budget',specs:'Mid Tower / ATX / сетчатый / очень доступный'},
   {id:'ca252',name:'Kolink Observatory Lite',brand:'Kolink',price:49,formfactor:'Mid Tower',year:2022,badge:'budget',specs:'Mid Tower / ATX / минимальная цена / стекло'},
 
@@ -1648,14 +1599,11 @@ cooling: [
   {id:'co058',name:'MAG CORELIQUID 360R V2',brand:'MSI',price:129,type:'AIO',year:2023,badge:'budget',specs:'360мм / ARGB / улучш. насос / ATX 2.0 совм.'},
   {id:'co059',name:'Frostflow X 240',brand:'ID-Cooling',price:49,type:'AIO',year:2022,badge:'budget',specs:'240мм / ARGB / дешёвый 240мм AIO'},
   {id:'co060',name:'Corsair H60x',brand:'Corsair',price:59,type:'AIO',year:2023,badge:'budget',specs:'120мм / тихая / для мATX корпусов / бюджет'},
-  {id:'co061',name:'ROG RYUJIN III 360 ARGB',brand:'ASUS',price:269,type:'AIO',year:2024,badge:'new',specs:'360мм / 3.5" LCD экран / встроенные 60мм VRM-вентиляторы'},
   {id:'co062',name:'Arctic Liquid Freezer III 280',brand:'Arctic',price:89,type:'AIO',year:2024,badge:'hot',specs:'280мм / 2x140мм / лучшее соотношение ц/к / VRM-вент.'},
   // ── Air cooler дополнительные ──
   {id:'co063',name:'Scythe Fuma 3',brand:'Scythe',price:59,type:'Air',year:2024,badge:'new',specs:'Двухбашенный / 2x120мм / 240W TDP / LGA1851/AM5'},
-  {id:'co064',name:'Thermalright Peerless Assassin 120 SE',brand:'Thermalright',price:34,type:'Air',year:2023,badge:'budget',specs:'Двухбашенный / 2x120мм / 280W / отличная ц/к / AM5'},
   {id:'co065',name:'Thermalright Frozen Prism 360',brand:'Thermalright',price:69,type:'AIO',year:2024,badge:'new',specs:'360мм / 3x120мм / высокая эффективность / AM5/LGA1851'},
   {id:'co066',name:'ID-Cooling SE-226-XT',brand:'ID-Cooling',price:39,type:'Air',year:2023,badge:'budget',specs:'Двухбашенный / 2x120мм / 250W TDP / ультрабюджет'},
-  {id:'co067',name:'Deepcool AK620 Zero Dark',brand:'Deepcool',price:54,type:'Air',year:2024,specs:'Двухбашенный / 2x120мм / 260W TDP / без подсветки'},
   {id:'co068',name:'Noctua NH-U9S chromax.black',brand:'Noctua',price:79,type:'Air',year:2022,specs:'Однобашенный / 1x92мм / low-profile / mATX совм.'},
   {id:'co069',name:'be quiet! Pure Rock 2 Black',brand:'be quiet!',price:29,type:'Air',year:2021,badge:'budget',specs:'Однобашенный / 1x120мм / 150W TDP / тихий / бюджет'},
 
@@ -1764,7 +1712,6 @@ monitor: [
   {id:'mo036',name:'Z32AX',brand:'BenQ',price:1299,resolution:'4K',refresh:144,panel:'IPS',size:32,year:2023,specs:'32" / 4K / IPS / 144Гц / USB-C 65W / профи'},
   {id:'mo037',name:'Neo G8',brand:'Samsung',price:699,resolution:'QHD',refresh:240,panel:'VA',size:32,year:2023,specs:'32" / 2560x1440 / Mini LED / 240Гц / HDR2000'},
   // ── 2K/QHD игровые ──
-  {id:'mo038',name:'ViewFinity S9',brand:'Samsung',price:999,resolution:'5K',refresh:60,panel:'IPS',size:27,year:2023,specs:'27" / 5120x2880 / 5K / IPS / Thunderbolt 4 / для Mac'},
   {id:'mo039',name:'UltraGear 27GP83B-B',brand:'LG',price:299,resolution:'QHD',refresh:165,panel:'IPS',size:27,year:2023,badge:'budget',specs:'27" / 2560x1440 / Nano IPS / 165Гц / 1мс / HDR400'},
   {id:'mo040',name:'TUF Gaming VG27AQ3A',brand:'ASUS',price:249,resolution:'QHD',refresh:180,panel:'Fast IPS',size:27,year:2024,badge:'budget',specs:'27" / 2560x1440 / Fast IPS / 180Гц / ELMB Sync'},
   {id:'mo041',name:'MAG 274QRF E2',brand:'MSI',price:279,resolution:'QHD',refresh:165,panel:'IPS',size:27,year:2024,specs:'27" / QHD / Rapid IPS / 165Гц / USB-C / KVM'},
@@ -1838,503 +1785,446 @@ monitor: [
 
 // ── App ──
 
-// ═══════════════════════════════════════════════════════
-//  PC Builder Pro v5.0 — App Logic
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+//  PC Builder Pro v6.0  — App Logic
+// ═══════════════════════════════════════════════
 
-// ── Курс и цена ──
-function getRate(){ return parseFloat(document.getElementById('rateInput')?.value||90)||90; }
-function rub(usd){ return usd>0?(Math.round(usd*getRate())).toLocaleString('ru-RU')+' ₽':'встр.'; }
-
-// ── Баллы производительности ──
+// ── Helpers ──
+const getRate = () => parseFloat(document.getElementById('rateInp')?.value||90)||90;
+const rub = usd => usd>0 ? Math.round(usd*getRate()).toLocaleString('ru-RU')+' ₽' : 'встр.';
 function score(item,cat){
   if(!item) return 0;
-  if(cat==='cpu') return Math.round((item.cores||4)*120+(item.boost||3)*200+(item.year>=2024?300:0));
-  if(cat==='gpu') return Math.round((item.vram||4)*180+Math.max(0,600-((item.tdp||200)))*0.5+(item.year>=2024?400:0));
-  if(cat==='ram') return Math.round((item.speed||3200)/25+(item.capacity||16)*8);
-  if(cat==='storage') return Math.round((item.read||500)/15);
-  if(cat==='psu') return item.wattage||0;
+  if(cat==='cpu') return (item.cores||4)*120+(item.boost||3)*200+(item.year>=2024?300:0);
+  if(cat==='gpu') return (item.vram||4)*200+Math.max(0,700-(item.tdp||200))*0.4+(item.year>=2024?500:0);
+  if(cat==='ram') return (item.speed||3200)/20+(item.capacity||16)*5;
+  if(cat==='storage') return (item.read||500)/12;
   return item.price||0;
 }
 
-// ── Состояние ──
-let currentTab='cpu';
-let currentFilter='all';
-let myBuild={};
-let moreOpen=false;
-let budgetType='gaming';
-let savedBuilds=[];
-let settings={darkTheme:true,bottleneck:true};
+// ── State ──
+let tab='cpu', qf='all', myBuild={}, moreOpen=false, budgetType='gaming', savedBuilds=[];
+let ST={dark:true,bn:true};
+// Filter state (per-tab)
+const FS = {};  // FS[cat] = { sort, priceMin, priceMax, brands:Set, specs:{} }
+function getFSC(){ return FS[tab]||(FS[tab]={sort:'default',priceMin:'',priceMax:'',brands:new Set(),specs:{}}); }
 
-const catMap={cpu:'cpu',gpu:'gpu',mb:'mb',ram:'ram',storage:'storage',psu:'psu','case':'case',cooling:'cooling',monitor:'monitor'};
-const catNames={cpu:'Процессоры',gpu:'Видеокарты',mb:'Материнские платы',ram:'Оперативная память',storage:'Накопители',psu:'Блоки питания','case':'Корпуса',cooling:'Охлаждение',monitor:'Мониторы'};
-const catLabels={cpu:'Процессор',gpu:'Видеокарта',mb:'Мат. плата',ram:'ОЗУ',storage:'Накопитель',psu:'БП','case':'Корпус',cooling:'Охлаждение',monitor:'Монитор'};
+const CAT={cpu:'cpu',gpu:'gpu',mb:'mb',ram:'ram',storage:'storage',psu:'psu','case':'case',cooling:'cooling',monitor:'monitor'};
+const CNM={cpu:'Процессоры',gpu:'Видеокарты',mb:'Материнские платы',ram:'Оперативная память',storage:'Накопители',psu:'Блоки питания','case':'Корпуса',cooling:'Охлаждение',monitor:'Мониторы'};
+const CLB={cpu:'Процессор',gpu:'Видеокарта',mb:'Мат. плата',ram:'ОЗУ',storage:'Накопитель',psu:'БП','case':'Корпус',cooling:'Охлаждение',monitor:'Монитор'};
 
-// ── Init ──
+// ── INIT ──
 function init(){
-  loadSettings();
-  loadSavedBuilds();
-  applyTheme();
+  loadSt(); applySt();
   renderComponents();
-  const total=Object.values(DB).reduce((a,b)=>a+b.length,0);
-  document.getElementById('totalCount').textContent='v5.0 • '+total.toLocaleString('ru-RU')+' комп.';
+  const tot=Object.values(DB).reduce((a,b)=>a+b.length,0);
+  document.getElementById('totalCount').textContent='v6.0 · '+tot.toLocaleString('ru-RU')+' комп.';
+  document.querySelectorAll('.modal-overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)closeModal(el.id);}));
 }
 
-// ── Theme ──
-function loadSettings(){
-  try{
-    const s=JSON.parse(localStorage.getItem('pcb_settings')||'{}');
-    if(s.darkTheme!==undefined) settings.darkTheme=s.darkTheme;
-    if(s.bottleneck!==undefined) settings.bottleneck=s.bottleneck;
-    if(s.rate) document.getElementById('rateInput').value=s.rate;
-  }catch(e){}
-  const tog=document.getElementById('themeToggle');
-  const botTog=document.getElementById('bottleneckToggle');
-  if(tog) tog.checked=!settings.darkTheme; // checked = light
-  if(botTog) botTog.checked=settings.bottleneck;
+// ── Settings ──
+function loadSt(){
+  try{const s=JSON.parse(localStorage.getItem('pcb6_st')||'{}');if(s.dark!==undefined)ST.dark=s.dark;if(s.bn!==undefined)ST.bn=s.bn;if(s.rate)document.getElementById('rateInp').value=s.rate;}catch(e){}
+  try{savedBuilds=JSON.parse(localStorage.getItem('pcb6_blds')||'[]');}catch(e){savedBuilds=[];}
+  document.getElementById('themeChk').checked=!ST.dark;
+  document.getElementById('bnChk').checked=ST.bn;
 }
-function saveSettings(){
-  settings.darkTheme=!document.getElementById('themeToggle').checked;
-  settings.bottleneck=document.getElementById('bottleneckToggle').checked;
-  const rate=document.getElementById('rateInput').value;
-  localStorage.setItem('pcb_settings',JSON.stringify({darkTheme:settings.darkTheme,bottleneck:settings.bottleneck,rate}));
-  applyTheme();
-  if(currentTab==='build') renderBuild();
+function saveSt(){
+  ST.dark=!document.getElementById('themeChk').checked;
+  ST.bn=document.getElementById('bnChk').checked;
+  localStorage.setItem('pcb6_st',JSON.stringify({dark:ST.dark,bn:ST.bn,rate:document.getElementById('rateInp').value}));
+  applySt();
 }
-function applyTheme(){
-  document.body.classList.toggle('light',!settings.darkTheme);
-  document.getElementById('themeBtn').textContent=settings.darkTheme?'☀️':'🌙';
-  const tog=document.getElementById('themeToggle');
-  if(tog) tog.checked=!settings.darkTheme;
+function applySt(){
+  document.body.classList.toggle('light',!ST.dark);
+  document.getElementById('themeBtn').textContent=ST.dark?'☀️':'🌙';
+  document.getElementById('themeChk').checked=!ST.dark;
 }
-function toggleTheme(){
-  settings.darkTheme=!settings.darkTheme;
-  applyTheme();
-  saveSettings();
-}
+function toggleTheme(){ST.dark=!ST.dark;applySt();saveSt();}
+function onThemeChk(){saveSt();}
 
 // ── Tabs ──
-function showTab(tab){
-  currentTab=tab;
+function showTab(t){
+  tab=t;
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  const nb=document.getElementById('nav-'+tab);
-  if(nb) nb.classList.add('active');
+  const nb=document.getElementById('nav-'+t); if(nb) nb.classList.add('active');
   closeMore();
   const cp=document.getElementById('components-panel');
   const bp=document.getElementById('build-panel');
   const hp=document.getElementById('history-panel');
-  if(tab==='build'){
-    cp.style.display='none';bp.style.display='block';hp.style.display='none';
-    renderBuild();
-  } else if(tab==='history'){
-    cp.style.display='none';bp.style.display='none';hp.style.display='block';
-    renderHistory();
-  } else {
-    cp.style.display='block';bp.style.display='none';hp.style.display='none';
-    renderComponents();
-  }
+  if(t==='build'){ cp.style.display='none';bp.style.display='block';hp.style.display='none';renderBuild(); }
+  else if(t==='history'){ cp.style.display='none';bp.style.display='none';hp.style.display='block';renderHistory(); }
+  else{ cp.style.display='block';bp.style.display='none';hp.style.display='none';renderComponents(); }
 }
 function toggleMore(){moreOpen=!moreOpen;document.getElementById('more-menu').classList.toggle('open',moreOpen);}
 function closeMore(){document.getElementById('more-menu').classList.remove('open');moreOpen=false;}
-function setFilter(f,el){currentFilter=f;document.querySelectorAll('#filters .filter-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderComponents();}
-function filterComponents(){renderComponents();}
+function setQF(f,el){qf=f;document.querySelectorAll('.qf-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderComponents();}
 
-// ── Get & sort items ──
+// ── Get & filter items ──
 function getItems(){
-  const cat=catMap[currentTab];
-  if(!cat||!DB[cat]) return [];
+  const cat=CAT[tab]; if(!cat||!DB[cat]) return [];
   let items=[...DB[cat]];
   const q=document.getElementById('searchInput').value.toLowerCase().trim();
   if(q) items=items.filter(i=>(i.name+i.brand+(i.specs||'')).toLowerCase().includes(q));
-  const budget3k=Math.round(3000/getRate());
-  const budget10k=Math.round(10000/getRate());
-  if(currentFilter==='budget') items=items.filter(i=>i.price>0&&i.price<=budget3k);
-  else if(currentFilter==='mid') items=items.filter(i=>i.price>budget3k&&i.price<=budget10k);
-  else if(currentFilter==='high') items=items.filter(i=>i.price>budget10k);
-  else if(currentFilter==='new') items=items.filter(i=>i.year>=2024);
-  else if(['intel','amd','nvidia','asus','msi','corsair','samsung'].includes(currentFilter))
-    items=items.filter(i=>i.brand.toLowerCase().includes(currentFilter));
-  const sort=document.getElementById('sort-select').value;
-  if(sort==='price-asc') items.sort((a,b)=>(a.price||0)-(b.price||0));
-  else if(sort==='price-desc') items.sort((a,b)=>(b.price||0)-(a.price||0));
-  else if(sort==='year-desc') items.sort((a,b)=>(b.year||0)-(a.year||0));
-  else if(sort==='year-asc') items.sort((a,b)=>(a.year||0)-(b.year||0));
-  else if(sort==='score-desc') items.sort((a,b)=>score(b,cat)-score(a,cat));
-  else if(sort==='name-asc') items.sort((a,b)=>a.name.localeCompare(b.name,'ru'));
+  const r=getRate();
+  // Quick filter
+  const b2=Math.round(3000/r), b3=Math.round(10000/r);
+  if(qf==='budget') items=items.filter(i=>i.price>0&&i.price<=b2);
+  else if(qf==='mid') items=items.filter(i=>i.price>b2&&i.price<=b3);
+  else if(qf==='top') items=items.filter(i=>i.price>b3);
+  else if(qf==='new') items=items.filter(i=>i.year>=2024);
+  else if(qf==='hot') items=items.filter(i=>i.badge==='hot');
+  // Advanced filters
+  const fs=getFSC();
+  if(fs.priceMin) items=items.filter(i=>i.price===0||i.price*r>=parseFloat(fs.priceMin));
+  if(fs.priceMax) items=items.filter(i=>i.price===0||i.price*r<=parseFloat(fs.priceMax));
+  if(fs.brands.size) items=items.filter(i=>fs.brands.has(i.brand));
+  // Spec filters
+  Object.entries(fs.specs).forEach(([k,v])=>{
+    if(!v||v==='all'||v==='') return;
+    if(k==='minCores') items=items.filter(i=>(i.cores||0)>=parseInt(v));
+    else if(k==='maxTDP') items=items.filter(i=>(i.tdp||999)<=parseInt(v));
+    else if(k==='minVRAM') items=items.filter(i=>(i.vram||0)>=parseInt(v));
+    else if(k==='minWatt') items=items.filter(i=>(i.wattage||0)>=parseInt(v));
+    else if(k==='minSpeed') items=items.filter(i=>(i.speed||0)>=parseInt(v));
+    else if(k==='minRefresh') items=items.filter(i=>(i.refresh||0)>=parseInt(v));
+    else items=items.filter(i=>String(i[k]||'').toLowerCase()===String(v).toLowerCase());
+  });
+  // Sort
+  const so=fs.sort||'default';
+  if(so==='price-asc') items.sort((a,b)=>(a.price||0)-(b.price||0));
+  else if(so==='price-desc') items.sort((a,b)=>(b.price||0)-(a.price||0));
+  else if(so==='year-desc') items.sort((a,b)=>(b.year||0)-(a.year||0));
+  else if(so==='year-asc') items.sort((a,b)=>(a.year||0)-(b.year||0));
+  else if(so==='score-desc') items.sort((a,b)=>score(b,cat)-score(a,cat));
+  else if(so==='name-asc') items.sort((a,b)=>a.name.localeCompare(b.name,'ru'));
   return items;
 }
 
 // ── Render components ──
 function renderComponents(){
-  const cat=catMap[currentTab];
-  if(!cat) return;
+  const cat=CAT[tab]; if(!cat) return;
   const items=getItems();
   const panel=document.getElementById('components-panel');
-  let html=`<div class="section-title">${catNames[cat]||cat} <span>${items.length} позиций</span></div>`;
-  if(!items.length){html+='<div class="no-results">Ничего не найдено 🔍<br>Попробуйте другой фильтр</div>';panel.innerHTML=html;return;}
+  updateFPBadge();
+  let html=`<div class="section-title">${CNM[cat]||cat} <span>${items.length} позиций</span></div>`;
+  if(!items.length){html+='<div class="no-results">Ничего не найдено 🔍<br><button class="act-btn" style="margin-top:12px" onclick="resetFilters()">Сбросить фильтры</button></div>';panel.innerHTML=html;return;}
+  const maxSc=Math.max(...DB[cat].map(x=>score(x,cat)),1);
   items.forEach(item=>{
     const sel=myBuild[cat]&&myBuild[cat].id===item.id;
-    const s=score(item,cat);
-    const maxS=Math.max(...DB[cat].map(x=>score(x,cat)));
-    const pct=maxS>0?Math.round(s/maxS*100):0;
-    const bdg=item.badge?`<span class="card-badge badge-${item.badge}">${item.badge==='new'?'🆕 Новинка':item.badge==='hot'?'🔥 Хит':item.badge==='budget'?'💰 Бюджет':''}</span>`:'';
+    const pct=Math.round(score(item,cat)/maxSc*100);
+    const bdg=item.badge?`<span class="card-badge badge-${item.badge}">${item.badge==='new'?'🆕 Новинка':item.badge==='hot'?'🔥 Хит':'💰 Бюджет'}</span>`:'';
     html+=`<div class="component-card${sel?' selected':''}" onclick="selectItem('${cat}','${item.id}')">
-      <div class="card-brand">${item.brand}${item.year?` · ${item.year}`:''}</div>
+      <div class="card-brand">${item.brand}${item.year?' · '+item.year:''}</div>
       <div class="card-name">${item.name}</div>
       <div class="card-price">${rub(item.price)}</div>
       <div class="card-specs">${item.specs||''}</div>
       ${bdg}
-      <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+      <div class="perf-row">
         <button class="add-btn">${sel?'✓ Убрать':'+ Добавить'}</button>
-        <div style="flex:1;display:flex;align-items:center;gap:4px">
-          <div style="height:4px;flex:1;background:var(--border);border-radius:2px;overflow:hidden">
-            <div style="height:100%;width:${pct}%;background:${sel?'var(--accent2)':'var(--accent)'};border-radius:2px"></div>
-          </div>
-          <span style="font-size:10px;color:var(--text2)">${pct}%</span>
-        </div>
+        <div class="perf-track"><div class="perf-fill" style="width:${pct}%;background:${sel?'var(--accent2)':'var(--accent)'}"></div></div>
+        <span style="font-size:9px;color:var(--text2)">${pct}%</span>
       </div>
     </div>`;
   });
   panel.innerHTML=html;
 }
-
-// ── Select item ──
 function selectItem(cat,id){
-  const item=DB[cat].find(i=>i.id===id);
-  if(!item) return;
-  if(myBuild[cat]&&myBuild[cat].id===id) delete myBuild[cat];
-  else myBuild[cat]=item;
-  updateBuildCount();
-  renderComponents();
+  const item=DB[cat].find(i=>i.id===id); if(!item) return;
+  if(myBuild[cat]&&myBuild[cat].id===id) delete myBuild[cat]; else myBuild[cat]=item;
+  updBldCnt(); renderComponents();
+}
+function updBldCnt(){
+  const n=Object.keys(myBuild).length, el=document.getElementById('buildCount');
+  if(n>0){el.style.display='flex';el.textContent=n;}else el.style.display='none';
 }
 
-function updateBuildCount(){
-  const count=Object.keys(myBuild).length;
-  const el=document.getElementById('buildCount');
-  if(count>0){el.style.display='flex';el.textContent=count;}
-  else el.style.display='none';
-}
-
-// ── Render build ──
+// ── Build ──
 function renderBuild(){
-  const list=document.getElementById('build-list');
-  const empty=document.getElementById('buildEmpty');
+  const list=document.getElementById('build-list'), empty=document.getElementById('buildEmpty');
   const keys=Object.keys(myBuild);
-  if(!keys.length){list.innerHTML='';empty.style.display='block';document.getElementById('totalPrice').textContent='0 ₽';document.getElementById('compatStatus').innerHTML='';document.getElementById('bottleneckStatus').innerHTML='';document.getElementById('buildScore').textContent='';return;}
+  if(!keys.length){list.innerHTML='';empty.style.display='block';document.getElementById('totalPrice').textContent='0 ₽';document.getElementById('compatStatus').innerHTML='';document.getElementById('bnStatus').innerHTML='';document.getElementById('bld-score').textContent='';return;}
   empty.style.display='none';
   let html='',total=0;
   keys.forEach(cat=>{
-    const item=myBuild[cat];
-    total+=item.price||0;
-    html+=`<div class="build-item">
-      <div class="item-cat">${catLabels[cat]||cat}</div>
-      <div class="item-name">${item.brand} ${item.name}</div>
-      <div class="item-price">${rub(item.price)}</div>
-      <div class="item-remove" onclick="removeItem('${cat}')">✕</div>
-    </div>`;
+    const it=myBuild[cat]; total+=it.price||0;
+    html+=`<div class="build-item"><div class="bi-cat">${CLB[cat]||cat}</div><div class="bi-name">${it.brand} ${it.name}</div><div class="bi-price">${rub(it.price)}</div><div class="bi-rm" onclick="removeItem('${cat}')">✕</div></div>`;
   });
   list.innerHTML=html;
   document.getElementById('totalPrice').textContent=rub(total);
-  const sc=buildScore();
-  document.getElementById('buildScore').textContent=sc?`Рейтинг: ${sc}`:'' ;
-  checkCompat();
-  checkBottleneck();
+  const sc=bldScore(); document.getElementById('bld-score').textContent=sc?'Рейтинг: '+sc:'';
+  checkCompat(); checkBN();
 }
-
-function removeItem(cat){delete myBuild[cat];updateBuildCount();renderBuild();}
-function clearBuild(){if(confirm('Очистить текущую сборку?')){myBuild={};updateBuildCount();renderBuild();}}
-
-function buildScore(){
-  let s=0,cnt=0;
-  ['cpu','gpu','ram','storage'].forEach(c=>{if(myBuild[c]){s+=score(myBuild[c],c);cnt++;}});
-  return cnt?Math.round(s/cnt):0;
-}
-
-// ── Compatibility ──
+function removeItem(cat){delete myBuild[cat];updBldCnt();renderBuild();}
+function clearBuild(){if(confirm('Очистить сборку?')){myBuild={};updBldCnt();renderBuild();}}
+function bldScore(){let s=0,n=0;['cpu','gpu','ram','storage'].forEach(c=>{if(myBuild[c]){s+=score(myBuild[c],c);n++;}});return n?Math.round(s/n):0;}
 function checkCompat(){
-  const el=document.getElementById('compatStatus');
-  const w=[],e=[];
+  const el=document.getElementById('compatStatus'),w=[],e=[];
   const {cpu,mb,ram,psu,gpu}=myBuild;
-  if(cpu&&mb&&cpu.socket!==mb.socket) e.push(`⚠️ Сокет CPU <b>${cpu.socket}</b> ≠ мат. плата <b>${mb.socket}</b>`);
-  if(ram&&mb&&ram.type!==mb.memory) e.push(`⚠️ Тип RAM <b>${ram.type}</b> ≠ поддержка платы <b>${mb.memory}</b>`);
-  if(psu&&gpu&&cpu){
-    const need=(gpu.tdp||0)+(cpu.tdp||0)+120;
-    if(psu.wattage<need) e.push(`⚡ БП <b>${psu.wattage}W</b> мало! Нужно ~${need}W`);
-    else if(psu.wattage<need+100) w.push(`⚡ БП ${psu.wattage}W впритык, рекомендуется ${need+100}W+`);
-  }
-  if(e.length) el.innerHTML=`<div class="compat-check compat-err">${e.join('<br>')}</div>`;
-  else if(w.length) el.innerHTML=`<div class="compat-check compat-warn">${w.join('<br>')}</div>`;
-  else if(Object.keys(myBuild).length>=3) el.innerHTML=`<div class="compat-check compat-ok">✅ Совместимость OK</div>`;
-  else el.innerHTML='';
+  if(cpu&&mb&&cpu.socket!==mb.socket) e.push(`⚠️ Сокет CPU <b>${cpu.socket}</b> ≠ плата <b>${mb.socket}</b>`);
+  if(ram&&mb&&ram.type!==mb.memory) e.push(`⚠️ Тип RAM <b>${ram.type}</b> ≠ плата <b>${mb.memory}</b>`);
+  if(psu&&gpu&&cpu){const nd=(gpu.tdp||0)+(cpu.tdp||0)+120;if(psu.wattage<nd)e.push(`⚡ БП ${psu.wattage}W мало! Нужно ~${nd}W`);else if(psu.wattage<nd+100)w.push(`⚡ БП ${psu.wattage}W впритык, лучше ${nd+100}W+`);}
+  el.innerHTML=e.length?`<div class="compat compat-err">${e.join('<br>')}</div>`:w.length?`<div class="compat compat-warn">${w.join('<br>')}</div>`:Object.keys(myBuild).length>=3?`<div class="compat compat-ok">✅ Совместимость OK</div>`:'';
+}
+function checkBN(){
+  const el=document.getElementById('bnStatus'); if(!ST.bn){el.innerHTML='';return;}
+  const {cpu,gpu}=myBuild; if(!cpu||!gpu){el.innerHTML='';return;}
+  const r=score(cpu,'cpu')/Math.max(score(gpu,'gpu'),1);
+  let m='';
+  if(r<0.45) m=`⚡ <b>CPU тормозит GPU:</b> ${cpu.name} значительно слабее видеокарты. Рекомендуется более мощный процессор.`;
+  else if(r>2.4) m=`⚡ <b>GPU тормозит CPU:</b> ${gpu.name} слабее процессора. Рекомендуется более мощная видеокарта.`;
+  el.innerHTML=m?`<div class="bn-bar">🔎 ${m}</div>`:'';
 }
 
-// ── Bottleneck ──
-function checkBottleneck(){
-  const el=document.getElementById('bottleneckStatus');
-  if(!settings.bottleneck){el.innerHTML='';return;}
-  const {cpu,gpu}=myBuild;
-  if(!cpu||!gpu){el.innerHTML='';return;}
-  const cScore=score(cpu,'cpu');
-  const gScore=score(gpu,'gpu');
-  const ratio=cScore/Math.max(gScore,1);
-  let msg='';
-  if(ratio<0.45) msg=`⚡ <b>CPU тормозит GPU</b> — ${cpu.name} (~${Math.round(ratio*100)}% уровня GPU). Рассмотрите апгрейд процессора.`;
-  else if(ratio>2.2) msg=`⚡ <b>GPU тормозит CPU</b> — ${gpu.name} слабее процессора. Рассмотрите более мощную видеокарту.`;
-  el.innerHTML=msg?`<div class="bottleneck-bar">🔎 ${msg}</div>`:'';
-}
-
-// ── Save / History ──
-function loadSavedBuilds(){
-  try{savedBuilds=JSON.parse(localStorage.getItem('pcb_builds')||'[]');}catch(e){savedBuilds=[];}
-}
-function persistBuilds(){localStorage.setItem('pcb_builds',JSON.stringify(savedBuilds));}
-
-function openSaveBuild(){
-  if(!Object.keys(myBuild).length){toast('Сборка пуста');return;}
-  document.getElementById('saveBuildName').value='';
-  openModal('modal-save');
-  setTimeout(()=>document.getElementById('saveBuildName').focus(),200);
-}
+// ── History ──
 function saveBuild(){
-  const name=document.getElementById('saveBuildName').value.trim()||'Сборка '+new Date().toLocaleDateString('ru');
+  const nm=document.getElementById('saveName').value.trim()||'Сборка '+new Date().toLocaleDateString('ru');
   const total=Object.values(myBuild).reduce((a,i)=>a+(i.price||0),0);
-  savedBuilds.unshift({name,build:{...myBuild},total,date:new Date().toLocaleDateString('ru'),score:buildScore()});
+  savedBuilds.unshift({nm,build:{...myBuild},total,date:new Date().toLocaleDateString('ru'),sc:bldScore()});
   if(savedBuilds.length>10) savedBuilds=savedBuilds.slice(0,10);
-  persistBuilds();
-  closeModal('modal-save');
-  toast('Сборка сохранена!');
+  localStorage.setItem('pcb6_blds',JSON.stringify(savedBuilds));
+  closeModal('modal-save'); toast('Сборка сохранена!');
 }
 function renderHistory(){
-  const list=document.getElementById('history-list');
-  const empty=document.getElementById('historyEmpty');
-  loadSavedBuilds();
+  const list=document.getElementById('history-list'), empty=document.getElementById('histEmpty');
+  try{savedBuilds=JSON.parse(localStorage.getItem('pcb6_blds')||'[]');}catch(e){savedBuilds=[];}
   if(!savedBuilds.length){list.innerHTML='';empty.style.display='block';return;}
   empty.style.display='none';
-  list.innerHTML=savedBuilds.map((b,i)=>`
-    <div class="saved-build-card" onclick="loadSavedBuild(${i})">
-      <div class="sbc-title">
-        <span>${b.name}</span>
-        <span class="sbc-price">${rub(b.total)}</span>
-      </div>
-      <div class="sbc-info">
-        ${b.date} · ${Object.keys(b.build).length} компонентов · Рейтинг: ${b.score||'—'}
-        <button onclick="event.stopPropagation();deleteSavedBuild(${i})" style="float:right;background:none;border:none;color:var(--red);cursor:pointer;font-size:13px">🗑️</button>
-      </div>
-    </div>`).join('');
+  list.innerHTML=savedBuilds.map((b,i)=>`<div class="sbc" onclick="loadBuild(${i})">
+    <div class="sbc-title"><span>${b.nm}</span><span style="color:var(--green);font-weight:700">${rub(b.total)}</span></div>
+    <div class="sbc-info">${b.date} · ${Object.keys(b.build).length} компонентов · Рейтинг: ${b.sc||'—'}
+      <button onclick="event.stopPropagation();delBuild(${i})" style="float:right;background:none;border:none;color:var(--red);cursor:pointer;font-size:12px">🗑️</button>
+    </div>
+  </div>`).join('');
 }
-function loadSavedBuild(i){
-  myBuild={...savedBuilds[i].build};
-  updateBuildCount();
-  showTab('build');
-  toast('Сборка загружена');
-}
-function deleteSavedBuild(i){
-  savedBuilds.splice(i,1);persistBuilds();renderHistory();
-}
+function loadBuild(i){myBuild={...savedBuilds[i].build};updBldCnt();showTab('build');toast('Сборка загружена');}
+function delBuild(i){savedBuilds.splice(i,1);localStorage.setItem('pcb6_blds',JSON.stringify(savedBuilds));renderHistory();}
 
 // ── Compare ──
 function openCompare(){
-  loadSavedBuilds();
-  const content=document.getElementById('compare-content');
-  if(!savedBuilds.length&&!Object.keys(myBuild).length){
-    content.innerHTML='<div class="empty-state"><div class="icon">📊</div><p>Нет сохранённых сборок.<br>Сначала сохраните хотя бы одну.</p></div>';
-    openModal('modal-compare');return;
-  }
+  try{savedBuilds=JSON.parse(localStorage.getItem('pcb6_blds')||'[]');}catch(e){savedBuilds=[];}
+  const el=document.getElementById('cmp-content');
   const builds=[];
-  if(Object.keys(myBuild).length) builds.push({name:'Текущая',build:myBuild,total:Object.values(myBuild).reduce((a,i)=>a+(i.price||0),0)});
+  if(Object.keys(myBuild).length) builds.push({nm:'Текущая',build:myBuild,total:Object.values(myBuild).reduce((a,i)=>a+(i.price||0),0)});
   savedBuilds.slice(0,2).forEach(b=>builds.push(b));
-  if(builds.length<2){
-    content.innerHTML='<div style="color:var(--text2);font-size:13px;text-align:center;padding:20px">Нужно минимум 2 сборки для сравнения.<br>Сохраните ещё одну через «Сборка → Сохранить».</div>';
-    openModal('modal-compare');return;
-  }
-  const cats=Object.keys(catLabels);
-  const specKeys={cpu:['socket','tdp','cores','boost','price'],gpu:['vram','tdp','price'],mb:['socket','chipset','formfactor','memory','price'],ram:['type','speed','capacity','price'],storage:['type','capacity','read','write','price'],psu:['wattage','efficiency','modular','price'],'case':['formfactor','price'],cooling:['type','price'],monitor:['resolution','refresh','panel','size','price']};
-  const specLabels={socket:'Сокет',tdp:'TDP (W)',cores:'Ядра',boost:'Boost (ГГц)',price:'Цена',vram:'VRAM (GB)',chipset:'Чипсет',formfactor:'Форм-фактор',memory:'Память',speed:'Частота (МГц)',capacity:'Объём',read:'Чтение МБ/с',write:'Запись МБ/с',wattage:'Мощность (W)',efficiency:'КПД',modular:'Модульность',resolution:'Разрешение',refresh:'Частота (Гц)',panel:'Тип матрицы',size:'Размер',type:'Тип'};
-  let html='<div style="margin-bottom:10px;font-size:12px;color:var(--text2)">🟡 Подсвечены отличающиеся значения</div>';
-  html+='<div class="compare-wrap"><table class="compare-table"><thead><tr>';
-  html+=`<th>Параметр</th>`;
-  builds.forEach(b=>html+=`<th>${b.name}<br><span style="color:var(--green);font-weight:700">${rub(b.total)}</span></th>`);
-  html+='</tr></thead><tbody>';
-  // Score row
-  html+=`<tr><td>🏆 Рейтинг</td>`;
-  const scores=builds.map(b=>{let s=0,cnt=0;['cpu','gpu','ram','storage'].forEach(c=>{if(b.build[c]){s+=score(b.build[c],c);cnt++;}});return cnt?Math.round(s/cnt):0;});
-  const maxSc=Math.max(...scores);
-  scores.forEach(s=>{const isDiff=scores.some(x=>x!==s);html+=`<td class="${isDiff&&s===maxSc?'diff':''}"><div class="score-bar-wrap"><div class="score-bar" style="width:${maxSc>0?Math.round(s/maxSc*60):0}px"></div>${s}</div></td>`;});
-  html+='</tr>';
-  cats.forEach(cat=>{
-    const keys=specKeys[cat]||['price'];
-    const anyHas=builds.some(b=>b.build[cat]);
-    if(!anyHas) return;
-    html+=`<tr class="cat-row"><td colspan="${builds.length+1}">${catLabels[cat]}</td></tr>`;
-    // Component name
-    html+=`<tr><td>Модель</td>`;
-    builds.forEach(b=>{
-      const item=b.build[cat];
-      html+=`<td style="font-size:11px">${item?item.name:'—'}</td>`;
-    });
-    html+='</tr>';
-    keys.forEach(key=>{
-      html+=`<tr><td>${specLabels[key]||key}</td>`;
-      const vals=builds.map(b=>{
-        const item=b.build[cat];
-        if(!item) return null;
-        if(key==='price') return item.price||0;
-        return item[key]??null;
+  if(builds.length<2){el.innerHTML='<div class="empty-state"><div class="icon">📊</div><p>Нужно минимум 2 сборки.<br>Сохраните ещё одну.</p></div>';openModal('modal-compare');return;}
+  const cKey={cpu:['socket','tdp','cores','boost','price'],gpu:['vram','tdp','price'],mb:['socket','chipset','formfactor','memory','price'],ram:['type','speed','capacity','price'],storage:['type','capacity','read','price'],psu:['wattage','efficiency','modular','price'],'case':['formfactor','price'],cooling:['type','price'],monitor:['resolution','refresh','panel','size','price']};
+  const cLb={socket:'Сокет',tdp:'TDP(W)',cores:'Ядра',boost:'Boost ГГц',price:'Цена',vram:'VRAM GB',chipset:'Чипсет',formfactor:'Форм-фактор',memory:'Тип RAM',speed:'МГц',capacity:'Объём',read:'Чт. МБ/с',wattage:'Ватт',efficiency:'КПД',modular:'Модульн.',resolution:'Разреш.',refresh:'Гц',panel:'Матрица',size:'Дюймов',type:'Тип'};
+  let h='<div style="margin-bottom:8px;font-size:11px;color:var(--text2)">🟡 — лучшее значение</div><div class="cmp-wrap"><table class="cmp-tbl"><thead><tr><th>Параметр</th>';
+  builds.forEach(b=>h+=`<th>${b.nm}<br><b style="color:var(--green)">${rub(b.total)}</b></th>`);
+  h+='</tr></thead><tbody>';
+  const sc=builds.map(b=>{let s=0,n=0;['cpu','gpu','ram','storage'].forEach(c=>{if(b.build[c]){s+=score(b.build[c],c);n++;}});return n?Math.round(s/n):0;});
+  const msz=Math.max(...sc)||1;
+  h+=`<tr><td>🏆 Рейтинг</td>`;
+  sc.forEach((s,i)=>{const best=s===Math.max(...sc);h+=`<td class="${best&&sc.some(x=>x!==s)?'diff':''}"><div style="display:flex;align-items:center;gap:5px;justify-content:center"><div style="height:5px;width:${Math.round(s/msz*50)}px;background:var(--accent);border-radius:3px"></div>${s}</div></td>`;});
+  h+='</tr>';
+  Object.keys(CLB).forEach(cat=>{
+    const ks=cKey[cat]||['price'];
+    if(!builds.some(b=>b.build[cat])) return;
+    h+=`<tr class="cat-row"><td colspan="${builds.length+1}">${CLB[cat]}</td></tr>`;
+    h+=`<tr><td>Модель</td>`;builds.forEach(b=>h+=`<td style="font-size:10px">${b.build[cat]?b.build[cat].name:'—'}</td>`);h+='</tr>';
+    ks.forEach(k=>{
+      h+=`<tr><td>${cLb[k]||k}</td>`;
+      const vals=builds.map(b=>b.build[cat]?k==='price'?b.build[cat].price||0:b.build[cat][k]??null:null);
+      const allDef=vals.every(v=>v!==null);
+      const allSame=allDef&&vals.every(v=>String(v)===String(vals[0]));
+      vals.forEach(v=>{
+        const dv=v===null?'—':k==='price'?rub(v):v;
+        const isDiff=allDef&&!allSame;
+        const nums=vals.filter(x=>x!==null).map(Number);
+        const isBest=isDiff&&(k==='price'?v===Math.min(...nums):v===Math.max(...nums));
+        h+=`<td class="${isDiff&&isBest?'diff':''}">${dv}</td>`;
       });
-      const allDefined=vals.every(v=>v!==null);
-      const allSame=allDefined&&vals.every(v=>String(v)===String(vals[0]));
-      vals.forEach((v,bi)=>{
-        const displayV=v===null?'—':(key==='price'?rub(v):v);
-        const isDiff=allDefined&&!allSame;
-        const isBest=isDiff&&(key==='price'?v===Math.min(...vals.filter(x=>x!==null)):v===Math.max(...vals.filter(x=>x!==null)));
-        html+=`<td class="${isDiff&&isBest?'diff':''}">${displayV}</td>`;
-      });
-      html+='</tr>';
+      h+='</tr>';
     });
   });
-  html+='</tbody></table></div>';
-  content.innerHTML=html;
-  openModal('modal-compare');
+  h+='</tbody></table></div>';
+  el.innerHTML=h; openModal('modal-compare');
 }
 
-// ── Budget Builder ──
-function setBuildType(t,el){
-  budgetType=t;
-  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-}
-function runBudgetBuilder(){
-  const rate=getRate();
-  const totalRub=parseFloat(document.getElementById('budgetInput').value)||0;
-  if(totalRub<20000){toast('Минимальный бюджет — 20 000 ₽');return;}
+// ── Budget ──
+function setBT(t,el){budgetType=t;document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+function openBudget(){document.getElementById('budget-res').innerHTML='';openModal('modal-budget');}
+function runBudget(){
+  const rate=getRate(), totalRub=parseFloat(document.getElementById('budgetInput').value)||0;
+  if(totalRub<20000){toast('Минимум 20 000 ₽');return;}
   const totalUSD=totalRub/rate;
-
-  // Доли бюджета по типу сборки
-  const weights={
-    gaming:{gpu:0.38,cpu:0.20,mb:0.10,ram:0.08,storage:0.07,psu:0.08,'case':0.05,cooling:0.04},
-    work:  {cpu:0.30,ram:0.18,storage:0.16,gpu:0.14,mb:0.10,psu:0.06,'case':0.04,cooling:0.02},
-    office:{cpu:0.22,mb:0.18,ram:0.16,storage:0.16,psu:0.12,'case':0.10,cooling:0.06,gpu:0.00},
-  };
-  const w=weights[budgetType]||weights.gaming;
-  const order=Object.entries(w).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
-  const result={};
-  let spent=0;
-
-  // Для каждой категории подбираем лучший компонент в бюджете
-  order.forEach(cat=>{
-    if(w[cat]===0) return;
-    const catKey=cat==='case'?'case':cat;
-    if(!DB[catKey]) return;
-    const budget=totalUSD*w[cat];
-    // Фильтруем совместимые
-    let pool=[...DB[catKey]].filter(i=>i.price>0&&i.price<=budget*1.15);
-    // Совместимость CPU-MB
-    if(cat==='mb'&&result.cpu){
-      const cpuSock=result.cpu.socket;
-      const sockPool=pool.filter(i=>i.socket===cpuSock);
-      if(sockPool.length) pool=sockPool;
-    }
-    if(cat==='cpu'&&result.mb){
-      const mbSock=result.mb.socket;
-      const sockPool=pool.filter(i=>i.socket===mbSock);
-      if(sockPool.length) pool=sockPool;
-    }
-    if(cat==='ram'&&result.mb){
-      const mbMem=result.mb.memory;
-      const ramPool=pool.filter(i=>i.type===mbMem);
-      if(ramPool.length) pool=ramPool;
-    }
-    // Приоритет: score убывающий, но не дороже бюджета
-    pool.sort((a,b)=>score(b,catKey)-score(a,catKey));
-    // Берём лучший в пределах бюджета, но если совсем нет — чуть выше
-    let pick=pool[0]||null;
-    if(!pick){
-      const anyPool=[...DB[catKey]].filter(i=>i.price>0).sort((a,b)=>a.price-b.price);
-      pick=anyPool[0]||null;
-    }
-    if(pick){result[catKey]=pick;spent+=pick.price||0;}
+  const W={gaming:{gpu:.38,cpu:.20,mb:.10,ram:.08,storage:.07,psu:.08,'case':.05,cooling:.04},work:{cpu:.30,ram:.18,storage:.16,gpu:.14,mb:.10,psu:.06,'case':.04,cooling:.02},office:{cpu:.22,mb:.18,ram:.16,storage:.16,psu:.12,'case':.10,cooling:.06,gpu:.00}};
+  const w=W[budgetType]||W.gaming;
+  const res={}; let spent=0;
+  Object.entries(w).sort((a,b)=>b[1]-a[1]).forEach(([cat,frac])=>{
+    if(frac===0||!DB[cat]) return;
+    const bud=totalUSD*frac;
+    let pool=[...DB[cat]].filter(i=>i.price>0&&i.price<=bud*1.2);
+    if(cat==='mb'&&res.cpu){const s=res.cpu.socket;const p2=pool.filter(i=>i.socket===s);if(p2.length)pool=p2;}
+    if(cat==='cpu'&&res.mb){const s=res.mb.socket;const p2=pool.filter(i=>i.socket===s);if(p2.length)pool=p2;}
+    if(cat==='ram'&&res.mb){const m=res.mb.memory;const p2=pool.filter(i=>i.type===m);if(p2.length)pool=p2;}
+    pool.sort((a,b)=>score(b,cat)-score(a,cat));
+    const pick=pool[0]||[...DB[cat]].filter(i=>i.price>0).sort((a,b)=>a.price-b.price)[0]||null;
+    if(pick){res[cat]=pick;spent+=pick.price||0;}
   });
-  // Отобразить результат
-  const el=document.getElementById('budget-result');
-  if(!Object.keys(result).length){el.innerHTML='<div style="color:var(--red);text-align:center;padding:20px">Бюджет слишком мал для полной сборки</div>';return;}
-  let html='<div class="budget-result">';
-  let totalR=0;
-  Object.entries(result).forEach(([cat,item])=>{
-    totalR+=item.price||0;
-    html+=`<div class="br-item">
-      <span class="br-cat">${catLabels[cat]||cat}</span>
-      <span style="flex:1;font-size:12px;padding:0 8px">${item.brand} ${item.name}</span>
-      <span class="br-price">${rub(item.price)}</span>
-    </div>`;
-  });
-  const leftover=totalRub-Math.round(totalR*rate);
-  html+=`<div class="budget-total-row"><span class="bt-label">Итого</span><span class="bt-price">${rub(totalR)}</span></div>`;
-  if(leftover>0) html+=`<div style="font-size:11px;color:var(--text2);text-align:right">Остаток: ~${Math.round(leftover).toLocaleString('ru-RU')} ₽</div>`;
-  html+=`<button class="act-btn primary" style="width:100%;margin-top:12px;padding:11px" onclick="applyBudgetBuild()">✅ Применить эту сборку</button>`;
-  html+='</div>';
-  el.innerHTML=html;
-  // Временно сохраняем для применения
-  window._budgetResult=result;
+  const el=document.getElementById('budget-res');
+  if(!Object.keys(res).length){el.innerHTML='<div style="color:var(--red);text-align:center;padding:16px">Бюджет слишком мал</div>';return;}
+  let h='<div class="budget-res">';
+  Object.entries(res).forEach(([cat,it])=>h+=`<div class="br-item"><span class="br-cat">${CLB[cat]||cat}</span><span class="br-name">${it.brand} ${it.name}</span><span class="br-price">${rub(it.price)}</span></div>`);
+  const left=totalRub-Math.round(spent*rate);
+  h+=`<div style="display:flex;justify-content:space-between;padding:10px 0;font-weight:700"><span style="font-size:12px;color:var(--text2)">Итого</span><span style="font-size:18px;color:var(--green)">${rub(spent)}</span></div>`;
+  if(left>0)h+=`<div style="font-size:10px;color:var(--text2);text-align:right">Остаток: ~${Math.round(left).toLocaleString('ru-RU')} ₽</div>`;
+  h+=`<button class="act-btn primary" style="width:100%;margin-top:10px;padding:11px" onclick="applyBudget()">✅ Применить</button></div>`;
+  el.innerHTML=h; window._budRes=res;
 }
-function applyBudgetBuild(){
-  if(!window._budgetResult) return;
-  myBuild={...window._budgetResult};
-  updateBuildCount();
-  closeModal('modal-budget');
-  showTab('build');
-  toast('Сборка применена!');
-}
+function applyBudget(){if(!window._budRes)return;myBuild={...window._budRes};updBldCnt();closeModal('modal-budget');showTab('build');toast('Сборка применена!');}
 
 // ── Export ──
 function copyBuild(){
-  const keys=Object.keys(myBuild);
-  if(!keys.length){toast('Сборка пуста');return;}
-  let txt='🖥️ PC Builder Pro — Моя сборка
-
-';
-  let total=0;
-  keys.forEach(cat=>{
-    const item=myBuild[cat];
-    total+=item.price||0;
-    txt+=`${catLabels[cat]||cat}: ${item.brand} ${item.name} — ${rub(item.price)}
-`;
-  });
-  txt+=`
-💰 Итого: ${rub(total)}`;
-  txt+='
-
-[PC Builder Pro v5.0]';
-  navigator.clipboard.writeText(txt).then(()=>toast('Скопировано!')).catch(()=>{
-    // Fallback
-    const ta=document.createElement('textarea');
-    ta.value=txt;document.body.appendChild(ta);ta.select();
-    document.execCommand('copy');document.body.removeChild(ta);
-    toast('Скопировано!');
-  });
-}
-function printBuild(){
-  if(!Object.keys(myBuild).length){toast('Сборка пуста');return;}
-  showTab('build');
-  setTimeout(()=>window.print(),300);
+  const keys=Object.keys(myBuild); if(!keys.length){toast('Сборка пуста');return;}
+  let t='🖥️ PC Builder Pro v6.0 — Моя сборка\n\n',tot=0;
+  keys.forEach(cat=>{const it=myBuild[cat];tot+=it.price||0;t+=`${CLB[cat]||cat}: ${it.brand} ${it.name} — ${rub(it.price)}\n`;});
+  t+=`\n💰 Итого: ${rub(tot)}\n[PC Builder Pro v6.0]`;
+  navigator.clipboard?.writeText(t).then(()=>toast('Скопировано!')).catch(()=>{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Скопировано!');});
 }
 
 // ── Modals ──
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
-function openCompareModal(){openCompare();}
-function openBudget(){document.getElementById('budget-result').innerHTML='';openModal('modal-budget');}
-function openSettings(){openModal('modal-settings');}
+function toast(msg,dur=2000){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
 
-// Close on overlay click
-document.querySelectorAll('.modal-overlay').forEach(el=>{
-  el.addEventListener('click',e=>{if(e.target===el)closeModal(el.id);});
-});
+// ═══════════════════════════════════════════════
+//  DNS-STYLE FILTER PANEL
+// ═══════════════════════════════════════════════
 
-// ── Toast ──
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2000);
+// Описание категориально-специфичных фильтров
+const FD = {
+  cpu: [
+    {label:'Сокет',key:'socket',values:['LGA1851','LGA1700','LGA1200','AM5','AM4','SP5']},
+    {label:'Мин. ядра',key:'minCores',range:[4,8,12,16,24,32],unit:'',hint:'от'},
+    {label:'Макс. TDP',key:'maxTDP',range:[65,95,105,125,150,200],unit:'W',hint:'до'},
+    {label:'Год',key:'year',values:[2024,2025,2023,2022,2021,2020]},
+  ],
+  gpu: [
+    {label:'Мин. VRAM',key:'minVRAM',range:[4,6,8,10,12,16,24],unit:'GB',hint:'от'},
+    {label:'Бренд',key:'brand',values:['NVIDIA','AMD','Intel']},
+    {label:'Год',key:'year',values:[2025,2024,2023,2022,2021,2020]},
+  ],
+  mb: [
+    {label:'Сокет',key:'socket',values:['LGA1851','LGA1700','LGA1200','AM5','AM4','sWRX80','sTR5','sTRX4']},
+    {label:'Форм-фактор',key:'formfactor',values:['ATX','mATX','Mini-ITX','EATX']},
+    {label:'Тип памяти',key:'memory',values:['DDR5','DDR4']},
+    {label:'Чипсет',key:'chipset',values:['Z890','Z790','Z690','Z490','X870E','X870','X670E','X670','B850','B650E','B650','B560','B460','H870','H770','A820','B450']},
+  ],
+  ram: [
+    {label:'Тип',key:'type',values:['DDR5','DDR4']},
+    {label:'Мин. частота',key:'minSpeed',range:[3200,3600,4800,5600,6000,6400,7200,8000],unit:'МГц',hint:'от'},
+    {label:'Объём (GB)',key:'capacity',values:[8,16,32,64,96,128,256]},
+  ],
+  storage: [
+    {label:'Тип',key:'type',values:['NVMe PCIe 5.0','NVMe PCIe 4.0','NVMe PCIe 3.0','SSD SATA','HDD']},
+    {label:'Объём (TB)',key:'capacity',values:[256,512,1000,2000,4000,8000]},
+  ],
+  psu: [
+    {label:'Мин. мощность',key:'minWatt',range:[550,650,750,850,1000,1200,1500],unit:'W',hint:'от'},
+    {label:'КПД',key:'efficiency',values:['80+ Bronze','80+ Gold','80+ Platinum','80+ Titanium']},
+    {label:'Модульность',key:'modular',values:['Fully','Semi','Non']},
+  ],
+  'case': [
+    {label:'Форм-фактор',key:'formfactor',values:['Full Tower','Mid Tower','mATX','Mini-ITX','Open Frame']},
+  ],
+  cooling: [
+    {label:'Тип',key:'type',values:['AIO','Air','Custom Loop','Thermal Paste','Thermal Pad']},
+  ],
+  monitor: [
+    {label:'Разрешение',key:'resolution',values:['FHD','QHD','4K','UW-QHD','DQHD']},
+    {label:'Тип матрицы',key:'panel',values:['OLED','QD-OLED','IPS','Fast IPS','Nano IPS','VA','TN','Mini LED']},
+    {label:'Мин. частота',key:'minRefresh',range:[60,120,144,165,180,240,360,480],unit:'Гц',hint:'от'},
+    {label:'Размер (\")',key:'size',values:[24,24.5,27,31.5,32,34,45,49]},
+  ],
+};
+
+function openFilterPanel(){
+  buildFPBody();
+  document.getElementById('filter-panel').classList.add('open');
+}
+function closeFilterPanel(){document.getElementById('filter-panel').classList.remove('open');}
+
+function buildFPBody(){
+  const cat=CAT[tab]; if(!cat) return;
+  const fs=getFSC();
+  // collect brands from current cat
+  const brands=[...new Set(DB[cat].map(i=>i.brand))].sort();
+  let h='';
+  // ── Sort ──
+  h+=`<div class="fp-section"><div class="fp-section-title">Сортировка</div><div class="fp-sort-grid">`;
+  const sorts=[['default','По умолчанию'],['price-asc','Цена ↑'],['price-desc','Цена ↓'],['year-desc','Новинки'],['score-desc','Топ рейтинг'],['name-asc','А → Я']];
+  sorts.forEach(([v,l])=>h+=`<div class="fp-radio-btn${fs.sort===v?' active':''}" onclick="fpSetSort('${v}',this)">${l}</div>`);
+  h+=`</div></div>`;
+  // ── Price ──
+  h+=`<div class="fp-section"><div class="fp-section-title">Цена ₽</div><div class="fp-price-row">
+    <input class="fp-price-inp" id="fp-pmin" type="number" placeholder="От" value="${fs.priceMin||''}" min="0">
+    <span class="fp-price-sep">—</span>
+    <input class="fp-price-inp" id="fp-pmax" type="number" placeholder="До" value="${fs.priceMax||''}" min="0">
+  </div></div>`;
+  // ── Brands ──
+  h+=`<div class="fp-section"><div class="fp-section-title">Бренд</div><div class="fp-brands-grid">`;
+  brands.forEach(b=>h+=`<div class="fp-check-btn${fs.brands.has(b)?' active':''}" onclick="fpToggleBrand('${b.replace(/'/g,"\\'")}',this)"><span class="fp-cb">${fs.brands.has(b)?'✓':''}</span>${b}</div>`);
+  h+=`</div></div>`;
+  // ── Category specs ──
+  const specs=FD[cat]||[];
+  specs.forEach(sp=>{
+    h+=`<div class="fp-section"><div class="fp-section-title">${sp.label}</div>`;
+    if(sp.values){
+      h+=`<div class="fp-opts-grid"><div class="fp-opt${!fs.specs[sp.key]||fs.specs[sp.key]==='all'?' active':''}" onclick="fpSetSpec('${sp.key}','all',this)">Все</div>`;
+      sp.values.forEach(v=>h+=`<div class="fp-opt${String(fs.specs[sp.key])===String(v)?' active':''}" onclick="fpSetSpec('${sp.key}','${v}',this)">${v}</div>`);
+      h+=`</div>`;
+    } else if(sp.range){
+      h+=`<div class="fp-opts-grid"><div class="fp-opt${!fs.specs[sp.key]?' active':''}" onclick="fpSetSpec('${sp.key}','',this)">Любое</div>`;
+      sp.range.forEach(v=>h+=`<div class="fp-opt${String(fs.specs[sp.key])===String(v)?' active':''}" onclick="fpSetSpec('${sp.key}','${v}',this)">${sp.hint} ${v}${sp.unit}</div>`);
+      h+=`</div>`;
+    }
+    h+=`</div>`;
+  });
+  document.getElementById('fp-body').innerHTML=h;
+}
+
+function fpSetSort(v,el){
+  getFSC().sort=v;
+  document.querySelectorAll('.fp-radio-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+}
+function fpToggleBrand(b,el){
+  const s=getFSC().brands;
+  if(s.has(b)){s.delete(b);el.classList.remove('active');el.querySelector('.fp-cb').textContent='';}
+  else{s.add(b);el.classList.add('active');el.querySelector('.fp-cb').textContent='✓';}
+}
+function fpSetSpec(k,v,el){
+  getFSC().specs[k]=v==='all'?'':v;
+  // деактивировать соседей
+  el.closest('.fp-opts-grid')?.querySelectorAll('.fp-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+}
+function applyFilters(){
+  const fs=getFSC();
+  fs.priceMin=document.getElementById('fp-pmin')?.value||'';
+  fs.priceMax=document.getElementById('fp-pmax')?.value||'';
+  closeFilterPanel();
+  renderComponents();
+}
+function resetFilters(){
+  FS[tab]={sort:'default',priceMin:'',priceMax:'',brands:new Set(),specs:{}};
+  closeFilterPanel();
+  renderComponents();
+  updateFPBadge();
+}
+function updateFPBadge(){
+  const fs=getFSC();
+  let n=0;
+  if(fs.sort&&fs.sort!=='default') n++;
+  if(fs.priceMin) n++;
+  if(fs.priceMax) n++;
+  n+=fs.brands.size;
+  n+=Object.values(fs.specs).filter(v=>v&&v!=='all').length;
+  const badge=document.getElementById('fp-active-count');
+  const btn=document.getElementById('filterToggleBtn');
+  if(n>0){badge.style.display='inline';badge.textContent=n;btn.classList.add('has-active');}
+  else{badge.style.display='none';btn.classList.remove('has-active');}
 }
 
 // ── Boot ──
