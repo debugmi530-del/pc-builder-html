@@ -199,6 +199,48 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .multi-label{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
 .build-item-multi{display:flex;align-items:center;gap:4px;padding:6px 10px;background:var(--bg3);border-radius:8px;margin-bottom:4px}
 .bi-idx{font-size:9px;color:var(--text2);min-width:14px}
+
+/* ── Fullscreen button ── */
+.hdr-btn-fs{background:none;border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:13px;color:var(--text);transition:border-color .15s}
+.hdr-btn-fs:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── DNS-style component compare tray ── */
+#cmp-tray{position:fixed;bottom:62px;left:0;right:0;background:var(--bg2);border-top:2px solid var(--accent);z-index:200;padding:7px 12px 7px;display:none;align-items:center;gap:8px;box-shadow:0 -4px 20px rgba(108,99,255,.15)}
+#cmp-tray.show{display:flex}
+.cmp-tray-label{font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;flex-shrink:0}
+.cmp-tray-slots{display:flex;gap:6px;flex:1;overflow-x:auto;scrollbar-width:none}
+.cmp-tray-slots::-webkit-scrollbar{display:none}
+.cmp-slot{width:72px;min-width:72px;height:54px;background:var(--bg3);border:1px dashed var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--text2);text-align:center;flex-shrink:0;position:relative;padding:5px;line-height:1.2}
+.cmp-slot.filled{border-style:solid;border-color:var(--accent);background:rgba(108,99,255,.07)}
+.cmp-slot-rm{position:absolute;top:-5px;right:-5px;width:15px;height:15px;background:var(--red);color:#fff;border-radius:50%;font-size:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1;font-weight:700}
+.cmp-slot-name{font-size:8.5px;font-weight:600;color:var(--text);line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.cmp-tray-go{background:var(--accent);color:#fff;border:none;border-radius:11px;padding:9px 15px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.cmp-tray-clr{background:none;border:1px solid var(--border);border-radius:11px;padding:9px 11px;font-size:12px;cursor:pointer;color:var(--text2);flex-shrink:0}
+
+/* Compare button on card */
+.cmp-add-btn{display:inline-flex;align-items:center;gap:3px;margin-top:0;margin-left:6px;background:var(--bg3);color:var(--text2);border:1px solid var(--border);border-radius:16px;padding:5px 11px;font-size:11px;font-weight:600;cursor:pointer;flex-shrink:0}
+.cmp-add-btn.in-cmp{background:rgba(108,99,255,.15);color:var(--accent);border-color:var(--accent)}
+
+/* ── Component compare modal ── */
+#modal-cmp-items .modal-box{max-height:96vh}
+.cmp-cat-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.cmp-cat-badge{padding:4px 12px;background:rgba(108,99,255,.12);color:var(--accent);border-radius:14px;font-size:11px;font-weight:700}
+.cmp-count-note{font-size:10px;color:var(--text2)}
+.cmp-items-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px}
+.cmp-items-tbl{width:100%;border-collapse:collapse;font-size:11px;min-width:320px}
+.cmp-items-tbl th{background:var(--bg3);padding:8px 6px;text-align:center;font-weight:600;font-size:10px;border:1px solid var(--border);min-width:90px}
+.cmp-items-tbl th:first-child{text-align:left;width:80px;min-width:80px}
+.cmp-items-tbl td{padding:7px 6px;border:1px solid var(--border);text-align:center;vertical-align:middle;font-size:11px}
+.cmp-items-tbl td:first-child{text-align:left;font-size:10px;color:var(--text2);font-weight:600;background:var(--bg4);white-space:nowrap}
+.cmp-items-tbl td.ci-best{background:rgba(0,230,118,.1);color:var(--green);font-weight:700}
+.cmp-items-tbl td.ci-worst{background:rgba(255,82,82,.07);color:var(--red)}
+.cmp-items-tbl .ci-sect td{background:var(--bg3);color:var(--accent);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px;text-align:left}
+.ci-name{font-size:10px;font-weight:700;line-height:1.3;text-align:center}
+.ci-brand{font-size:9px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
+.ci-price-hdr{font-size:12px;font-weight:700;color:var(--green)}
+.ci-add-btn{display:block;width:100%;margin-top:6px;background:var(--accent);color:#fff;border:none;border-radius:9px;padding:6px 4px;font-size:10px;font-weight:700;cursor:pointer}
+.ci-winner-row td{background:rgba(255,215,64,.07)}
+
 </style>
 </head>
 <body>
@@ -207,6 +249,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#g0)" stroke-width="2"><defs><linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#ff6584"/></linearGradient></defs><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 4v16M16 4v16M2 10h20M2 14h20"/></svg>
   <h1>PC Builder Pro</h1>
   <div id="rateChip" class="rate-chip" onclick="openModal('modal-settings')" title="Кликни для настроек">$ → ₽</div>
+  <button class="hdr-btn-fs" id="fsBtn" onclick="toggleFS()" title="Полный экран">⛶</button>
   <button class="hdr-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
 </div>
 
@@ -254,6 +297,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 </div>
 
 <!-- Scrollable bottom nav (all categories) -->
+
+<!-- DNS-style component compare tray -->
+<div id="cmp-tray">
+  <div class="cmp-tray-label">Сравнение</div>
+  <div class="cmp-tray-slots" id="cmp-tray-slots"></div>
+  <button class="cmp-tray-clr" onclick="clearCmpItems()" title="Очистить">✕</button>
+  <button class="cmp-tray-go" onclick="openCmpItems()">Сравнить <span id="cmp-count"></span></button>
+</div>
+
 <nav id="nav">
   <div id="nav-inner">
     <button class="nav-btn active" onclick="showTab('cpu')" id="nav-cpu">
@@ -322,6 +374,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
 </div>
 
+
+<div class="modal-overlay" id="modal-cmp-items">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-cmp-items')">✕</button>
+    <h2>🔍 Сравнение компонентов</h2>
+    <div id="cmp-items-content"></div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="modal-compare">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-compare')">✕</button>
@@ -377,6 +438,258 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 <div class="toast" id="toast"></div>
 
 <script>
+// ── DNS-style component compare ──
+let cmpItems = []; // {cat, id, item}
+const CMP_MAX = 4;
+
+function toggleCmpItem(cat, id, btn){
+  const idx = cmpItems.findIndex(x=>x.cat===cat && x.id===id);
+  if(idx>=0){
+    cmpItems.splice(idx,1);
+  } else {
+    // Только один тип категории в сравнении
+    const samecat = cmpItems.filter(x=>x.cat===cat);
+    if(cmpItems.length>=CMP_MAX){ toast('⚠️ Максимум 4 компонента для сравнения'); return; }
+    if(samecat.length>=CMP_MAX){ toast('⚠️ Слишком много одинаковых категорий'); return; }
+    const item = DB[cat]&&DB[cat].find(i=>i.id===id);
+    if(item) cmpItems.push({cat,id,item});
+  }
+  renderComponents();
+  renderCmpTray();
+}
+
+function removeFromCmp(idx){
+  cmpItems.splice(idx,1);
+  renderComponents();
+  renderCmpTray();
+}
+
+function clearCmpItems(){
+  cmpItems=[];
+  renderComponents();
+  renderCmpTray();
+}
+
+function renderCmpTray(){
+  const tray = document.getElementById('cmp-tray');
+  const slots = document.getElementById('cmp-tray-slots');
+  const cnt = document.getElementById('cmp-count');
+  if(!tray||!slots) return;
+  if(cmpItems.length===0){ tray.classList.remove('show'); return; }
+  tray.classList.add('show');
+  cnt.textContent = '('+cmpItems.length+')';
+  let h='';
+  for(let i=0;i<CMP_MAX;i++){
+    if(i<cmpItems.length){
+      const c=cmpItems[i];
+      h+=`<div class="cmp-slot filled">
+        <div class="cmp-slot-rm" onclick="removeFromCmp(${i})">✕</div>
+        <div class="cmp-slot-name">${c.item.brand}<br>${c.item.name}</div>
+      </div>`;
+    } else {
+      h+=`<div class="cmp-slot">${i===cmpItems.length?'+ Добавить':'—'}</div>`;
+    }
+  }
+  slots.innerHTML=h;
+}
+
+function openCmpItems(){
+  if(cmpItems.length<2){ toast('⚠️ Добавьте минимум 2 компонента'); return; }
+  renderCmpItemsModal();
+  openModal('modal-cmp-items');
+}
+
+function renderCmpItemsModal(){
+  const el = document.getElementById('cmp-items-content');
+  if(!el) return;
+  const items = cmpItems.map(x=>x.item);
+  const cats = [...new Set(cmpItems.map(x=>x.cat))];
+  const mainCat = cats[0];
+  const catName = CLB[mainCat]||mainCat;
+  const mixed = cats.length>1;
+
+  // Spec keys per category
+  const SPEC_KEYS = {
+    cpu:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'cores',l:'🔢 Ядра',higher:true},
+      {k:'boost',l:'⚡ Boost ГГц',higher:true},
+      {k:'tdp',l:'🌡️ TDP Вт',higher:false},
+      {k:'socket',l:'🔌 Сокет',higher:null},
+      {k:'l3',l:'📦 L3 МБ',higher:true},
+      {k:'nm',l:'🔬 Техпроцесс нм',higher:false},
+      {k:'maxRam',l:'🧠 Макс.RAM ГБ',higher:true},
+      {k:'pcie5',l:'PCIe 5.0',higher:null},
+      {k:'igpu',l:'Встр.граф.',higher:null},
+    ],
+    gpu:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'vram',l:'🎨 VRAM ГБ',higher:true},
+      {k:'tdp',l:'🌡️ TDP Вт',higher:false},
+      {k:'bandwidth',l:'Пропуск. ГБ/с',higher:true},
+      {k:'shader',l:'Шейдеры',higher:true},
+      {k:'tmu',l:'TMU',higher:true},
+      {k:'rop',l:'ROP',higher:true},
+    ],
+    mb:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'socket',l:'🔌 Сокет',higher:null},
+      {k:'chipset',l:'Чипсет',higher:null},
+      {k:'formfactor',l:'Форм-фактор',higher:null},
+      {k:'memory',l:'Тип RAM',higher:null},
+      {k:'ramSlots',l:'Слотов RAM',higher:true},
+      {k:'m2slots',l:'Слотов M.2',higher:true},
+    ],
+    ram:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'type',l:'Тип',higher:null},
+      {k:'capacity',l:'Объём ГБ',higher:true},
+      {k:'speed',l:'⚡ МГц',higher:true},
+      {k:'cl',l:'Латентность CL',higher:false},
+    ],
+    storage:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'type',l:'Тип',higher:null},
+      {k:'capacity',l:'Объём ГБ',higher:true},
+      {k:'read',l:'📖 Чтение МБ/с',higher:true},
+      {k:'write',l:'✏️ Запись МБ/с',higher:true},
+    ],
+    psu:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'wattage',l:'⚡ Мощность Вт',higher:true},
+      {k:'efficiency',l:'КПД',higher:null},
+      {k:'modular',l:'Модульный',higher:null},
+    ],
+    'case':[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'formfactor',l:'Форм-фактор',higher:null},
+    ],
+    cooling:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'type',l:'Тип',higher:null},
+      {k:'tdp',l:'TDP Вт охл.',higher:true},
+    ],
+    monitor:[
+      {k:'price',l:'💰 Цена',higher:false},
+      {k:'size',l:'📺 Дюймов',higher:true},
+      {k:'resolution',l:'Разрешение',higher:null},
+      {k:'refresh',l:'⚡ Герцы',higher:true},
+      {k:'panel',l:'Матрица',higher:null},
+      {k:'hdr',l:'HDR',higher:null},
+    ],
+  };
+
+  let h='';
+  // Header
+  h+=`<div class="cmp-cat-hdr"><span class="cmp-cat-badge">${catName}${mixed?' и др.':''}</span><span class="cmp-count-note">${items.length} компонента</span></div>`;
+  h+=`<div class="cmp-items-wrap"><table class="cmp-items-tbl"><thead><tr><th>Характеристика</th>`;
+  items.forEach(item=>{
+    h+=`<th><div class="ci-brand">${item.brand}</div><div class="ci-name">${item.name}</div><div class="ci-price-hdr">${rub(item.price)}</div>`;
+    // Кнопка "В сборку" только если это одиночный компонент (не мультикатегория)
+    const ic=cmpItems.find(x=>x.item.id===item.id);
+    if(ic&&!isMultiCat(ic.cat)){
+      h+=`<button class="ci-add-btn" onclick="selectFromCmp('${ic.cat}','${item.id}')">✚ В сборку</button>`;
+    }
+    h+='</th>';
+  });
+  h+='</tr></thead><tbody>';
+
+  // Compute overall scores
+  const scores = items.map(item=>{
+    const ic=cmpItems.find(x=>x.item.id===item.id);
+    return ic?score(item,ic.cat):0;
+  });
+  const maxScoreVal=Math.max(...scores)||1;
+  h+='<tr class="ci-sect"><td colspan="'+(items.length+1)+'">🏆 Рейтинг производительности</td></tr>';
+  h+='<tr><td>Рейтинг</td>';
+  scores.forEach(s=>{
+    const pct=Math.round(s/maxScoreVal*100);
+    const best=s===Math.max(...scores);
+    h+=`<td class="${best?'ci-best':''}">${pct}%<div style="margin-top:4px;height:4px;background:var(--border);border-radius:2px"><div style="width:${pct}%;height:100%;background:${best?'var(--green)':'var(--accent)'};border-radius:2px"></div></div></td>`;
+  });
+  h+='</tr>';
+
+  // Per-category specs (group by cat if mixed)
+  const catGroups = {};
+  cmpItems.forEach(x=>{if(!catGroups[x.cat])catGroups[x.cat]=[];catGroups[x.cat].push(x);});
+
+  Object.entries(catGroups).forEach(([cat,group])=>{
+    const specKeys = SPEC_KEYS[cat]||[{k:'price',l:'💰 Цена',higher:false}];
+    if(mixed){
+      h+=`<tr class="ci-sect"><td colspan="${items.length+1}">${CLB[cat]||cat}</td></tr>`;
+    }
+    specKeys.forEach(({k,l,higher})=>{
+      const vals = items.map(item=>{
+        if(mixed){
+          const belongs=cmpItems.find(x=>x.item.id===item.id&&x.cat===cat);
+          if(!belongs) return null;
+        }
+        if(k==='price') return item.price||0;
+        const v=item[k];
+        if(v===undefined||v===null) return null;
+        if(typeof v==='boolean') return v?'✅':'❌';
+        return v;
+      });
+      const nums=vals.filter(v=>v!==null&&typeof v==='number');
+      const hasNum=nums.length>1&&higher!==null;
+      h+=`<tr><td>${l}</td>`;
+      vals.forEach(v=>{
+        if(v===null){h+='<td>—</td>';return;}
+        const dv=k==='price'?rub(v):v;
+        let cls='';
+        if(hasNum&&typeof v==='number'){
+          const best=higher?(v===Math.max(...nums)):(v===Math.min(...nums));
+          const worst=higher?(v===Math.min(...nums)):(v===Math.max(...nums));
+          if(nums.every(n=>n===nums[0])) cls='';
+          else if(best) cls='ci-best';
+          else if(worst) cls='ci-worst';
+        }
+        h+=`<td class="${cls}">${dv}</td>`;
+      });
+      h+='</tr>';
+    });
+  });
+
+  h+='</tbody></table></div>';
+
+  // Winner summary
+  const winIdx=scores.indexOf(Math.max(...scores));
+  if(items.length>1&&scores.some((s,i)=>s!==scores[0])){
+    const winner=items[winIdx];
+    h+=`<div style="margin-top:14px;padding:12px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:11px;font-size:12px">
+      🏆 <b style="color:var(--green)">${winner.brand} ${winner.name}</b> — лучший результат по рейтингу
+      <span style="float:right;color:var(--green);font-weight:700">${rub(winner.price)}</span>
+    </div>`;
+  }
+
+  el.innerHTML=h;
+}
+
+function selectFromCmp(cat,id){
+  selectItem(cat,id);
+  closeModal('modal-cmp-items');
+  showTab('build');
+  toast('✅ Добавлено в сборку');
+}
+
+// ── Fullscreen ──
+function toggleFS(){
+  if(!document.fullscreenElement){
+    document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+    document.getElementById('fsBtn').textContent='⛶';
+    document.getElementById('fsBtn').title='Выйти из полноэкранного режима';
+  } else {
+    document.exitFullscreen&&document.exitFullscreen();
+    document.getElementById('fsBtn').textContent='⛶';
+  }
+}
+document.addEventListener('fullscreenchange',()=>{
+  const btn=document.getElementById('fsBtn');
+  if(!btn) return;
+  btn.textContent=document.fullscreenElement?'✕⛶':'⛶';
+  btn.title=document.fullscreenElement?'Выйти из полноэкранного режима':'Полный экран';
+});
+
 const DB = {
 // ─── Процессоры ───
 cpu: [
@@ -1809,6 +2122,7 @@ function renderComponents(){
     const cnt=multiArr?multiArr.length:0;
     const limit=cat==='gpu'?gpuLimit:cat==='ram'?maxRamSlots:storageLimit;
     const blocked=!sel&&isMultiCat(cat)&&cnt>=limit;
+    const isCmp=cmpItems.some(x=>x.cat===cat&&x.id===item.id);
     const pct=Math.round(score(item,cat)/maxSc*100);
     const bdg=item.badge?`<span class="card-badge badge-${item.badge}">${item.badge==='new'?'🆕 Новинка':item.badge==='hot'?'🔥 Хит':'💰 Бюджет'}</span>`:'';
     const btnLabel=sel?'✓ Убрать':(blocked?'⛔ Лимит':'+ Добавить');
@@ -1822,6 +2136,7 @@ function renderComponents(){
       ${bdg}
       <div class="perf-row">
         <button class="add-btn" ${blocked?'disabled':''} data-cat="${cat}" data-id="${item.id}" onclick="event.stopPropagation();cardClick(this)">${btnLabel}</button>
+        <button class="cmp-add-btn${isCmp?' in-cmp':''}" onclick="event.stopPropagation();toggleCmpItem('${cat}','${item.id}',this)">${isCmp?'✓ В сравн.':'⊕ Сравнить'}</button>
         <div class="perf-track"><div class="perf-fill" style="width:${pct}%;background:${sel?'var(--accent2)':'var(--accent)'}"></div></div>
         <span style="font-size:9px;color:var(--text2)">${pct}%</span>
       </div>
@@ -2290,6 +2605,22 @@ function updateFPBadge(){
 // ── Boot ──
 init();
 updateRateChip();
+renderCmpTray();
+// Автозапуск полноэкранного режима
+(function(){
+  const doFS=()=>{
+    if(!document.fullscreenElement&&document.documentElement.requestFullscreen){
+      document.documentElement.requestFullscreen().catch(()=>{});
+    }
+  };
+  // Браузеры требуют жест пользователя для fullscreen
+  // Пробуем сразу, если не получится — повесим на первый клик
+  doFS();
+  if(!document.fullscreenElement){
+    const once=()=>{doFS();document.removeEventListener('click',once);};
+    document.addEventListener('click',once,{once:true});
+  }
+})();
 
 </script>
 </body>
