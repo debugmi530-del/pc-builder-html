@@ -54,8 +54,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .add-btn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;background:var(--accent);color:#fff;border:none;border-radius:16px;padding:5px 13px;font-size:11px;font-weight:600;cursor:pointer}
 .selected .add-btn{background:var(--red)}
 .perf-row{display:flex;align-items:center;gap:6px;margin-top:7px}
-.perf-track{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
-.perf-fill{height:100%;border-radius:2px}
 .card-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:9px;margin-top:4px}
 .badge-new{background:rgba(0,230,118,.14);color:var(--green)}
 .badge-hot{background:rgba(255,101,132,.14);color:var(--accent2)}
@@ -222,7 +220,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .cmp-add-btn.in-cmp{background:rgba(108,99,255,.15);color:var(--accent);border-color:var(--accent)}
 
 /* ── Component compare modal ── */
-#modal-cmp-items .modal-box{max-height:96vh}
+#modal-cmp-picker .modal-box{max-height:96vh}
 .cmp-cat-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .cmp-cat-badge{padding:4px 12px;background:rgba(108,99,255,.12);color:var(--accent);border-radius:14px;font-size:11px;font-weight:700}
 .cmp-count-note{font-size:10px;color:var(--text2)}
@@ -232,8 +230,37 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .cmp-items-tbl th:first-child{text-align:left;width:80px;min-width:80px}
 .cmp-items-tbl td{padding:7px 6px;border:1px solid var(--border);text-align:center;vertical-align:middle;font-size:11px}
 .cmp-items-tbl td:first-child{text-align:left;font-size:10px;color:var(--text2);font-weight:600;background:var(--bg4);white-space:nowrap}
-.cmp-items-tbl td.ci-best{background:rgba(0,230,118,.1);color:var(--green);font-weight:700}
-.cmp-items-tbl td.ci-worst{background:rgba(255,82,82,.07);color:var(--red)}
+/* ci-best and ci-worst removed */
+/* ── Compare panel (full-page tab) ── */
+#compare-panel{padding:11px 14px}
+.cmp-panel-empty{text-align:center;padding:40px 20px;color:var(--text2);font-size:13px}
+.cmp-panel-empty .icon{font-size:42px;margin-bottom:10px}
+.cmp-cat-tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;scrollbar-width:none;padding-bottom:2px}
+.cmp-cat-tabs::-webkit-scrollbar{display:none}
+.cmp-cat-tab{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;white-space:nowrap;flex-shrink:0}
+.cmp-cat-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.cmp-panel-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -2px}
+.cmp-panel-tbl{border-collapse:collapse;font-size:11px;min-width:300px;width:100%}
+.cmp-panel-tbl th{background:var(--bg3);border:1px solid var(--border);padding:0;min-width:110px;vertical-align:top}
+.cmp-panel-tbl th:first-child{width:80px;min-width:80px;text-align:left;padding:8px 6px;font-size:10px;color:var(--text2);background:var(--bg4)}
+.cmp-col-head{padding:10px 8px 8px;text-align:center}
+.cmp-col-brand{font-size:9px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.cmp-col-name{font-size:10px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.cmp-col-price{font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px}
+.cmp-replace-btn{display:inline-block;font-size:10px;padding:4px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--text2);margin-bottom:2px}
+.cmp-replace-btn:active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cmp-rm-btn{display:inline-block;font-size:10px;padding:4px 8px;background:none;border:none;cursor:pointer;color:var(--red);margin-left:4px}
+.cmp-panel-tbl td{padding:7px 6px;border:1px solid var(--border);text-align:center;vertical-align:middle;font-size:11px}
+.cmp-panel-tbl td:first-child{text-align:left;font-size:10px;color:var(--text2);font-weight:600;background:var(--bg4);white-space:nowrap}
+.cmp-panel-tbl .ci-sect td{background:var(--bg3);color:var(--accent);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px;text-align:left}
+.cmp-add-col-btn{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:12px;background:var(--bg3);border:1px dashed var(--border);border-radius:11px;padding:10px;font-size:12px;color:var(--text2);cursor:pointer;width:100%}
+/* Picker modal */
+.cmp-picker-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
+.cmp-picker-item:hover,.cmp-picker-item:active{background:var(--sel)}
+.cmp-picker-item:last-child{border:none}
+.cmp-picker-name{font-size:12px;font-weight:600;flex:1}
+.cmp-picker-brand{font-size:10px;color:var(--accent);font-weight:700;margin-bottom:2px}
+.cmp-picker-price{font-size:12px;font-weight:700;color:var(--green);white-space:nowrap}
 .cmp-items-tbl .ci-sect td{background:var(--bg3);color:var(--accent);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px;text-align:left}
 .ci-name{font-size:10px;font-weight:700;line-height:1.3;text-align:center}
 .ci-brand{font-size:9px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
@@ -294,6 +321,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div id="history-list"></div>
     <div id="histEmpty" class="empty-state" style="display:none"><div class="icon">📂</div><p>Нет сохранённых сборок</p></div>
   </div>
+  <div id="compare-panel" style="display:none"></div>
 </div>
 
 <!-- Scrollable bottom nav (all categories) -->
@@ -303,7 +331,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   <div class="cmp-tray-label">Сравнение</div>
   <div class="cmp-tray-slots" id="cmp-tray-slots"></div>
   <button class="cmp-tray-clr" onclick="clearCmpItems()" title="Очистить">✕</button>
-  <button class="cmp-tray-go" onclick="openCmpItems()">Сравнить <span id="cmp-count"></span></button>
+  <button class="cmp-tray-go" onclick="showTab('compare')">Сравнить <span id="cmp-count"></span></button>
 </div>
 
 <nav id="nav">
@@ -338,8 +366,9 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <button class="nav-btn" onclick="showTab('history')" id="nav-history">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9H3"/><polyline points="3 3 3 9 9 9"/><polyline points="12 7 12 12 15 15"/></svg>История
     </button>
-    <button class="nav-btn" onclick="openModal('modal-compare')" id="nav-compare" style="position:relative">
+    <button class="nav-btn" onclick="showTab('compare')" id="nav-compare" style="position:relative">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Сравнить
+      <div class="build-badge" id="cmpCount" style="display:none">0</div>
     </button>
     <button class="nav-btn" onclick="openBudget()" id="nav-budget">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Бюджет
@@ -375,11 +404,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 </div>
 
 
-<div class="modal-overlay" id="modal-cmp-items">
+<div class="modal-overlay" id="modal-cmp-picker">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('modal-cmp-items')">✕</button>
-    <h2>🔍 Сравнение компонентов</h2>
-    <div id="cmp-items-content"></div>
+    <button class="modal-close" onclick="closeModal('modal-cmp-picker')">✕</button>
+    <h2 id="cmp-picker-title">Выбрать компонент</h2>
+    <div id="cmp-picker-content" style="max-height:65vh;overflow-y:auto;margin:0 -4px"></div>
   </div>
 </div>
 
@@ -474,6 +503,9 @@ function renderCmpTray(){
   const tray = document.getElementById('cmp-tray');
   const slots = document.getElementById('cmp-tray-slots');
   const cnt = document.getElementById('cmp-count');
+  // Update nav badge
+  const nb=document.getElementById('cmpCount');
+  if(nb){if(cmpItems.length>0){nb.style.display='flex';nb.textContent=cmpItems.length;}else nb.style.display='none';}
   if(!tray||!slots) return;
   if(cmpItems.length===0){ tray.classList.remove('show'); return; }
   tray.classList.add('show');
@@ -494,180 +526,181 @@ function renderCmpTray(){
 }
 
 function openCmpItems(){
-  if(cmpItems.length<2){ toast('⚠️ Добавьте минимум 2 компонента'); return; }
-  renderCmpItemsModal();
-  openModal('modal-cmp-items');
+  showTab('compare');
 }
 
-function renderCmpItemsModal(){
-  const el = document.getElementById('cmp-items-content');
-  if(!el) return;
-  const items = cmpItems.map(x=>x.item);
+// ── Spec keys for comparison (used in compare panel) ──
+const CMP_SPEC_KEYS = {
+  cpu:[
+    {k:'price',l:'💰 Цена'},{k:'cores',l:'🔢 Ядра'},{k:'boost',l:'⚡ Boost ГГц'},
+    {k:'tdp',l:'🌡️ TDP Вт'},{k:'socket',l:'🔌 Сокет'},{k:'l3',l:'📦 L3 МБ'},
+    {k:'nm',l:'🔬 Техпроцесс нм'},{k:'maxRam',l:'🧠 Макс.RAM ГБ'},{k:'pcie5',l:'PCIe 5.0'},{k:'igpu',l:'Встр.граф.'},
+  ],
+  gpu:[
+    {k:'price',l:'💰 Цена'},{k:'vram',l:'🎨 VRAM ГБ'},{k:'tdp',l:'🌡️ TDP Вт'},
+    {k:'bw',l:'Пропускная ГБ/с'},{k:'bus',l:'Шина бит'},{k:'power',l:'Питание'},
+    {k:'length',l:'Длина мм'},{k:'fans',l:'Вентиляторов'},{k:'fsr',l:'FSR/DLSS'},
+  ],
+  mb:[
+    {k:'price',l:'💰 Цена'},{k:'socket',l:'🔌 Сокет'},{k:'chipset',l:'Чипсет'},
+    {k:'formfactor',l:'Форм-фактор'},{k:'memory',l:'Тип RAM'},{k:'ramSlots',l:'Слотов RAM'},
+    {k:'m2slots',l:'Слотов M.2'},{k:'maxRam',l:'Макс. RAM ГБ'},{k:'vrm',l:'VRM фаз'},
+    {k:'wifi',l:'WiFi'},{k:'usb4',l:'USB4'},{k:'biosFlashback',l:'BIOS Flashback'},
+  ],
+  ram:[
+    {k:'price',l:'💰 Цена'},{k:'type',l:'Тип'},{k:'capacity',l:'Объём ГБ'},
+    {k:'speed',l:'⚡ МГц'},{k:'cl',l:'Латентность CL'},{k:'voltage',l:'Напряжение В'},
+    {k:'sticks',l:'Планок'},{k:'formFactor',l:'Форм-фактор'},
+  ],
+  storage:[
+    {k:'price',l:'💰 Цена'},{k:'type',l:'Тип'},{k:'capacity',l:'Объём ГБ'},
+    {k:'read',l:'📖 Чтение МБ/с'},{k:'write',l:'✏️ Запись МБ/с'},
+    {k:'tbw',l:'TBW ТБ'},{k:'dram',l:'DRAM'},{k:'powerLoss',l:'PLP'},
+  ],
+  psu:[
+    {k:'price',l:'💰 Цена'},{k:'wattage',l:'⚡ Мощность Вт'},{k:'efficiency',l:'КПД'},
+    {k:'modular',l:'Модульный'},{k:'atxVer',l:'ATX версия'},{k:'pcie16pin',l:'16-pin PCIe 5.0'},
+  ],
+  'case':[
+    {k:'price',l:'💰 Цена'},{k:'formfactor',l:'Форм-фактор'},{k:'maxGpuLen',l:'Max GPU мм'},
+    {k:'maxCoolerH',l:'Max кулер мм'},{k:'radiator',l:'Радиатор мм'},
+  ],
+  cooling:[
+    {k:'price',l:'💰 Цена'},{k:'type',l:'Тип'},{k:'maxTdp',l:'Max TDP Вт'},
+    {k:'noise',l:'Шум дБ'},
+  ],
+  monitor:[
+    {k:'price',l:'💰 Цена'},{k:'size',l:'📺 Дюймов'},{k:'resolution',l:'Разрешение'},
+    {k:'refresh',l:'⚡ Герцы'},{k:'panel',l:'Матрица'},{k:'responseTime',l:'Отклик мс'},
+    {k:'hdr',l:'HDR нит'},{k:'brightness',l:'Яркость нит'},{k:'dciP3',l:'DCI-P3 %'},
+  ],
+};
+
+// ── Compare panel (DNS-style full page) ──
+let cmpActiveCat = null; // currently viewed category in compare panel
+
+function renderComparePanel(){
+  const panel = document.getElementById('compare-panel');
+  if(!panel) return;
+
   const cats = [...new Set(cmpItems.map(x=>x.cat))];
-  const mainCat = cats[0];
-  const catName = CLB[mainCat]||mainCat;
-  const mixed = cats.length>1;
 
-  // Spec keys per category
-  const SPEC_KEYS = {
-    cpu:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'cores',l:'🔢 Ядра',higher:true},
-      {k:'boost',l:'⚡ Boost ГГц',higher:true},
-      {k:'tdp',l:'🌡️ TDP Вт',higher:false},
-      {k:'socket',l:'🔌 Сокет',higher:null},
-      {k:'l3',l:'📦 L3 МБ',higher:true},
-      {k:'nm',l:'🔬 Техпроцесс нм',higher:false},
-      {k:'maxRam',l:'🧠 Макс.RAM ГБ',higher:true},
-      {k:'pcie5',l:'PCIe 5.0',higher:null},
-      {k:'igpu',l:'Встр.граф.',higher:null},
-    ],
-    gpu:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'vram',l:'🎨 VRAM ГБ',higher:true},
-      {k:'tdp',l:'🌡️ TDP Вт',higher:false},
-      {k:'bandwidth',l:'Пропуск. ГБ/с',higher:true},
-      {k:'shader',l:'Шейдеры',higher:true},
-      {k:'tmu',l:'TMU',higher:true},
-      {k:'rop',l:'ROP',higher:true},
-    ],
-    mb:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'socket',l:'🔌 Сокет',higher:null},
-      {k:'chipset',l:'Чипсет',higher:null},
-      {k:'formfactor',l:'Форм-фактор',higher:null},
-      {k:'memory',l:'Тип RAM',higher:null},
-      {k:'ramSlots',l:'Слотов RAM',higher:true},
-      {k:'m2slots',l:'Слотов M.2',higher:true},
-    ],
-    ram:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'type',l:'Тип',higher:null},
-      {k:'capacity',l:'Объём ГБ',higher:true},
-      {k:'speed',l:'⚡ МГц',higher:true},
-      {k:'cl',l:'Латентность CL',higher:false},
-    ],
-    storage:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'type',l:'Тип',higher:null},
-      {k:'capacity',l:'Объём ГБ',higher:true},
-      {k:'read',l:'📖 Чтение МБ/с',higher:true},
-      {k:'write',l:'✏️ Запись МБ/с',higher:true},
-    ],
-    psu:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'wattage',l:'⚡ Мощность Вт',higher:true},
-      {k:'efficiency',l:'КПД',higher:null},
-      {k:'modular',l:'Модульный',higher:null},
-    ],
-    'case':[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'formfactor',l:'Форм-фактор',higher:null},
-    ],
-    cooling:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'type',l:'Тип',higher:null},
-      {k:'tdp',l:'TDP Вт охл.',higher:true},
-    ],
-    monitor:[
-      {k:'price',l:'💰 Цена',higher:false},
-      {k:'size',l:'📺 Дюймов',higher:true},
-      {k:'resolution',l:'Разрешение',higher:null},
-      {k:'refresh',l:'⚡ Герцы',higher:true},
-      {k:'panel',l:'Матрица',higher:null},
-      {k:'hdr',l:'HDR',higher:null},
-    ],
-  };
+  if(cmpItems.length === 0){
+    panel.innerHTML=`<div class="cmp-panel-empty"><div class="icon">⊕</div><p>Добавьте компоненты для сравнения<br>с помощью кнопки «⊕ Сравнить» на карточке</p></div>`;
+    return;
+  }
 
-  let h='';
-  // Header
-  h+=`<div class="cmp-cat-hdr"><span class="cmp-cat-badge">${catName}${mixed?' и др.':''}</span><span class="cmp-count-note">${items.length} компонента</span></div>`;
-  h+=`<div class="cmp-items-wrap"><table class="cmp-items-tbl"><thead><tr><th>Характеристика</th>`;
-  items.forEach(item=>{
-    h+=`<th><div class="ci-brand">${item.brand}</div><div class="ci-name">${item.name}</div><div class="ci-price-hdr">${rub(item.price)}</div>`;
-    // Кнопка "В сборку" только если это одиночный компонент (не мультикатегория)
-    const ic=cmpItems.find(x=>x.item.id===item.id);
-    if(ic&&!isMultiCat(ic.cat)){
-      h+=`<button class="ci-add-btn" onclick="selectFromCmp('${ic.cat}','${item.id}')">✚ В сборку</button>`;
-    }
-    h+='</th>';
+  // Pick active cat
+  if(!cmpActiveCat || !cats.includes(cmpActiveCat)) cmpActiveCat = cats[0];
+
+  // Category tabs
+  let h = '<div class="cmp-cat-tabs">';
+  cats.forEach(c=>{
+    const cnt = cmpItems.filter(x=>x.cat===c).length;
+    h+=`<div class="cmp-cat-tab${c===cmpActiveCat?' active':''}" onclick="setCmpActiveCat('${c}')">${CNM[c]||c} (${cnt})</div>`;
+  });
+  h+='</div>';
+
+  // Items in active category
+  const groupItems = cmpItems.filter(x=>x.cat===cmpActiveCat);
+  const specKeys = CMP_SPEC_KEYS[cmpActiveCat]||[{k:'price',l:'💰 Цена'}];
+
+  h+='<div class="cmp-panel-table-wrap"><table class="cmp-panel-tbl"><thead><tr><th>Характеристика</th>';
+  groupItems.forEach((ci,idx)=>{
+    h+=`<th><div class="cmp-col-head">
+      <div class="cmp-col-brand">${ci.item.brand}</div>
+      <div class="cmp-col-name">${ci.item.name}</div>
+      <div class="cmp-col-price">${rub(ci.item.price)}</div>
+      <span class="cmp-replace-btn" onclick="openCmpPicker('${cmpActiveCat}',${cmpItems.indexOf(ci)})">⇄ Заменить</span><span class="cmp-rm-btn" onclick="removeFromCmpPanel(${cmpItems.indexOf(ci)})">✕</span>
+    </div></th>`;
   });
   h+='</tr></thead><tbody>';
 
-  // Compute overall scores
-  const scores = items.map(item=>{
-    const ic=cmpItems.find(x=>x.item.id===item.id);
-    return ic?score(item,ic.cat):0;
-  });
-  const maxScoreVal=Math.max(...scores)||1;
-  h+='<tr class="ci-sect"><td colspan="'+(items.length+1)+'">🏆 Рейтинг производительности</td></tr>';
-  h+='<tr><td>Рейтинг</td>';
-  scores.forEach(s=>{
-    const pct=Math.round(s/maxScoreVal*100);
-    const best=s===Math.max(...scores);
-    h+=`<td class="${best?'ci-best':''}">${pct}%<div style="margin-top:4px;height:4px;background:var(--border);border-radius:2px"><div style="width:${pct}%;height:100%;background:${best?'var(--green)':'var(--accent)'};border-radius:2px"></div></div></td>`;
-  });
-  h+='</tr>';
-
-  // Per-category specs (group by cat if mixed)
-  const catGroups = {};
-  cmpItems.forEach(x=>{if(!catGroups[x.cat])catGroups[x.cat]=[];catGroups[x.cat].push(x);});
-
-  Object.entries(catGroups).forEach(([cat,group])=>{
-    const specKeys = SPEC_KEYS[cat]||[{k:'price',l:'💰 Цена',higher:false}];
-    if(mixed){
-      h+=`<tr class="ci-sect"><td colspan="${items.length+1}">${CLB[cat]||cat}</td></tr>`;
-    }
-    specKeys.forEach(({k,l,higher})=>{
-      const vals = items.map(item=>{
-        if(mixed){
-          const belongs=cmpItems.find(x=>x.item.id===item.id&&x.cat===cat);
-          if(!belongs) return null;
-        }
-        if(k==='price') return item.price||0;
-        const v=item[k];
-        if(v===undefined||v===null) return null;
-        if(typeof v==='boolean') return v?'✅':'❌';
-        return v;
-      });
-      const nums=vals.filter(v=>v!==null&&typeof v==='number');
-      const hasNum=nums.length>1&&higher!==null;
-      h+=`<tr><td>${l}</td>`;
-      vals.forEach(v=>{
-        if(v===null){h+='<td>—</td>';return;}
-        const dv=k==='price'?rub(v):v;
-        let cls='';
-        if(hasNum&&typeof v==='number'){
-          const best=higher?(v===Math.max(...nums)):(v===Math.min(...nums));
-          const worst=higher?(v===Math.min(...nums)):(v===Math.max(...nums));
-          if(nums.every(n=>n===nums[0])) cls='';
-          else if(best) cls='ci-best';
-          else if(worst) cls='ci-worst';
-        }
-        h+=`<td class="${cls}">${dv}</td>`;
-      });
-      h+='</tr>';
+  specKeys.forEach(({k,l})=>{
+    h+=`<tr><td>${l}</td>`;
+    groupItems.forEach(ci=>{
+      const item=ci.item;
+      let v=item[k];
+      let display='—';
+      if(v!==undefined&&v!==null){
+        if(typeof v==='boolean') display=v?'✅':'❌';
+        else if(k==='price') display=rub(v);
+        else display=v;
+      }
+      h+=`<td>${display}</td>`;
     });
+    h+='</tr>';
   });
 
   h+='</tbody></table></div>';
 
-  // Winner summary
-  const winIdx=scores.indexOf(Math.max(...scores));
-  if(items.length>1&&scores.some((s,i)=>s!==scores[0])){
-    const winner=items[winIdx];
-    h+=`<div style="margin-top:14px;padding:12px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:11px;font-size:12px">
-      🏆 <b style="color:var(--green)">${winner.brand} ${winner.name}</b> — лучший результат по рейтингу
-      <span style="float:right;color:var(--green);font-weight:700">${rub(winner.price)}</span>
-    </div>`;
+  // Button to add one more from current category
+  if(groupItems.length<CMP_MAX){
+    h+=`<div class="cmp-add-col-btn" onclick="openCmpPicker('${cmpActiveCat}',null)">+ Добавить ${CLB[cmpActiveCat]||'компонент'}</div>`;
   }
 
+  panel.innerHTML=h;
+}
+
+function setCmpActiveCat(cat){
+  cmpActiveCat=cat;
+  renderComparePanel();
+}
+
+function removeFromCmpPanel(globalIdx){
+  if(globalIdx<0||globalIdx>=cmpItems.length) return;
+  cmpItems.splice(globalIdx,1);
+  renderComponents();
+  renderCmpTray();
+  renderComparePanel();
+}
+
+// ── Picker: replace or add a compared item ──
+let _pickerCat=null, _pickerReplaceIdx=null;
+
+function openCmpPicker(cat, replaceIdx){
+  _pickerCat=cat; _pickerReplaceIdx=replaceIdx;
+  const el=document.getElementById('cmp-picker-content');
+  const title=document.getElementById('cmp-picker-title');
+  if(!el||!title) return;
+  title.textContent=(replaceIdx!==null?'Заменить: ':'Добавить: ')+(CLB[cat]||cat);
+  const already=new Set(cmpItems.filter(x=>x.cat===cat).map(x=>x.id));
+  const pool=(DB[cat]||[]).filter(i=>replaceIdx!==null||!already.has(i.id));
+  let h='';
+  if(!pool.length){h='<div style="padding:20px;text-align:center;color:var(--text2)">Больше нет вариантов</div>';}
+  else{
+    pool.forEach(item=>{
+      const inCmp=already.has(item.id);
+      h+=`<div class="cmp-picker-item${inCmp?' in-cmp':''}" onclick="pickCmpItem('${item.id}')">
+        <div style="flex:1"><div class="cmp-picker-brand">${item.brand}</div><div class="cmp-picker-name">${item.name}</div></div>
+        <div class="cmp-picker-price">${rub(item.price)}</div>
+      </div>`;
+    });
+  }
   el.innerHTML=h;
+  openModal('modal-cmp-picker');
+}
+
+function pickCmpItem(id){
+  const cat=_pickerCat;
+  const item=DB[cat]&&DB[cat].find(i=>i.id===id);
+  if(!item) return;
+  if(_pickerReplaceIdx!==null){
+    // Replace existing entry
+    cmpItems[_pickerReplaceIdx]={cat,id,item};
+  } else {
+    // Add new
+    if(cmpItems.length>=CMP_MAX){ toast('⚠️ Максимум 4 компонента'); return; }
+    cmpItems.push({cat,id,item});
+  }
+  closeModal('modal-cmp-picker');
+  renderComponents();
+  renderCmpTray();
+  renderComparePanel();
 }
 
 function selectFromCmp(cat,id){
   selectItem(cat,id);
-  closeModal('modal-cmp-items');
   showTab('build');
   toast('✅ Добавлено в сборку');
 }
@@ -2411,9 +2444,14 @@ function showTab(t){
   const cp=document.getElementById('components-panel');
   const bp=document.getElementById('build-panel');
   const hp=document.getElementById('history-panel');
-  if(t==='build'){cp.style.display='none';bp.style.display='block';hp.style.display='none';renderBuild();}
-  else if(t==='history'){cp.style.display='none';bp.style.display='none';hp.style.display='block';renderHistory();}
-  else{cp.style.display='block';bp.style.display='none';hp.style.display='none';renderComponents();}
+  const xp=document.getElementById('compare-panel');
+  // hide search/filter bar for compare tab
+  const sr=document.getElementById('search-row');
+  const qf=document.getElementById('qfilters');
+  if(t==='build'){cp.style.display='none';bp.style.display='block';hp.style.display='none';if(xp)xp.style.display='none';if(sr)sr.style.display='';if(qf)qf.style.display='';renderBuild();}
+  else if(t==='history'){cp.style.display='none';bp.style.display='none';hp.style.display='block';if(xp)xp.style.display='none';if(sr)sr.style.display='';if(qf)qf.style.display='';renderHistory();}
+  else if(t==='compare'){cp.style.display='none';bp.style.display='none';hp.style.display='none';if(xp)xp.style.display='block';if(sr)sr.style.display='none';if(qf)qf.style.display='none';renderComparePanel();}
+  else{cp.style.display='block';bp.style.display='none';hp.style.display='none';if(xp)xp.style.display='none';if(sr)sr.style.display='';if(qf)qf.style.display='';renderComponents();}
 }
 function setQF(f,el){qf=f;document.querySelectorAll('.qf-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderComponents();}
 
@@ -2494,7 +2532,6 @@ function renderComponents(){
     const limit=cat==='gpu'?gpuLimit:cat==='ram'?maxRamSlots:storageLimit;
     const blocked=!sel&&isMultiCat(cat)&&cnt>=limit;
     const isCmp=cmpItems.some(x=>x.cat===cat&&x.id===item.id);
-    const pct=Math.round(score(item,cat)/maxSc*100);
     const bdg=item.badge?`<span class="card-badge badge-${item.badge}">${item.badge==='new'?'🆕 Новинка':item.badge==='hot'?'🔥 Хит':'💰 Бюджет'}</span>`:'';
     const btnLabel=sel?'✓ Убрать':(blocked?'⛔ Лимит':'+ Добавить');
     const cardStyle=blocked?'opacity:.6':'';
@@ -2508,8 +2545,6 @@ function renderComponents(){
       <div class="perf-row">
         <button class="add-btn" ${blocked?'disabled':''} data-cat="${cat}" data-id="${item.id}" onclick="event.stopPropagation();cardClick(this)">${btnLabel}</button>
         <button class="cmp-add-btn${isCmp?' in-cmp':''}" onclick="event.stopPropagation();toggleCmpItem('${cat}','${item.id}',this)">${isCmp?'✓ В сравн.':'⊕ Сравнить'}</button>
-        <div class="perf-track"><div class="perf-fill" style="width:${pct}%;background:${sel?'var(--accent2)':'var(--accent)'}"></div></div>
-        <span style="font-size:9px;color:var(--text2)">${pct}%</span>
       </div>
     </div>`;
   });
