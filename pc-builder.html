@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-<title>PC Builder Pro v6.0</title>
+<title>PC Builder Pro v7.0</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -11,151 +11,156 @@
   --accent:#6c63ff;--accent2:#ff6584;--green:#00e676;
   --yellow:#ffd740;--red:#ff5252;--text:#e0e0e0;
   --text2:#9e9e9e;--border:#2d3147;--sel:rgba(108,99,255,.10);
-  --diff-bg:rgba(255,215,64,.14);--diff-col:#ffd740;
 }
 body.light{
   --bg:#f0f2f8;--bg2:#fff;--bg3:#e8eaf2;--bg4:#f5f6fa;
   --accent:#5b52e0;--accent2:#e0506a;--green:#00a854;
   --yellow:#c49000;--red:#d32f2f;--text:#1a1a2e;
   --text2:#555577;--border:#d0d4e8;--sel:rgba(91,82,224,.08);
-  --diff-bg:rgba(255,215,64,.28);--diff-col:#a07700;
 }
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;padding-bottom:80px;transition:background .25s,color .25s}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;padding-bottom:62px;transition:background .25s,color .25s}
+
 /* header */
-#header{background:var(--bg2);padding:11px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-#header h1{font-size:16px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hdr-right{margin-left:auto;display:flex;align-items:center;gap:8px}
-.hdr-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:13px;color:var(--text);transition:.2s}
-.hdr-btn:hover{border-color:var(--accent)}
+#header{background:var(--bg2);padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+#header h1{font-size:15px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex:1}
+.rate-chip{font-size:11px;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:3px 9px;cursor:default;white-space:nowrap}
+.rate-chip.fresh{border-color:var(--green);color:var(--green)}
+.hdr-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:13px;color:var(--text)}
+
 /* search row */
-#search-row{padding:9px 14px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center}
+#search-row{padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;gap:8px}
 #searchInput{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 13px;color:var(--text);font-size:13px;outline:none}
 #searchInput:focus{border-color:var(--accent)}
-.filter-toggle-btn{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 13px;cursor:pointer;font-size:13px;color:var(--text2);white-space:nowrap;display:flex;align-items:center;gap:5px;transition:.2s}
+.filter-toggle-btn{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:13px;color:var(--text2);display:flex;align-items:center;gap:5px;white-space:nowrap}
 .filter-toggle-btn.has-active{border-color:var(--accent);color:var(--accent)}
+
 /* quick filter bar */
-#qfilters{padding:7px 14px;display:flex;gap:6px;overflow-x:auto;background:var(--bg2);border-bottom:1px solid var(--border);scrollbar-width:none}
+#qfilters{padding:6px 14px;display:flex;gap:6px;overflow-x:auto;background:var(--bg2);border-bottom:1px solid var(--border);scrollbar-width:none}
 #qfilters::-webkit-scrollbar{display:none}
-.qf-btn{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:5px 12px;font-size:11px;color:var(--text2);cursor:pointer;white-space:nowrap;transition:.2s;flex-shrink:0}
+.qf-btn{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:5px 11px;font-size:11px;color:var(--text2);cursor:pointer;white-space:nowrap;flex-shrink:0}
 .qf-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
 /* content */
 #content{padding:11px 14px}
-.section-title{font-size:11px;color:var(--text2);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;display:flex;justify-content:space-between;align-items:center}
+.section-title{font-size:11px;color:var(--text2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.9px;display:flex;justify-content:space-between;align-items:center}
+
 /* cards */
-.component-card{background:var(--bg2);border:1px solid var(--border);border-radius:13px;padding:12px;margin-bottom:8px;cursor:pointer;transition:.2s;position:relative}
-.component-card:active{transform:scale(.985)}
+.component-card{background:var(--bg2);border:1px solid var(--border);border-radius:13px;padding:12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,background .15s;position:relative}
 .component-card.selected{border-color:var(--accent);background:var(--sel)}
-.card-name{font-size:13px;font-weight:600;margin-bottom:3px;line-height:1.3;padding-right:88px}
-.card-brand{font-size:10px;color:var(--accent);font-weight:600;margin-bottom:4px;text-transform:uppercase}
-.card-specs{font-size:11px;color:var(--text2);line-height:1.6}
-.card-price{position:absolute;top:12px;right:12px;font-size:12px;font-weight:700;color:var(--green);text-align:right;max-width:86px;line-height:1.3}
+.card-name{font-size:13px;font-weight:600;margin-bottom:3px;line-height:1.3;padding-right:92px}
+.card-brand{font-size:10px;color:var(--accent);font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+.card-specs{font-size:11px;color:var(--text2);line-height:1.65}
+.card-price{position:absolute;top:12px;right:12px;font-size:12px;font-weight:700;color:var(--green);text-align:right;max-width:90px;line-height:1.3}
+.add-btn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;background:var(--accent);color:#fff;border:none;border-radius:16px;padding:5px 13px;font-size:11px;font-weight:600;cursor:pointer}
+.selected .add-btn{background:var(--red)}
+.perf-row{display:flex;align-items:center;gap:6px;margin-top:7px}
+.perf-track{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.perf-fill{height:100%;border-radius:2px}
 .card-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:9px;margin-top:4px}
 .badge-new{background:rgba(0,230,118,.14);color:var(--green)}
 .badge-hot{background:rgba(255,101,132,.14);color:var(--accent2)}
 .badge-budget{background:rgba(255,215,64,.14);color:var(--yellow)}
-.add-btn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;background:var(--accent);color:#fff;border:none;border-radius:18px;padding:5px 13px;font-size:11px;font-weight:600;cursor:pointer}
-.selected .add-btn{background:var(--red)}
-/* perf bar */
-.perf-row{display:flex;align-items:center;gap:6px;margin-top:7px}
-.perf-track{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
-.perf-fill{height:100%;border-radius:2px;transition:width .3s}
-/* nav */
-#nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);display:flex;z-index:100}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:6px 2px;cursor:pointer;transition:.2s;border:none;background:none;color:var(--text2);font-size:9px;gap:3px;position:relative}
+
+/* SCROLLABLE BOTTOM NAV */
+#nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:100;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+#nav::-webkit-scrollbar{display:none}
+#nav-inner{display:inline-flex;min-width:100%;padding:0 4px}
+.nav-btn{display:inline-flex;flex-direction:column;align-items:center;padding:6px 10px 5px;cursor:pointer;border:none;background:none;color:var(--text2);font-size:9px;gap:2px;flex-shrink:0;white-space:nowrap;position:relative;min-width:52px}
 .nav-btn.active{color:var(--accent)}
-.nav-btn svg{width:20px;height:20px}
-.build-count{background:var(--accent);color:#fff;border-radius:50%;width:14px;height:14px;font-size:9px;display:flex;align-items:center;justify-content:center;position:absolute;top:3px;right:5px}
-/* more menu */
-#more-menu{display:none;position:fixed;bottom:70px;right:0;left:0;background:var(--bg2);border-top:1px solid var(--border);z-index:200;padding:10px 14px;flex-wrap:wrap;gap:7px}
-#more-menu.open{display:flex}
+.nav-btn svg{width:18px;height:18px}
+.build-badge{background:var(--accent);color:#fff;border-radius:50%;width:13px;height:13px;font-size:8px;display:flex;align-items:center;justify-content:center;position:absolute;top:4px;right:6px}
+
 /* build panel */
 .build-item{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid var(--border)}
 .bi-cat{font-size:10px;color:var(--text2);width:72px;flex-shrink:0}
 .bi-name{font-size:12px;flex:1;line-height:1.3}
-.bi-price{font-size:11px;color:var(--green);font-weight:600;white-space:nowrap}
+.bi-price{font-size:11px;color:var(--green);font-weight:700;white-space:nowrap}
 .bi-rm{color:var(--red);font-size:16px;cursor:pointer;padding:0 4px}
 .total-bar{background:var(--bg3);border-radius:13px;padding:13px;margin-top:13px}
-.total-label{font-size:11px;color:var(--text2)}
 .total-price{font-size:24px;font-weight:700;color:var(--green)}
-.compat{margin-top:8px;padding:9px 11px;border-radius:9px;font-size:11px;line-height:1.6}
+.compat{margin-top:8px;padding:9px 11px;border-radius:9px;font-size:11px;line-height:1.7}
 .compat-ok{background:rgba(0,230,118,.09);color:var(--green);border:1px solid rgba(0,230,118,.2)}
 .compat-warn{background:rgba(255,215,64,.09);color:var(--yellow);border:1px solid rgba(255,215,64,.2)}
 .compat-err{background:rgba(255,82,82,.09);color:var(--red);border:1px solid rgba(255,82,82,.2)}
 .bn-bar{margin-top:7px;padding:9px 11px;background:rgba(255,215,64,.07);border:1px solid rgba(255,215,64,.22);border-radius:9px;font-size:11px;color:var(--yellow);line-height:1.6}
 .build-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
-.act-btn{flex:1;min-width:120px;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:9px;font-size:11px;color:var(--text);cursor:pointer;text-align:center;font-weight:600;transition:.2s}
-.act-btn:hover{border-color:var(--accent);color:var(--accent)}
+.act-btn{flex:1;min-width:110px;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:9px;font-size:11px;color:var(--text);cursor:pointer;text-align:center;font-weight:600}
 .act-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.empty-state{text-align:center;padding:48px 16px;color:var(--text2)}
-.empty-state .icon{font-size:42px;margin-bottom:12px}
+.empty-state{text-align:center;padding:44px 16px;color:var(--text2)}
+.empty-state .icon{font-size:40px;margin-bottom:10px}
 .no-results{text-align:center;padding:32px;color:var(--text2)}
+
 /* saved build cards */
-.sbc{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:11px;margin-bottom:7px;cursor:pointer;transition:.2s}
+.sbc{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:11px;margin-bottom:7px;cursor:pointer}
 .sbc:hover{border-color:var(--accent)}
 .sbc-title{font-weight:600;font-size:13px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
 .sbc-info{font-size:11px;color:var(--text2)}
+
 /* modals */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:300;align-items:flex-end;justify-content:center}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
 .modal-box{background:var(--bg2);border-radius:18px 18px 0 0;width:100%;max-height:94vh;overflow-y:auto;padding:18px 14px 40px;position:relative}
-.modal-box h2{font-size:15px;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:7px}
-.modal-close{position:absolute;top:14px;right:14px;background:var(--bg3);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;color:var(--text);display:flex;align-items:center;justify-content:center}
+.modal-box h2{font-size:15px;font-weight:700;margin-bottom:13px}
+.modal-close{position:absolute;top:14px;right:14px;background:var(--bg3);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:15px;color:var(--text);display:flex;align-items:center;justify-content:center}
 
-/* ══════════ DNS FILTER PANEL ══════════ */
+/* DNS filter panel */
 #filter-panel{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.6);align-items:flex-end}
 #filter-panel.open{display:flex}
-#fp-box{background:var(--bg2);border-radius:18px 18px 0 0;width:100%;max-height:92vh;overflow-y:auto;display:flex;flex-direction:column}
+#fp-box{background:var(--bg2);border-radius:18px 18px 0 0;width:100%;max-height:92vh;display:flex;flex-direction:column}
 #fp-head{position:sticky;top:0;background:var(--bg2);z-index:10;padding:14px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
 #fp-head h3{font-size:15px;font-weight:700;flex:1}
-.fp-reset{background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;padding:4px 8px}
+.fp-reset{background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer}
 .fp-close-btn{background:var(--bg3);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:15px;color:var(--text);display:flex;align-items:center;justify-content:center}
 #fp-body{padding:12px 14px;flex:1;overflow-y:auto}
 #fp-foot{position:sticky;bottom:0;background:var(--bg2);padding:12px 14px;border-top:1px solid var(--border)}
 .fp-section{margin-bottom:18px}
 .fp-section-title{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:9px;font-weight:700}
-/* sort radios */
 .fp-sort-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.fp-radio-btn{display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-size:12px;transition:.2s}
+.fp-radio-btn{display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-size:12px}
 .fp-radio-btn.active{border-color:var(--accent);background:rgba(108,99,255,.1);color:var(--accent)}
-/* price range */
 .fp-price-row{display:flex;gap:8px;align-items:center}
 .fp-price-inp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:9px 10px;color:var(--text);font-size:13px;text-align:center;outline:none}
 .fp-price-inp:focus{border-color:var(--accent)}
-.fp-price-sep{color:var(--text2);font-size:12px}
-/* brand checkboxes */
 .fp-brands-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.fp-check-btn{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;transition:.2s;user-select:none}
+.fp-check-btn{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;user-select:none}
 .fp-check-btn.active{border-color:var(--accent);background:rgba(108,99,255,.1);color:var(--accent)}
-.fp-check-btn .fp-cb{width:14px;height:14px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:.2s}
+.fp-cb{width:14px;height:14px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px}
 .fp-check-btn.active .fp-cb{background:var(--accent);border-color:var(--accent);color:#fff}
-/* spec options */
 .fp-opts-grid{display:flex;flex-wrap:wrap;gap:5px}
-.fp-opt{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;cursor:pointer;font-size:11px;transition:.2s}
+.fp-opt{padding:5px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;cursor:pointer;font-size:11px}
 .fp-opt.active{background:var(--accent);border-color:var(--accent);color:#fff}
-/* range slider */
-.fp-range-row{display:flex;gap:8px;align-items:center;margin-top:4px}
-.fp-range-inp{flex:1;accent-color:var(--accent)}
-.fp-range-val{font-size:11px;color:var(--text2);min-width:36px;text-align:center}
-/* apply btn */
 .fp-apply-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer}
-.fp-apply-btn:active{opacity:.9}
-/* active filter count badge */
 .fp-badge{background:var(--accent2);color:#fff;border-radius:10px;padding:1px 7px;font-size:10px;font-weight:700}
 
-/* compare table */
+/* compare */
+.cmp-build-picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.cmp-pick-btn{padding:6px 12px;background:var(--bg3);border:2px solid var(--border);border-radius:20px;font-size:11px;cursor:pointer;color:var(--text2)}
+.cmp-pick-btn.sel{border-color:var(--accent);color:var(--accent);background:rgba(108,99,255,.1)}
+.cmp-pick-btn.current{border-color:var(--green);color:var(--green);background:rgba(0,230,118,.07)}
+.cmp-pick-btn.current.sel{border-color:var(--green)}
+.cmp-diff-toggle{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:9px 12px;background:var(--bg3);border-radius:11px;cursor:pointer;font-size:12px;color:var(--text2);user-select:none}
+.cmp-diff-toggle.on{color:var(--accent)}
 .cmp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.cmp-tbl{width:100%;border-collapse:collapse;font-size:11px;min-width:480px}
-.cmp-tbl th{background:var(--bg3);padding:9px 7px;text-align:center;font-weight:600;font-size:10px;border:1px solid var(--border)}
-.cmp-tbl th:first-child{text-align:left;width:90px}
+.cmp-tbl{width:100%;border-collapse:collapse;font-size:11px;min-width:420px}
+.cmp-tbl th{background:var(--bg3);padding:8px 7px;text-align:center;font-weight:600;font-size:10px;border:1px solid var(--border)}
+.cmp-tbl th:first-child{text-align:left;width:84px}
 .cmp-tbl td{padding:7px;border:1px solid var(--border);text-align:center;vertical-align:middle;font-size:11px}
 .cmp-tbl td:first-child{text-align:left;font-size:10px;color:var(--text2);font-weight:600;background:var(--bg3)}
-.cmp-tbl td.diff{background:var(--diff-bg);color:var(--diff-col);font-weight:700}
-.cmp-tbl .cat-row td{background:var(--bg3);font-weight:700;color:var(--accent);font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.cmp-tbl td.best{background:rgba(255,215,64,.15);color:var(--yellow);font-weight:700}
+.cmp-tbl .cat-hdr td{background:var(--bg4);font-weight:700;color:var(--accent);font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.cmp-tbl tr.same-row{display:none}
+.cmp-show-same .cmp-tbl tr.same-row{display:table-row}
+
 /* budget */
-.br-item{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border);gap:8px}
+.br-item{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);gap:8px}
 .br-cat{font-size:10px;color:var(--text2);min-width:72px;flex-shrink:0}
 .br-name{font-size:12px;flex:1}
-.br-price{color:var(--green);font-weight:600;font-size:11px;white-space:nowrap}
+.br-price{color:var(--green);font-weight:700;font-size:11px;white-space:nowrap}
+.compat-note{font-size:10px;padding:6px 10px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.18);border-radius:8px;color:var(--green);margin-top:4px}
+.preset-grid{display:flex;gap:7px;margin-bottom:12px}
+.preset-btn{flex:1;padding:9px 4px;background:var(--bg3);border:1px solid var(--border);border-radius:11px;font-size:12px;font-weight:600;cursor:pointer;text-align:center;color:var(--text)}
+.preset-btn.active{border-color:var(--accent);background:rgba(108,99,255,.12);color:var(--accent)}
+
 /* settings */
 .set-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--border)}
 .set-row:last-child{border:none}
@@ -167,34 +172,35 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .tog-sl:before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
 .toggle input:checked+.tog-sl{background:var(--accent)}
 .toggle input:checked+.tog-sl:before{transform:translateX(20px)}
+.rate-block{background:var(--bg3);border-radius:12px;padding:12px;margin-top:6px}
+.rate-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.rate-inp{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:8px 10px;color:var(--text);font-size:15px;font-weight:700;text-align:center;outline:none}
+.rate-inp:focus{border-color:var(--accent)}
+.upd-btn{background:var(--accent);color:#fff;border:none;border-radius:9px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.upd-btn:disabled{opacity:.5;cursor:not-allowed}
+.rate-date{font-size:11px;color:var(--text2);text-align:center}
+.rate-date.fresh{color:var(--green)}
+
 /* toast */
-.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:7px 18px;border-radius:18px;font-size:12px;font-weight:700;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 18px;border-radius:18px;font-size:12px;font-weight:600;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
-/* preset btns */
-.preset-grid{display:flex;gap:7px;margin-bottom:12px}
-.preset-btn{flex:1;padding:9px 4px;background:var(--bg3);border:1px solid var(--border);border-radius:11px;font-size:12px;font-weight:600;cursor:pointer;text-align:center;transition:.2s;color:var(--text)}
-.preset-btn.active{border-color:var(--accent);background:rgba(108,99,255,.12);color:var(--accent)}
-.budget-res{background:var(--bg3);border-radius:13px;padding:12px}
-@media print{#nav,#header,#search-row,#qfilters,#more-menu,.modal-overlay,#filter-panel,.build-actions{display:none!important}body{padding:0;background:#fff;color:#000}.total-price,.bi-price{color:#007700}}
+
+@media print{#nav,#header,#search-row,#qfilters,.modal-overlay,#filter-panel,.build-actions{display:none!important}body{padding:0;background:#fff;color:#000}.total-price,.bi-price{color:#007700}}
 </style>
 </head>
 <body>
+
 <div id="header">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#g0)" stroke-width="2">
-    <defs><linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#ff6584"/></linearGradient></defs>
-    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 4v16M16 4v16M2 10h20M2 14h20"/>
-  </svg>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#g0)" stroke-width="2"><defs><linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#ff6584"/></linearGradient></defs><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 4v16M16 4v16M2 10h20M2 14h20"/></svg>
   <h1>PC Builder Pro</h1>
-  <div class="hdr-right">
-    <span style="font-size:10px;color:var(--text2)" id="totalCount">v6.0</span>
-    <button class="hdr-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-  </div>
+  <div id="rateChip" class="rate-chip" onclick="openModal('modal-settings')" title="Кликни для настроек">$ → ₽</div>
+  <button class="hdr-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
 </div>
 
 <div id="search-row">
-  <input type="text" id="searchInput" placeholder="🔍 Поиск..." oninput="renderComponents()">
+  <input type="text" id="searchInput" placeholder="🔍 Поиск компонентов..." oninput="renderComponents()">
   <button class="filter-toggle-btn" onclick="openFilterPanel()" id="filterToggleBtn">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
     Фильтры <span id="fp-active-count" style="display:none" class="fp-badge">0</span>
   </button>
 </div>
@@ -211,10 +217,10 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 <div id="content">
   <div id="components-panel"></div>
   <div id="build-panel" style="display:none">
-    <div class="section-title">Моя сборка <span id="bld-score" style="font-size:10px;color:var(--accent)"></span></div>
+    <div class="section-title">Моя сборка <span id="bld-score" style="color:var(--accent);font-size:10px"></span></div>
     <div id="build-list"></div>
     <div class="total-bar">
-      <div class="total-label">Итоговая стоимость</div>
+      <div style="font-size:11px;color:var(--text2)">Итоговая стоимость</div>
       <div class="total-price" id="totalPrice">0 ₽</div>
       <div id="compatStatus"></div>
       <div id="bnStatus"></div>
@@ -225,7 +231,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       <button class="act-btn" onclick="window.print()">🖨️ PDF</button>
       <button class="act-btn" onclick="clearBuild()">🗑️ Очистить</button>
     </div>
-    <div id="buildEmpty" class="empty-state"><div class="icon">🖥️</div><p>Выберите компоненты</p></div>
+    <div id="buildEmpty" class="empty-state"><div class="icon">🖥️</div><p>Выберите компоненты<br>из любой категории</p></div>
   </div>
   <div id="history-panel" style="display:none">
     <div class="section-title">Сохранённые сборки</div>
@@ -234,58 +240,66 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
 </div>
 
-<!-- More menu -->
-<div id="more-menu">
-  <button class="qf-btn" onclick="showTab('storage');closeMore()">💾 Накопители</button>
-  <button class="qf-btn" onclick="showTab('psu');closeMore()">⚡ Блоки питания</button>
-  <button class="qf-btn" onclick="showTab('case');closeMore()">🗄️ Корпуса</button>
-  <button class="qf-btn" onclick="showTab('cooling');closeMore()">❄️ Охлаждение</button>
-  <button class="qf-btn" onclick="showTab('monitor');closeMore()">🖥️ Мониторы</button>
-  <button class="qf-btn" onclick="showTab('history');closeMore()">📂 История сборок</button>
-  <button class="qf-btn" onclick="openCompare();closeMore()">📊 Сравнить сборки</button>
-  <button class="qf-btn" onclick="openBudget();closeMore()">💰 Собрать за бюджет</button>
-  <button class="qf-btn" onclick="openModal('modal-settings');closeMore()">⚙️ Настройки</button>
-</div>
-
-<!-- Bottom nav -->
+<!-- Scrollable bottom nav (all categories) -->
 <nav id="nav">
-  <button class="nav-btn active" onclick="showTab('cpu')" id="nav-cpu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>CPU
-  </button>
-  <button class="nav-btn" onclick="showTab('gpu')" id="nav-gpu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7V5M10 7V5M14 7V5M18 7V5M6 17v2M10 17v2M14 17v2M18 17v2"/></svg>GPU
-  </button>
-  <button class="nav-btn" onclick="showTab('mb')" id="nav-mb">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 2v20M2 8h6M2 16h6"/></svg>Мат.плата
-  </button>
-  <button class="nav-btn" onclick="showTab('ram')" id="nav-ram">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8V6M10 8V6M14 8V6M18 8V6"/></svg>RAM
-  </button>
-  <button class="nav-btn" onclick="toggleMore()" id="nav-more">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>Ещё
-  </button>
-  <button class="nav-btn" onclick="showTab('build')" id="nav-build">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Сборка
-    <div class="build-count" id="buildCount" style="display:none">0</div>
-  </button>
+  <div id="nav-inner">
+    <button class="nav-btn active" onclick="showTab('cpu')" id="nav-cpu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>CPU
+    </button>
+    <button class="nav-btn" onclick="showTab('gpu')" id="nav-gpu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7V5M10 7V5M14 7V5M18 7V5M6 17v2M10 17v2M14 17v2M18 17v2"/></svg>GPU
+    </button>
+    <button class="nav-btn" onclick="showTab('mb')" id="nav-mb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 2v20M2 8h6M2 16h6"/></svg>Плата
+    </button>
+    <button class="nav-btn" onclick="showTab('ram')" id="nav-ram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8V6M10 8V6M14 8V6M18 8V6"/></svg>RAM
+    </button>
+    <button class="nav-btn" onclick="showTab('storage')" id="nav-storage">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="6" rx="1"/><rect x="2" y="13" width="20" height="6" rx="1"/><circle cx="18" cy="8" r="1"/><circle cx="18" cy="16" r="1"/></svg>SSD
+    </button>
+    <button class="nav-btn" onclick="showTab('psu')" id="nav-psu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M12 10v4M10 12h4"/></svg>БП
+    </button>
+    <button class="nav-btn" onclick="showTab('case')" id="nav-case">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="2" width="14" height="20" rx="2"/><path d="M17 8h4v12h-4"/><circle cx="10" cy="14" r="2"/></svg>Корпус
+    </button>
+    <button class="nav-btn" onclick="showTab('cooling')" id="nav-cooling">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>Охл.
+    </button>
+    <button class="nav-btn" onclick="showTab('monitor')" id="nav-monitor">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Монитор
+    </button>
+    <button class="nav-btn" onclick="showTab('history')" id="nav-history">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9H3"/><polyline points="3 3 3 9 9 9"/><polyline points="12 7 12 12 15 15"/></svg>История
+    </button>
+    <button class="nav-btn" onclick="openModal('modal-compare')" id="nav-compare" style="position:relative">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Сравнить
+    </button>
+    <button class="nav-btn" onclick="openBudget()" id="nav-budget">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Бюджет
+    </button>
+    <button class="nav-btn" onclick="showTab('build')" id="nav-build">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Сборка
+      <div class="build-badge" id="buildCount" style="display:none">0</div>
+    </button>
+  </div>
 </nav>
 
-<!-- ═══ DNS FILTER PANEL ═══ -->
+<!-- DNS FILTER PANEL -->
 <div id="filter-panel" onclick="if(event.target===this)closeFilterPanel()">
   <div id="fp-box">
     <div id="fp-head">
-      <h3>🔽 Фильтры и сортировка</h3>
-      <button class="fp-reset" onclick="resetFilters()">Сбросить всё</button>
+      <h3>🔽 Фильтры</h3>
+      <button class="fp-reset" onclick="resetFilters()">Сбросить</button>
       <button class="fp-close-btn" onclick="closeFilterPanel()">✕</button>
     </div>
-    <div id="fp-body"><!-- динамически --></div>
-    <div id="fp-foot">
-      <button class="fp-apply-btn" onclick="applyFilters()">Показать результаты</button>
-    </div>
+    <div id="fp-body"></div>
+    <div id="fp-foot"><button class="fp-apply-btn" onclick="applyFilters()">Применить</button></div>
   </div>
 </div>
 
-<!-- ═══ Modals ═══ -->
+<!-- MODALS -->
 <div class="modal-overlay" id="modal-save">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-save')">✕</button>
@@ -294,6 +308,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <button class="act-btn primary" style="width:100%;padding:12px" onclick="saveBuild()">Сохранить</button>
   </div>
 </div>
+
 <div class="modal-overlay" id="modal-compare">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-compare')">✕</button>
@@ -301,13 +316,14 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div id="cmp-content"></div>
   </div>
 </div>
+
 <div class="modal-overlay" id="modal-budget">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-budget')">✕</button>
     <h2>💰 Подобрать за бюджет</h2>
     <div style="display:flex;gap:8px;margin-bottom:12px">
       <input type="number" id="budgetInput" placeholder="Бюджет ₽" min="20000" step="5000"
-        style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--text);font-size:14px;font-weight:600;outline:none">
+        style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--text);font-size:15px;font-weight:700;outline:none">
     </div>
     <div class="preset-grid">
       <button class="preset-btn active" id="pb-gaming" onclick="setBT('gaming',this)">🎮 Игровой</button>
@@ -318,25 +334,34 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div id="budget-res"></div>
   </div>
 </div>
+
 <div class="modal-overlay" id="modal-settings">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-settings')">✕</button>
     <h2>⚙️ Настройки</h2>
     <div class="set-row">
-      <div><div class="set-label">Тёмная тема</div><div class="set-desc">Переключить оформление</div></div>
+      <div><div class="set-label">Тёмная тема</div></div>
       <label class="toggle"><input type="checkbox" id="themeChk" onchange="onThemeChk()"><span class="tog-sl"></span></label>
     </div>
     <div class="set-row">
-      <div><div class="set-label">Предупреждение о бутылочном горлышке</div><div class="set-desc">Дисбаланс CPU / GPU в сборке</div></div>
+      <div><div class="set-label">Бутылочное горлышко CPU/GPU</div></div>
       <label class="toggle"><input type="checkbox" id="bnChk" checked onchange="saveSt()"><span class="tog-sl"></span></label>
     </div>
-    <div class="set-row">
-      <div><div class="set-label">Курс USD → ₽</div><div class="set-desc">Для расчёта цен</div></div>
-      <input type="number" id="rateInp" value="90" min="1" style="width:76px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 9px;color:var(--text);font-size:12px;text-align:center;outline:none" onchange="saveSt();renderComponents()">
+    <div class="set-row" style="flex-direction:column;align-items:flex-start;gap:10px">
+      <div><div class="set-label">Курс USD → ₽</div><div class="set-desc">Обновляется с сайта ЦБ РФ (cbr.ru)</div></div>
+      <div class="rate-block" style="width:100%">
+        <div class="rate-row">
+          <input type="number" id="rateInp" value="90" min="1" class="rate-inp" oninput="saveSt();renderComponents()">
+          <span style="font-size:13px;color:var(--text2)">₽ / $1</span>
+          <button class="upd-btn" id="updBtn" onclick="fetchRate()">🔄 Обновить</button>
+        </div>
+        <div class="rate-date" id="rateDate">Нажмите «Обновить» для актуального курса</div>
+      </div>
     </div>
   </div>
 </div>
-<div class="toast" id="toast">✓</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 const DB = {
@@ -1783,13 +1808,12 @@ monitor: [
 ]
 };
 
-// ── App ──
+// ─── App ───
 
-// ═══════════════════════════════════════════════
-//  PC Builder Pro v6.0  — App Logic
-// ═══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+//  PC Builder Pro v7.0
+// ══════════════════════════════════════════════════════
 
-// ── Helpers ──
 const getRate = () => parseFloat(document.getElementById('rateInp')?.value||90)||90;
 const rub = usd => usd>0 ? Math.round(usd*getRate()).toLocaleString('ru-RU')+' ₽' : 'встр.';
 function score(item,cat){
@@ -1801,38 +1825,42 @@ function score(item,cat){
   return item.price||0;
 }
 
-// ── State ──
-let tab='cpu', qf='all', myBuild={}, moreOpen=false, budgetType='gaming', savedBuilds=[];
+const CNM={cpu:'Процессоры',gpu:'Видеокарты',mb:'Материнские платы',ram:'ОЗУ',storage:'Накопители',psu:'Блоки питания','case':'Корпуса',cooling:'Охлаждение',monitor:'Мониторы'};
+const CLB={cpu:'Процессор',gpu:'Видеокарта',mb:'Мат.плата',ram:'ОЗУ',storage:'Накопитель',psu:'БП','case':'Корпус',cooling:'Охлаждение',monitor:'Монитор'};
+const CATS=['cpu','gpu','mb','ram','storage','psu','case','cooling','monitor'];
+
+let tab='cpu', qf='all', myBuild={}, savedBuilds=[], budgetType='gaming';
 let ST={dark:true,bn:true};
-// Filter state (per-tab)
-const FS = {};  // FS[cat] = { sort, priceMin, priceMax, brands:Set, specs:{} }
-function getFSC(){ return FS[tab]||(FS[tab]={sort:'default',priceMin:'',priceMax:'',brands:new Set(),specs:{}}); }
+const FS={};
+function getFSC(){return FS[tab]||(FS[tab]={sort:'default',priceMin:'',priceMax:'',brands:new Set(),specs:{}});}
 
-const CAT={cpu:'cpu',gpu:'gpu',mb:'mb',ram:'ram',storage:'storage',psu:'psu','case':'case',cooling:'cooling',monitor:'monitor'};
-const CNM={cpu:'Процессоры',gpu:'Видеокарты',mb:'Материнские платы',ram:'Оперативная память',storage:'Накопители',psu:'Блоки питания','case':'Корпуса',cooling:'Охлаждение',monitor:'Мониторы'};
-const CLB={cpu:'Процессор',gpu:'Видеокарта',mb:'Мат. плата',ram:'ОЗУ',storage:'Накопитель',psu:'БП','case':'Корпус',cooling:'Охлаждение',monitor:'Монитор'};
-
-// ── INIT ──
+// ── Init ──
 function init(){
   loadSt(); applySt();
+  loadBuilds();
   renderComponents();
   const tot=Object.values(DB).reduce((a,b)=>a+b.length,0);
-  document.getElementById('totalCount').textContent='v6.0 · '+tot.toLocaleString('ru-RU')+' комп.';
+  // restore rate date
+  try{const rd=localStorage.getItem('pcb7_rate_date');if(rd)setRateDateUI(rd,true);}catch(e){}
   document.querySelectorAll('.modal-overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)closeModal(el.id);}));
 }
 
-// ── Settings ──
+// ── Settings & theme ──
 function loadSt(){
-  try{const s=JSON.parse(localStorage.getItem('pcb6_st')||'{}');if(s.dark!==undefined)ST.dark=s.dark;if(s.bn!==undefined)ST.bn=s.bn;if(s.rate)document.getElementById('rateInp').value=s.rate;}catch(e){}
-  try{savedBuilds=JSON.parse(localStorage.getItem('pcb6_blds')||'[]');}catch(e){savedBuilds=[];}
+  try{
+    const s=JSON.parse(localStorage.getItem('pcb7_st')||'{}');
+    if(s.dark!==undefined)ST.dark=s.dark;
+    if(s.bn!==undefined)ST.bn=s.bn;
+    if(s.rate)document.getElementById('rateInp').value=s.rate;
+  }catch(e){}
   document.getElementById('themeChk').checked=!ST.dark;
   document.getElementById('bnChk').checked=ST.bn;
 }
 function saveSt(){
   ST.dark=!document.getElementById('themeChk').checked;
   ST.bn=document.getElementById('bnChk').checked;
-  localStorage.setItem('pcb6_st',JSON.stringify({dark:ST.dark,bn:ST.bn,rate:document.getElementById('rateInp').value}));
-  applySt();
+  localStorage.setItem('pcb7_st',JSON.stringify({dark:ST.dark,bn:ST.bn,rate:document.getElementById('rateInp').value}));
+  applySt(); updateRateChip();
 }
 function applySt(){
   document.body.classList.toggle('light',!ST.dark);
@@ -1841,44 +1869,90 @@ function applySt(){
 }
 function toggleTheme(){ST.dark=!ST.dark;applySt();saveSt();}
 function onThemeChk(){saveSt();}
+function updateRateChip(){
+  const rate=getRate();
+  const chip=document.getElementById('rateChip');
+  chip.textContent=`$1 = ${Math.round(rate)} ₽`;
+  const d=localStorage.getItem('pcb7_rate_date');
+  chip.className='rate-chip'+(d&&isToday(d)?' fresh':'');
+}
+function isToday(ds){try{return new Date(ds).toDateString()===new Date().toDateString();}catch(e){return false;}}
+
+// ── CBR Rate fetch ──
+// Используем зеркало ЦБ с CORS-поддержкой (cbr-xml-daily.ru — российский хост, данные ЦБ РФ)
+async function fetchRate(){
+  const btn=document.getElementById('updBtn');
+  btn.disabled=true; btn.textContent='⏳ ...';
+  try{
+    // Первичный источник: cbr-xml-daily.ru (российское зеркало ЦБ с CORS)
+    let rate=null, source='';
+    try{
+      const r=await fetch('https://www.cbr-xml-daily.ru/daily_json.js',{cache:'no-store'});
+      const d=await r.json();
+      rate=d.Valute.USD.Value;
+      source='ЦБ РФ';
+    }catch(e){
+      // Запасной: open.er-api.com
+      const r2=await fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-store'});
+      const d2=await r2.json();
+      rate=d2.rates.RUB;
+      source='er-api.com';
+    }
+    if(!rate||rate<30||rate>500) throw new Error('Неверный курс: '+rate);
+    const rounded=Math.round(rate*100)/100;
+    document.getElementById('rateInp').value=rounded;
+    saveSt(); renderComponents();
+    const now=new Date().toISOString();
+    localStorage.setItem('pcb7_rate_date',now);
+    setRateDateUI(now,true,source);
+    updateRateChip();
+    toast(`Курс обновлён: $1 = ${rounded} ₽ (${source})`);
+  }catch(err){
+    toast('⚠️ Ошибка обновления курса: '+err.message);
+  }finally{
+    btn.disabled=false; btn.textContent='🔄 Обновить';
+  }
+}
+function setRateDateUI(isoStr,fresh,source){
+  const el=document.getElementById('rateDate');
+  if(!el) return;
+  const d=new Date(isoStr);
+  const ds=d.toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})+', '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+  el.textContent='Обновлено: '+ds+(source?' ('+source+')':'');
+  el.className='rate-date'+(fresh&&isToday(isoStr)?' fresh':'');
+}
 
 // ── Tabs ──
 function showTab(t){
   tab=t;
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   const nb=document.getElementById('nav-'+t); if(nb) nb.classList.add('active');
-  closeMore();
   const cp=document.getElementById('components-panel');
   const bp=document.getElementById('build-panel');
   const hp=document.getElementById('history-panel');
-  if(t==='build'){ cp.style.display='none';bp.style.display='block';hp.style.display='none';renderBuild(); }
-  else if(t==='history'){ cp.style.display='none';bp.style.display='none';hp.style.display='block';renderHistory(); }
-  else{ cp.style.display='block';bp.style.display='none';hp.style.display='none';renderComponents(); }
+  if(t==='build'){cp.style.display='none';bp.style.display='block';hp.style.display='none';renderBuild();}
+  else if(t==='history'){cp.style.display='none';bp.style.display='none';hp.style.display='block';renderHistory();}
+  else{cp.style.display='block';bp.style.display='none';hp.style.display='none';renderComponents();}
 }
-function toggleMore(){moreOpen=!moreOpen;document.getElementById('more-menu').classList.toggle('open',moreOpen);}
-function closeMore(){document.getElementById('more-menu').classList.remove('open');moreOpen=false;}
 function setQF(f,el){qf=f;document.querySelectorAll('.qf-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderComponents();}
 
-// ── Get & filter items ──
+// ── Filter ──
 function getItems(){
-  const cat=CAT[tab]; if(!cat||!DB[cat]) return [];
+  const cat=tab; if(!DB[cat]) return [];
   let items=[...DB[cat]];
   const q=document.getElementById('searchInput').value.toLowerCase().trim();
   if(q) items=items.filter(i=>(i.name+i.brand+(i.specs||'')).toLowerCase().includes(q));
   const r=getRate();
-  // Quick filter
   const b2=Math.round(3000/r), b3=Math.round(10000/r);
   if(qf==='budget') items=items.filter(i=>i.price>0&&i.price<=b2);
   else if(qf==='mid') items=items.filter(i=>i.price>b2&&i.price<=b3);
   else if(qf==='top') items=items.filter(i=>i.price>b3);
   else if(qf==='new') items=items.filter(i=>i.year>=2024);
   else if(qf==='hot') items=items.filter(i=>i.badge==='hot');
-  // Advanced filters
   const fs=getFSC();
   if(fs.priceMin) items=items.filter(i=>i.price===0||i.price*r>=parseFloat(fs.priceMin));
   if(fs.priceMax) items=items.filter(i=>i.price===0||i.price*r<=parseFloat(fs.priceMax));
   if(fs.brands.size) items=items.filter(i=>fs.brands.has(i.brand));
-  // Spec filters
   Object.entries(fs.specs).forEach(([k,v])=>{
     if(!v||v==='all'||v==='') return;
     if(k==='minCores') items=items.filter(i=>(i.cores||0)>=parseInt(v));
@@ -1889,7 +1963,6 @@ function getItems(){
     else if(k==='minRefresh') items=items.filter(i=>(i.refresh||0)>=parseInt(v));
     else items=items.filter(i=>String(i[k]||'').toLowerCase()===String(v).toLowerCase());
   });
-  // Sort
   const so=fs.sort||'default';
   if(so==='price-asc') items.sort((a,b)=>(a.price||0)-(b.price||0));
   else if(so==='price-desc') items.sort((a,b)=>(b.price||0)-(a.price||0));
@@ -1902,12 +1975,15 @@ function getItems(){
 
 // ── Render components ──
 function renderComponents(){
-  const cat=CAT[tab]; if(!cat) return;
+  const cat=tab; if(!DB[cat]) return;
   const items=getItems();
   const panel=document.getElementById('components-panel');
   updateFPBadge();
   let html=`<div class="section-title">${CNM[cat]||cat} <span>${items.length} позиций</span></div>`;
-  if(!items.length){html+='<div class="no-results">Ничего не найдено 🔍<br><button class="act-btn" style="margin-top:12px" onclick="resetFilters()">Сбросить фильтры</button></div>';panel.innerHTML=html;return;}
+  if(!items.length){
+    html+='<div class="no-results">Ничего не найдено 🔍<br><button class="act-btn" style="margin-top:12px;min-width:auto" onclick="resetFilters()">Сбросить фильтры</button></div>';
+    panel.innerHTML=html; return;
+  }
   const maxSc=Math.max(...DB[cat].map(x=>score(x,cat)),1);
   items.forEach(item=>{
     const sel=myBuild[cat]&&myBuild[cat].id===item.id;
@@ -1938,14 +2014,14 @@ function updBldCnt(){
   if(n>0){el.style.display='flex';el.textContent=n;}else el.style.display='none';
 }
 
-// ── Build ──
+// ── Build panel ──
 function renderBuild(){
   const list=document.getElementById('build-list'), empty=document.getElementById('buildEmpty');
   const keys=Object.keys(myBuild);
   if(!keys.length){list.innerHTML='';empty.style.display='block';document.getElementById('totalPrice').textContent='0 ₽';document.getElementById('compatStatus').innerHTML='';document.getElementById('bnStatus').innerHTML='';document.getElementById('bld-score').textContent='';return;}
   empty.style.display='none';
   let html='',total=0;
-  keys.forEach(cat=>{
+  CATS.filter(c=>myBuild[c]).forEach(cat=>{
     const it=myBuild[cat]; total+=it.price||0;
     html+=`<div class="build-item"><div class="bi-cat">${CLB[cat]||cat}</div><div class="bi-name">${it.brand} ${it.name}</div><div class="bi-price">${rub(it.price)}</div><div class="bi-rm" onclick="removeItem('${cat}')">✕</div></div>`;
   });
@@ -1962,31 +2038,33 @@ function checkCompat(){
   const {cpu,mb,ram,psu,gpu}=myBuild;
   if(cpu&&mb&&cpu.socket!==mb.socket) e.push(`⚠️ Сокет CPU <b>${cpu.socket}</b> ≠ плата <b>${mb.socket}</b>`);
   if(ram&&mb&&ram.type!==mb.memory) e.push(`⚠️ Тип RAM <b>${ram.type}</b> ≠ плата <b>${mb.memory}</b>`);
-  if(psu&&gpu&&cpu){const nd=(gpu.tdp||0)+(cpu.tdp||0)+120;if(psu.wattage<nd)e.push(`⚡ БП ${psu.wattage}W мало! Нужно ~${nd}W`);else if(psu.wattage<nd+100)w.push(`⚡ БП ${psu.wattage}W впритык, лучше ${nd+100}W+`);}
-  el.innerHTML=e.length?`<div class="compat compat-err">${e.join('<br>')}</div>`:w.length?`<div class="compat compat-warn">${w.join('<br>')}</div>`:Object.keys(myBuild).length>=3?`<div class="compat compat-ok">✅ Совместимость OK</div>`:'';
+  if(psu&&gpu&&cpu){const nd=(gpu.tdp||0)+(cpu.tdp||65)+120;if(psu.wattage<nd)e.push(`⚡ БП ${psu.wattage}W мало! Нужно ~${nd}W`);else if(psu.wattage<nd+100)w.push(`⚡ БП ${psu.wattage}W впритык — рекомендуется ${nd+100}W+`);}
+  el.innerHTML=e.length?`<div class="compat compat-err">${e.join('<br>')}</div>`:w.length?`<div class="compat compat-warn">${w.join('<br>')}</div>`:keys(myBuild).length>=3?`<div class="compat compat-ok">✅ Совместимость в порядке</div>`:'';
 }
+const keys=Object.keys;
 function checkBN(){
   const el=document.getElementById('bnStatus'); if(!ST.bn){el.innerHTML='';return;}
   const {cpu,gpu}=myBuild; if(!cpu||!gpu){el.innerHTML='';return;}
   const r=score(cpu,'cpu')/Math.max(score(gpu,'gpu'),1);
   let m='';
-  if(r<0.45) m=`⚡ <b>CPU тормозит GPU:</b> ${cpu.name} значительно слабее видеокарты. Рекомендуется более мощный процессор.`;
-  else if(r>2.4) m=`⚡ <b>GPU тормозит CPU:</b> ${gpu.name} слабее процессора. Рекомендуется более мощная видеокарта.`;
-  el.innerHTML=m?`<div class="bn-bar">🔎 ${m}</div>`:'';
+  if(r<0.45) m=`<b>CPU тормозит GPU:</b> ${cpu.name} значительно слабее видеокарты`;
+  else if(r>2.4) m=`<b>GPU тормозит CPU:</b> ${gpu.name} слабее процессора`;
+  el.innerHTML=m?`<div class="bn-bar">🔎 ⚡ ${m}</div>`:'';
 }
 
 // ── History ──
+function loadBuilds(){try{savedBuilds=JSON.parse(localStorage.getItem('pcb7_blds')||'[]');}catch(e){savedBuilds=[];}}
 function saveBuild(){
   const nm=document.getElementById('saveName').value.trim()||'Сборка '+new Date().toLocaleDateString('ru');
   const total=Object.values(myBuild).reduce((a,i)=>a+(i.price||0),0);
   savedBuilds.unshift({nm,build:{...myBuild},total,date:new Date().toLocaleDateString('ru'),sc:bldScore()});
-  if(savedBuilds.length>10) savedBuilds=savedBuilds.slice(0,10);
-  localStorage.setItem('pcb6_blds',JSON.stringify(savedBuilds));
-  closeModal('modal-save'); toast('Сборка сохранена!');
+  if(savedBuilds.length>20) savedBuilds=savedBuilds.slice(0,20);
+  localStorage.setItem('pcb7_blds',JSON.stringify(savedBuilds));
+  closeModal('modal-save'); toast('💾 Сборка сохранена!');
 }
 function renderHistory(){
+  loadBuilds();
   const list=document.getElementById('history-list'), empty=document.getElementById('histEmpty');
-  try{savedBuilds=JSON.parse(localStorage.getItem('pcb6_blds')||'[]');}catch(e){savedBuilds=[];}
   if(!savedBuilds.length){list.innerHTML='';empty.style.display='block';return;}
   empty.style.display='none';
   list.innerHTML=savedBuilds.map((b,i)=>`<div class="sbc" onclick="loadBuild(${i})">
@@ -1996,239 +2074,287 @@ function renderHistory(){
     </div>
   </div>`).join('');
 }
-function loadBuild(i){myBuild={...savedBuilds[i].build};updBldCnt();showTab('build');toast('Сборка загружена');}
-function delBuild(i){savedBuilds.splice(i,1);localStorage.setItem('pcb6_blds',JSON.stringify(savedBuilds));renderHistory();}
+function loadBuild(i){myBuild={...savedBuilds[i].build};updBldCnt();showTab('build');toast('✅ Сборка загружена');}
+function delBuild(i){if(!confirm('Удалить сборку?'))return;savedBuilds.splice(i,1);localStorage.setItem('pcb7_blds',JSON.stringify(savedBuilds));renderHistory();}
 
-// ── Compare ──
-function openCompare(){
-  try{savedBuilds=JSON.parse(localStorage.getItem('pcb6_blds')||'[]');}catch(e){savedBuilds=[];}
+// ════════════════════════════════════════════════
+//  COMPARE — выбор любых сборок + "только различия"
+// ════════════════════════════════════════════════
+let cmpSelected=new Set();  // индексы: -1 = текущая, 0..N = savedBuilds
+let cmpDiffOnly=false;
+
+function openModal_compare(){
+  loadBuilds();
+  cmpSelected=new Set();
+  // авто-выбор: текущая + первые сохранённые
+  if(Object.keys(myBuild).length) cmpSelected.add(-1);
+  if(savedBuilds.length) cmpSelected.add(0);
+  if(savedBuilds.length>1) cmpSelected.add(1);
+  renderCompareUI();
+  openModal('modal-compare');
+}
+// переопределяем кнопку nav
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('nav-compare')?.addEventListener('click',e=>{e.stopPropagation();openModal_compare();},true);
+});
+
+function renderCompareUI(){
   const el=document.getElementById('cmp-content');
-  const builds=[];
-  if(Object.keys(myBuild).length) builds.push({nm:'Текущая',build:myBuild,total:Object.values(myBuild).reduce((a,i)=>a+(i.price||0),0)});
-  savedBuilds.slice(0,2).forEach(b=>builds.push(b));
-  if(builds.length<2){el.innerHTML='<div class="empty-state"><div class="icon">📊</div><p>Нужно минимум 2 сборки.<br>Сохраните ещё одну.</p></div>';openModal('modal-compare');return;}
+  loadBuilds();
+  const hasCurrent=Object.keys(myBuild).length>0;
+
+  // ── Picker ──
+  let h='<div class="cmp-build-picker">';
+  if(hasCurrent){
+    const sel=cmpSelected.has(-1);
+    h+=`<div class="cmp-pick-btn current${sel?' sel':''}" onclick="toggleCmpSel(-1,this)">✦ Текущая${sel?' ✓':''}</div>`;
+  }
+  savedBuilds.forEach((b,i)=>{
+    const sel=cmpSelected.has(i);
+    h+=`<div class="cmp-pick-btn${sel?' sel':''}" onclick="toggleCmpSel(${i},this)">${b.nm}${sel?' ✓':''}</div>`;
+  });
+  h+='</div>';
+
+  // ── Diff toggle ──
+  h+=`<div class="cmp-diff-toggle${cmpDiffOnly?' on':''}" onclick="toggleCmpDiff(this)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h5M8 18h8"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg>
+    ${cmpDiffOnly?'🟢 Только различия':'⚪ Показать только различия'}
+  </div>`;
+
+  const selList=getSelBuilds();
+  if(selList.length<2){
+    h+='<div class="empty-state"><div class="icon">📊</div><p>Выберите минимум 2 сборки выше</p></div>';
+    el.innerHTML=h; return;
+  }
+  if(selList.length>4){
+    h+='<div style="color:var(--yellow);font-size:11px;margin-bottom:8px">⚠️ Максимум 4 сборки для сравнения</div>';
+  }
+  const builds=selList.slice(0,4);
+
+  // ── Table ──
   const cKey={cpu:['socket','tdp','cores','boost','price'],gpu:['vram','tdp','price'],mb:['socket','chipset','formfactor','memory','price'],ram:['type','speed','capacity','price'],storage:['type','capacity','read','price'],psu:['wattage','efficiency','modular','price'],'case':['formfactor','price'],cooling:['type','price'],monitor:['resolution','refresh','panel','size','price']};
-  const cLb={socket:'Сокет',tdp:'TDP(W)',cores:'Ядра',boost:'Boost ГГц',price:'Цена',vram:'VRAM GB',chipset:'Чипсет',formfactor:'Форм-фактор',memory:'Тип RAM',speed:'МГц',capacity:'Объём',read:'Чт. МБ/с',wattage:'Ватт',efficiency:'КПД',modular:'Модульн.',resolution:'Разреш.',refresh:'Гц',panel:'Матрица',size:'Дюймов',type:'Тип'};
-  let h='<div style="margin-bottom:8px;font-size:11px;color:var(--text2)">🟡 — лучшее значение</div><div class="cmp-wrap"><table class="cmp-tbl"><thead><tr><th>Параметр</th>';
-  builds.forEach(b=>h+=`<th>${b.nm}<br><b style="color:var(--green)">${rub(b.total)}</b></th>`);
+  const cLb={socket:'Сокет',tdp:'TDP(W)',cores:'Ядра',boost:'Boost ГГц',price:'Цена',vram:'VRAM GB',chipset:'Чипсет',formfactor:'Форм-фактор',memory:'Тип RAM',speed:'МГц',capacity:'Объём',read:'Чт.МБ/с',wattage:'Ватт',efficiency:'КПД',modular:'Модульн.',resolution:'Разреш.',refresh:'Гц',panel:'Матрица',size:'Дюймов',type:'Тип'};
+
+  h+=`<div class="${cmpDiffOnly?'':'cmp-show-same'}"><div class="cmp-wrap"><table class="cmp-tbl"><thead><tr><th>Параметр</th>`;
+  builds.forEach(b=>h+=`<th>${b.nm}<br><b style="color:var(--green);font-weight:700">${rub(b.total)}</b></th>`);
   h+='</tr></thead><tbody>';
-  const sc=builds.map(b=>{let s=0,n=0;['cpu','gpu','ram','storage'].forEach(c=>{if(b.build[c]){s+=score(b.build[c],c);n++;}});return n?Math.round(s/n):0;});
-  const msz=Math.max(...sc)||1;
-  h+=`<tr><td>🏆 Рейтинг</td>`;
-  sc.forEach((s,i)=>{const best=s===Math.max(...sc);h+=`<td class="${best&&sc.some(x=>x!==s)?'diff':''}"><div style="display:flex;align-items:center;gap:5px;justify-content:center"><div style="height:5px;width:${Math.round(s/msz*50)}px;background:var(--accent);border-radius:3px"></div>${s}</div></td>`;});
+
+  // score row
+  const sc=builds.map(b=>{let s=0,n=0;CATS.forEach(c=>{if(b.build[c]){s+=score(b.build[c],c);n++;}});return n?Math.round(s/n):0;});
+  const maxSc=Math.max(...sc)||1;
+  const scSame=sc.every(v=>v===sc[0]);
+  h+=`<tr class="${scSame?'same-row':''}"><td>🏆 Рейтинг</td>`;
+  sc.forEach(s=>{const best=s===Math.max(...sc)&&!scSame;h+=`<td class="${best?'best':''}">${s}</td>`;});
   h+='</tr>';
-  Object.keys(CLB).forEach(cat=>{
+
+  CATS.forEach(cat=>{
     const ks=cKey[cat]||['price'];
     if(!builds.some(b=>b.build[cat])) return;
-    h+=`<tr class="cat-row"><td colspan="${builds.length+1}">${CLB[cat]}</td></tr>`;
-    h+=`<tr><td>Модель</td>`;builds.forEach(b=>h+=`<td style="font-size:10px">${b.build[cat]?b.build[cat].name:'—'}</td>`);h+='</tr>';
+    h+=`<tr class="cat-hdr"><td colspan="${builds.length+1}">${CLB[cat]}</td></tr>`;
+    // model row
+    const modelVals=builds.map(b=>b.build[cat]?b.build[cat].name:'—');
+    const modelSame=modelVals.every(v=>v===modelVals[0]);
+    h+=`<tr class="${modelSame?'same-row':''}"><td>Модель</td>`;
+    builds.forEach(b=>h+=`<td style="font-size:10px">${b.build[cat]?b.build[cat].name:'—'}</td>`);
+    h+='</tr>';
     ks.forEach(k=>{
-      h+=`<tr><td>${cLb[k]||k}</td>`;
       const vals=builds.map(b=>b.build[cat]?k==='price'?b.build[cat].price||0:b.build[cat][k]??null:null);
       const allDef=vals.every(v=>v!==null);
       const allSame=allDef&&vals.every(v=>String(v)===String(vals[0]));
+      const nums=vals.filter(x=>typeof x==='number');
+      h+=`<tr class="${allSame?'same-row':''}"><td>${cLb[k]||k}</td>`;
       vals.forEach(v=>{
         const dv=v===null?'—':k==='price'?rub(v):v;
-        const isDiff=allDef&&!allSame;
-        const nums=vals.filter(x=>x!==null).map(Number);
-        const isBest=isDiff&&(k==='price'?v===Math.min(...nums):v===Math.max(...nums));
-        h+=`<td class="${isDiff&&isBest?'diff':''}">${dv}</td>`;
+        const isBest=!allSame&&nums.length===vals.length&&(k==='price'?v===Math.min(...nums):v===Math.max(...nums));
+        h+=`<td class="${isBest?'best':''}">${dv}</td>`;
       });
       h+='</tr>';
     });
   });
-  h+='</tbody></table></div>';
-  el.innerHTML=h; openModal('modal-compare');
+  h+='</tbody></table></div></div>';
+  el.innerHTML=h;
 }
+function getSelBuilds(){
+  const out=[];
+  if(cmpSelected.has(-1)&&Object.keys(myBuild).length){
+    out.push({nm:'Текущая',build:myBuild,total:Object.values(myBuild).reduce((a,i)=>a+(i.price||0),0)});
+  }
+  savedBuilds.forEach((b,i)=>{if(cmpSelected.has(i))out.push(b);});
+  return out;
+}
+function toggleCmpSel(idx,el){
+  if(cmpSelected.has(idx)) cmpSelected.delete(idx); else cmpSelected.add(idx);
+  renderCompareUI();
+}
+function toggleCmpDiff(el){cmpDiffOnly=!cmpDiffOnly;renderCompareUI();}
 
-// ── Budget ──
-function setBT(t,el){budgetType=t;document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+// ════════════════════════════════════════════════
+//  BUDGET BUILDER — правильная совместимость
+// ════════════════════════════════════════════════
+let budgetType_='gaming';
+function setBT(t,el){budgetType_=t;document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
 function openBudget(){document.getElementById('budget-res').innerHTML='';openModal('modal-budget');}
+
 function runBudget(){
-  const rate=getRate(), totalRub=parseFloat(document.getElementById('budgetInput').value)||0;
-  if(totalRub<20000){toast('Минимум 20 000 ₽');return;}
+  const rate=getRate();
+  const totalRub=parseFloat(document.getElementById('budgetInput').value)||0;
+  if(totalRub<15000){toast('Минимум 15 000 ₽');return;}
   const totalUSD=totalRub/rate;
-  const W={gaming:{gpu:.38,cpu:.20,mb:.10,ram:.08,storage:.07,psu:.08,'case':.05,cooling:.04},work:{cpu:.30,ram:.18,storage:.16,gpu:.14,mb:.10,psu:.06,'case':.04,cooling:.02},office:{cpu:.22,mb:.18,ram:.16,storage:.16,psu:.12,'case':.10,cooling:.06,gpu:.00}};
-  const w=W[budgetType]||W.gaming;
-  const res={}; let spent=0;
-  Object.entries(w).sort((a,b)=>b[1]-a[1]).forEach(([cat,frac])=>{
-    if(frac===0||!DB[cat]) return;
-    const bud=totalUSD*frac;
-    let pool=[...DB[cat]].filter(i=>i.price>0&&i.price<=bud*1.2);
-    if(cat==='mb'&&res.cpu){const s=res.cpu.socket;const p2=pool.filter(i=>i.socket===s);if(p2.length)pool=p2;}
-    if(cat==='cpu'&&res.mb){const s=res.mb.socket;const p2=pool.filter(i=>i.socket===s);if(p2.length)pool=p2;}
-    if(cat==='ram'&&res.mb){const m=res.mb.memory;const p2=pool.filter(i=>i.type===m);if(p2.length)pool=p2;}
-    pool.sort((a,b)=>score(b,cat)-score(a,cat));
-    const pick=pool[0]||[...DB[cat]].filter(i=>i.price>0).sort((a,b)=>a.price-b.price)[0]||null;
-    if(pick){res[cat]=pick;spent+=pick.price||0;}
-  });
+
+  // Веса долей бюджета по типу сборки
+  const W={
+    gaming: {gpu:.36,cpu:.20,mb:.10,ram:.08,storage:.07,psu:.08,'case':.06,cooling:.05,monitor:.00},
+    work:   {cpu:.28,ram:.20,storage:.18,gpu:.12,mb:.10,psu:.06,'case':.04,cooling:.02,monitor:.00},
+    office: {cpu:.22,mb:.18,ram:.16,storage:.16,psu:.12,'case':.10,cooling:.06,gpu:.00,monitor:.00}
+  };
+  const w=W[budgetType_]||W.gaming;
+  const res={};
+  const compat={};
+
+  // ── Шаг 1: CPU ──
+  const cpuBud=totalUSD*w.cpu;
+  const cpuPool=[...DB.cpu].filter(i=>i.price>0&&i.price<=cpuBud*1.25).sort((a,b)=>score(b,'cpu')-score(a,'cpu'));
+  const cpu=cpuPool[0]||null;
+  if(cpu){res.cpu=cpu; compat.socket=cpu.socket; compat.cpuTDP=cpu.tdp||65;}
+
+  // ── Шаг 2: MB — должна соответствовать сокету CPU ──
+  const mbBud=totalUSD*w.mb;
+  let mbPool=[...DB.mb].filter(i=>i.price>0&&i.price<=mbBud*1.35).sort((a,b)=>score(b,'mb')-score(a,'mb'));
+  if(compat.socket){const p2=mbPool.filter(i=>i.socket===compat.socket);if(p2.length)mbPool=p2;}
+  const mb=mbPool[0]||null;
+  if(mb){res.mb=mb; compat.memory=mb.memory;}
+
+  // ── Шаг 3: RAM — должна совпадать с типом памяти платы ──
+  const ramBud=totalUSD*w.ram;
+  let ramPool=[...DB.ram].filter(i=>i.price>0&&i.price<=ramBud*1.3).sort((a,b)=>score(b,'ram')-score(a,'ram'));
+  if(compat.memory){const p2=ramPool.filter(i=>i.type===compat.memory);if(p2.length)ramPool=p2;}
+  const ram=ramPool[0]||null;
+  if(ram) res.ram=ram;
+
+  // ── Шаг 4: GPU ──
+  if(w.gpu>0){
+    const gpuBud=totalUSD*w.gpu;
+    const gpuPool=[...DB.gpu].filter(i=>i.price>0&&i.price<=gpuBud*1.25).sort((a,b)=>score(b,'gpu')-score(a,'gpu'));
+    const gpu=gpuPool[0]||null;
+    if(gpu){res.gpu=gpu; compat.gpuTDP=gpu.tdp||150;}
+  }
+
+  // ── Шаг 5: Storage ──
+  const stBud=totalUSD*w.storage;
+  const stPool=[...DB.storage].filter(i=>i.price>0&&i.price<=stBud*1.3).sort((a,b)=>score(b,'storage')-score(a,'storage'));
+  const st=stPool[0]||null; if(st) res.storage=st;
+
+  // ── Шаг 6: PSU — мощность = CPU TDP + GPU TDP + 120W запас ──
+  const psuBud=totalUSD*w.psu;
+  const needWatt=(compat.cpuTDP||65)+(compat.gpuTDP||0)+120;
+  let psuPool=[...DB.psu].filter(i=>i.price>0&&i.price<=psuBud*1.35&&(i.wattage||0)>=needWatt).sort((a,b)=>score(b,'psu')-score(a,'psu'));
+  if(!psuPool.length) psuPool=[...DB.psu].filter(i=>i.price>0&&i.price<=psuBud*1.5).sort((a,b)=>(a.price||0)-(b.price||0));
+  const psu=psuPool[0]||null; if(psu) res.psu=psu;
+
+  // ── Шаг 7: Case ──
+  const caseBud=totalUSD*w['case'];
+  const casePool=[...DB['case']].filter(i=>i.price>0&&i.price<=caseBud*1.3).sort((a,b)=>score(b,'case')-score(a,'case'));
+  const cs=casePool[0]||null; if(cs) res['case']=cs;
+
+  // ── Шаг 8: Cooling ──
+  const coolBud=totalUSD*w.cooling;
+  const coolPool=[...DB.cooling].filter(i=>i.price>0&&i.price<=coolBud*1.3).sort((a,b)=>score(b,'cooling')-score(a,'cooling'));
+  const cool=coolPool[0]||null; if(cool) res.cooling=cool;
+
+  // ── Показать результат ──
   const el=document.getElementById('budget-res');
-  if(!Object.keys(res).length){el.innerHTML='<div style="color:var(--red);text-align:center;padding:16px">Бюджет слишком мал</div>';return;}
-  let h='<div class="budget-res">';
-  Object.entries(res).forEach(([cat,it])=>h+=`<div class="br-item"><span class="br-cat">${CLB[cat]||cat}</span><span class="br-name">${it.brand} ${it.name}</span><span class="br-price">${rub(it.price)}</span></div>`);
+  if(!res.cpu){el.innerHTML='<div style="color:var(--red);text-align:center;padding:16px">Бюджет слишком мал для сборки</div>';return;}
+  let spent=Object.values(res).reduce((a,i)=>a+(i.price||0),0);
   const left=totalRub-Math.round(spent*rate);
+  let h='<div class="budget-res" style="background:var(--bg3);border-radius:13px;padding:12px">';
+  CATS.filter(c=>res[c]).forEach(cat=>h+=`<div class="br-item"><span class="br-cat">${CLB[cat]}</span><span class="br-name">${res[cat].brand} ${res[cat].name}</span><span class="br-price">${rub(res[cat].price)}</span></div>`);
   h+=`<div style="display:flex;justify-content:space-between;padding:10px 0;font-weight:700"><span style="font-size:12px;color:var(--text2)">Итого</span><span style="font-size:18px;color:var(--green)">${rub(spent)}</span></div>`;
-  if(left>0)h+=`<div style="font-size:10px;color:var(--text2);text-align:right">Остаток: ~${Math.round(left).toLocaleString('ru-RU')} ₽</div>`;
-  h+=`<button class="act-btn primary" style="width:100%;margin-top:10px;padding:11px" onclick="applyBudget()">✅ Применить</button></div>`;
+  if(left>0) h+=`<div style="font-size:10px;color:var(--text2);text-align:right">Остаток: ~${Math.round(left).toLocaleString('ru-RU')} ₽</div>`;
+  // Проверка совместимости итоговой сборки
+  const warns=[];
+  if(res.cpu&&res.mb&&res.cpu.socket!==res.mb.socket) warns.push(`Сокет: ${res.cpu.socket} ≠ ${res.mb.socket}`);
+  if(res.ram&&res.mb&&res.ram.type!==res.mb.memory) warns.push(`RAM: ${res.ram.type} ≠ ${res.mb.memory}`);
+  if(!warns.length) h+=`<div class="compat-note" style="margin-top:8px">✅ Совместимость подтверждена</div>`;
+  else h+=`<div style="font-size:10px;color:var(--red);margin-top:6px">⚠️ ${warns.join(' | ')}</div>`;
+  h+=`<button class="act-btn primary" style="width:100%;margin-top:12px;padding:11px" onclick="applyBudget()">✅ Применить сборку</button></div>`;
   el.innerHTML=h; window._budRes=res;
 }
-function applyBudget(){if(!window._budRes)return;myBuild={...window._budRes};updBldCnt();closeModal('modal-budget');showTab('build');toast('Сборка применена!');}
+function applyBudget(){if(!window._budRes)return;myBuild={...window._budRes};updBldCnt();closeModal('modal-budget');showTab('build');toast('✅ Сборка применена!');}
 
 // ── Export ──
 function copyBuild(){
-  const keys=Object.keys(myBuild); if(!keys.length){toast('Сборка пуста');return;}
-  let t='🖥️ PC Builder Pro v6.0 — Моя сборка\n\n',tot=0;
-  keys.forEach(cat=>{const it=myBuild[cat];tot+=it.price||0;t+=`${CLB[cat]||cat}: ${it.brand} ${it.name} — ${rub(it.price)}\n`;});
-  t+=`\n💰 Итого: ${rub(tot)}\n[PC Builder Pro v6.0]`;
-  navigator.clipboard?.writeText(t).then(()=>toast('Скопировано!')).catch(()=>{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Скопировано!');});
+  const ks=CATS.filter(c=>myBuild[c]); if(!ks.length){toast('Сборка пуста');return;}
+  let t='🖥️ PC Builder Pro v7.0\n\n',tot=0;
+  ks.forEach(cat=>{const it=myBuild[cat];tot+=it.price||0;t+=`${CLB[cat]}: ${it.brand} ${it.name} — ${rub(it.price)}\n`;});
+  t+=`\n💰 Итого: ${rub(tot)}\n[PC Builder Pro v7.0]`;
+  navigator.clipboard?.writeText(t).then(()=>toast('📋 Скопировано!')).catch(()=>{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('📋 Скопировано!');});
 }
 
 // ── Modals ──
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
-function toast(msg,dur=2000){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
+function toast(msg,dur=2500){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
 
-// ═══════════════════════════════════════════════
-//  DNS-STYLE FILTER PANEL
-// ═══════════════════════════════════════════════
-
-// Описание категориально-специфичных фильтров
-const FD = {
-  cpu: [
-    {label:'Сокет',key:'socket',values:['LGA1851','LGA1700','LGA1200','AM5','AM4','SP5']},
-    {label:'Мин. ядра',key:'minCores',range:[4,8,12,16,24,32],unit:'',hint:'от'},
-    {label:'Макс. TDP',key:'maxTDP',range:[65,95,105,125,150,200],unit:'W',hint:'до'},
-    {label:'Год',key:'year',values:[2024,2025,2023,2022,2021,2020]},
-  ],
-  gpu: [
-    {label:'Мин. VRAM',key:'minVRAM',range:[4,6,8,10,12,16,24],unit:'GB',hint:'от'},
-    {label:'Бренд',key:'brand',values:['NVIDIA','AMD','Intel']},
-    {label:'Год',key:'year',values:[2025,2024,2023,2022,2021,2020]},
-  ],
-  mb: [
-    {label:'Сокет',key:'socket',values:['LGA1851','LGA1700','LGA1200','AM5','AM4','sWRX80','sTR5','sTRX4']},
-    {label:'Форм-фактор',key:'formfactor',values:['ATX','mATX','Mini-ITX','EATX']},
-    {label:'Тип памяти',key:'memory',values:['DDR5','DDR4']},
-    {label:'Чипсет',key:'chipset',values:['Z890','Z790','Z690','Z490','X870E','X870','X670E','X670','B850','B650E','B650','B560','B460','H870','H770','A820','B450']},
-  ],
-  ram: [
-    {label:'Тип',key:'type',values:['DDR5','DDR4']},
-    {label:'Мин. частота',key:'minSpeed',range:[3200,3600,4800,5600,6000,6400,7200,8000],unit:'МГц',hint:'от'},
-    {label:'Объём (GB)',key:'capacity',values:[8,16,32,64,96,128,256]},
-  ],
-  storage: [
-    {label:'Тип',key:'type',values:['NVMe PCIe 5.0','NVMe PCIe 4.0','NVMe PCIe 3.0','SSD SATA','HDD']},
-    {label:'Объём (TB)',key:'capacity',values:[256,512,1000,2000,4000,8000]},
-  ],
-  psu: [
-    {label:'Мин. мощность',key:'minWatt',range:[550,650,750,850,1000,1200,1500],unit:'W',hint:'от'},
-    {label:'КПД',key:'efficiency',values:['80+ Bronze','80+ Gold','80+ Platinum','80+ Titanium']},
-    {label:'Модульность',key:'modular',values:['Fully','Semi','Non']},
-  ],
-  'case': [
-    {label:'Форм-фактор',key:'formfactor',values:['Full Tower','Mid Tower','mATX','Mini-ITX','Open Frame']},
-  ],
-  cooling: [
-    {label:'Тип',key:'type',values:['AIO','Air','Custom Loop','Thermal Paste','Thermal Pad']},
-  ],
-  monitor: [
-    {label:'Разрешение',key:'resolution',values:['FHD','QHD','4K','UW-QHD','DQHD']},
-    {label:'Тип матрицы',key:'panel',values:['OLED','QD-OLED','IPS','Fast IPS','Nano IPS','VA','TN','Mini LED']},
-    {label:'Мин. частота',key:'minRefresh',range:[60,120,144,165,180,240,360,480],unit:'Гц',hint:'от'},
-    {label:'Размер (\")',key:'size',values:[24,24.5,27,31.5,32,34,45,49]},
-  ],
+// ════════════════════════════════════════════════
+//  DNS FILTER PANEL
+// ════════════════════════════════════════════════
+const FD={
+  cpu:[{label:'Сокет',key:'socket',values:['LGA1851','LGA1700','LGA1200','AM5','AM4','SP5']},{label:'Мин.ядра',key:'minCores',range:[4,6,8,12,16,24,32],unit:'',hint:'от'},{label:'Макс.TDP',key:'maxTDP',range:[65,95,105,125,150,200],unit:'W',hint:'до'},{label:'Год',key:'year',values:[2025,2024,2023,2022,2021]}],
+  gpu:[{label:'Мин.VRAM',key:'minVRAM',range:[4,6,8,10,12,16,24],unit:'GB',hint:'от'},{label:'Год',key:'year',values:[2025,2024,2023,2022,2021,2020]}],
+  mb:[{label:'Сокет',key:'socket',values:['LGA1851','LGA1700','LGA1200','AM5','AM4','sTR5','sTRX4']},{label:'Форм-фактор',key:'formfactor',values:['ATX','mATX','Mini-ITX','EATX']},{label:'Тип памяти',key:'memory',values:['DDR5','DDR4']},{label:'Чипсет',key:'chipset',values:['Z890','Z790','Z690','Z490','X870E','X870','X670E','X670','B850','B650','B560','B460']}],
+  ram:[{label:'Тип',key:'type',values:['DDR5','DDR4']},{label:'Мин.частота',key:'minSpeed',range:[3200,3600,4800,5600,6000,6400,7200],unit:'МГц',hint:'от'},{label:'Объём',key:'capacity',values:[8,16,32,64,96,128]}],
+  storage:[{label:'Тип',key:'type',values:['NVMe PCIe 5.0','NVMe PCIe 4.0','NVMe PCIe 3.0','SSD SATA','HDD']}],
+  psu:[{label:'Мин.мощность',key:'minWatt',range:[550,650,750,850,1000,1200,1500],unit:'W',hint:'от'},{label:'КПД',key:'efficiency',values:['80+ Bronze','80+ Gold','80+ Platinum','80+ Titanium']},{label:'Модульность',key:'modular',values:['Fully','Semi','Non']}],
+  'case':[{label:'Форм-фактор',key:'formfactor',values:['Full Tower','Mid Tower','mATX','Mini-ITX','Open Frame']}],
+  cooling:[{label:'Тип',key:'type',values:['AIO','Air','Custom Loop']}],
+  monitor:[{label:'Разрешение',key:'resolution',values:['FHD','QHD','4K','UW-QHD','DQHD']},{label:'Тип матрицы',key:'panel',values:['OLED','QD-OLED','IPS','Fast IPS','Nano IPS','VA','TN','Mini LED']},{label:'Мин.частота',key:'minRefresh',range:[60,120,144,165,180,240,360,480],unit:'Гц',hint:'от'},{label:'Размер',key:'size',values:[24,24.5,27,31.5,32,34,45,49]}]
 };
-
-function openFilterPanel(){
-  buildFPBody();
-  document.getElementById('filter-panel').classList.add('open');
-}
+function openFilterPanel(){buildFPBody();document.getElementById('filter-panel').classList.add('open');}
 function closeFilterPanel(){document.getElementById('filter-panel').classList.remove('open');}
-
 function buildFPBody(){
-  const cat=CAT[tab]; if(!cat) return;
+  const cat=tab; if(!DB[cat]) return;
   const fs=getFSC();
-  // collect brands from current cat
   const brands=[...new Set(DB[cat].map(i=>i.brand))].sort();
   let h='';
-  // ── Sort ──
-  h+=`<div class="fp-section"><div class="fp-section-title">Сортировка</div><div class="fp-sort-grid">`;
-  const sorts=[['default','По умолчанию'],['price-asc','Цена ↑'],['price-desc','Цена ↓'],['year-desc','Новинки'],['score-desc','Топ рейтинг'],['name-asc','А → Я']];
-  sorts.forEach(([v,l])=>h+=`<div class="fp-radio-btn${fs.sort===v?' active':''}" onclick="fpSetSort('${v}',this)">${l}</div>`);
-  h+=`</div></div>`;
-  // ── Price ──
-  h+=`<div class="fp-section"><div class="fp-section-title">Цена ₽</div><div class="fp-price-row">
-    <input class="fp-price-inp" id="fp-pmin" type="number" placeholder="От" value="${fs.priceMin||''}" min="0">
-    <span class="fp-price-sep">—</span>
-    <input class="fp-price-inp" id="fp-pmax" type="number" placeholder="До" value="${fs.priceMax||''}" min="0">
-  </div></div>`;
-  // ── Brands ──
-  h+=`<div class="fp-section"><div class="fp-section-title">Бренд</div><div class="fp-brands-grid">`;
+  // Sort
+  h+='<div class="fp-section"><div class="fp-section-title">Сортировка</div><div class="fp-sort-grid">';
+  [['default','По умолчанию'],['price-asc','Цена ↑'],['price-desc','Цена ↓'],['year-desc','Новинки'],['score-desc','Топ рейтинг'],['name-asc','А → Я']].forEach(([v,l])=>h+=`<div class="fp-radio-btn${fs.sort===v?' active':''}" onclick="fpSetSort('${v}',this)">${l}</div>`);
+  h+='</div></div>';
+  // Price
+  h+=`<div class="fp-section"><div class="fp-section-title">Цена ₽</div><div class="fp-price-row"><input class="fp-price-inp" id="fp-pmin" type="number" placeholder="От" value="${fs.priceMin||''}"><span style="color:var(--text2)">—</span><input class="fp-price-inp" id="fp-pmax" type="number" placeholder="До" value="${fs.priceMax||''}"></div></div>`;
+  // Brands
+  h+='<div class="fp-section"><div class="fp-section-title">Бренд</div><div class="fp-brands-grid">';
   brands.forEach(b=>h+=`<div class="fp-check-btn${fs.brands.has(b)?' active':''}" onclick="fpToggleBrand('${b.replace(/'/g,"\\'")}',this)"><span class="fp-cb">${fs.brands.has(b)?'✓':''}</span>${b}</div>`);
-  h+=`</div></div>`;
-  // ── Category specs ──
-  const specs=FD[cat]||[];
-  specs.forEach(sp=>{
-    h+=`<div class="fp-section"><div class="fp-section-title">${sp.label}</div>`;
+  h+='</div></div>';
+  // Specs
+  (FD[cat]||[]).forEach(sp=>{
+    h+=`<div class="fp-section"><div class="fp-section-title">${sp.label}</div><div class="fp-opts-grid">`;
     if(sp.values){
-      h+=`<div class="fp-opts-grid"><div class="fp-opt${!fs.specs[sp.key]||fs.specs[sp.key]==='all'?' active':''}" onclick="fpSetSpec('${sp.key}','all',this)">Все</div>`;
+      h+=`<div class="fp-opt${!fs.specs[sp.key]||fs.specs[sp.key]==='all'?' active':''}" onclick="fpSetSpec('${sp.key}','all',this)">Все</div>`;
       sp.values.forEach(v=>h+=`<div class="fp-opt${String(fs.specs[sp.key])===String(v)?' active':''}" onclick="fpSetSpec('${sp.key}','${v}',this)">${v}</div>`);
-      h+=`</div>`;
     } else if(sp.range){
-      h+=`<div class="fp-opts-grid"><div class="fp-opt${!fs.specs[sp.key]?' active':''}" onclick="fpSetSpec('${sp.key}','',this)">Любое</div>`;
+      h+=`<div class="fp-opt${!fs.specs[sp.key]?' active':''}" onclick="fpSetSpec('${sp.key}','',this)">Любое</div>`;
       sp.range.forEach(v=>h+=`<div class="fp-opt${String(fs.specs[sp.key])===String(v)?' active':''}" onclick="fpSetSpec('${sp.key}','${v}',this)">${sp.hint} ${v}${sp.unit}</div>`);
-      h+=`</div>`;
     }
-    h+=`</div>`;
+    h+='</div></div>';
   });
   document.getElementById('fp-body').innerHTML=h;
 }
-
-function fpSetSort(v,el){
-  getFSC().sort=v;
-  document.querySelectorAll('.fp-radio-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-}
-function fpToggleBrand(b,el){
-  const s=getFSC().brands;
-  if(s.has(b)){s.delete(b);el.classList.remove('active');el.querySelector('.fp-cb').textContent='';}
-  else{s.add(b);el.classList.add('active');el.querySelector('.fp-cb').textContent='✓';}
-}
-function fpSetSpec(k,v,el){
-  getFSC().specs[k]=v==='all'?'':v;
-  // деактивировать соседей
-  el.closest('.fp-opts-grid')?.querySelectorAll('.fp-opt').forEach(o=>o.classList.remove('active'));
-  el.classList.add('active');
-}
-function applyFilters(){
-  const fs=getFSC();
-  fs.priceMin=document.getElementById('fp-pmin')?.value||'';
-  fs.priceMax=document.getElementById('fp-pmax')?.value||'';
-  closeFilterPanel();
-  renderComponents();
-}
-function resetFilters(){
-  FS[tab]={sort:'default',priceMin:'',priceMax:'',brands:new Set(),specs:{}};
-  closeFilterPanel();
-  renderComponents();
-  updateFPBadge();
-}
+function fpSetSort(v,el){getFSC().sort=v;document.querySelectorAll('.fp-radio-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+function fpToggleBrand(b,el){const s=getFSC().brands;if(s.has(b)){s.delete(b);el.classList.remove('active');el.querySelector('.fp-cb').textContent='';}else{s.add(b);el.classList.add('active');el.querySelector('.fp-cb').textContent='✓';}}
+function fpSetSpec(k,v,el){getFSC().specs[k]=v==='all'?'':v;el.closest('.fp-opts-grid')?.querySelectorAll('.fp-opt').forEach(o=>o.classList.remove('active'));el.classList.add('active');}
+function applyFilters(){const fs=getFSC();fs.priceMin=document.getElementById('fp-pmin')?.value||'';fs.priceMax=document.getElementById('fp-pmax')?.value||'';closeFilterPanel();renderComponents();}
+function resetFilters(){FS[tab]={sort:'default',priceMin:'',priceMax:'',brands:new Set(),specs:{}};closeFilterPanel();renderComponents();updateFPBadge();}
 function updateFPBadge(){
-  const fs=getFSC();
-  let n=0;
-  if(fs.sort&&fs.sort!=='default') n++;
-  if(fs.priceMin) n++;
-  if(fs.priceMax) n++;
-  n+=fs.brands.size;
-  n+=Object.values(fs.specs).filter(v=>v&&v!=='all').length;
-  const badge=document.getElementById('fp-active-count');
-  const btn=document.getElementById('filterToggleBtn');
-  if(n>0){badge.style.display='inline';badge.textContent=n;btn.classList.add('has-active');}
-  else{badge.style.display='none';btn.classList.remove('has-active');}
+  const fs=getFSC();let n=0;
+  if(fs.sort&&fs.sort!=='default')n++;if(fs.priceMin)n++;if(fs.priceMax)n++;n+=fs.brands.size;n+=Object.values(fs.specs).filter(v=>v&&v!=='all').length;
+  const badge=document.getElementById('fp-active-count'),btn=document.getElementById('filterToggleBtn');
+  if(n>0){badge.style.display='inline';badge.textContent=n;btn.classList.add('has-active');}else{badge.style.display='none';btn.classList.remove('has-active');}
 }
 
 // ── Boot ──
 init();
+updateRateChip();
 
 </script>
 </body>
